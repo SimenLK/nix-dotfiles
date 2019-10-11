@@ -1,0 +1,87 @@
+#
+# Address book (mutt)
+#
+# vim:syntax=muttrc:
+
+alias 0skar	Oskar Berger <oskar.berger@greyinteractive.fi>
+alias anders	Anders Stenbäck	<pstenbac@cc.hut.fi>
+alias anton	Anton Gyllenberg	<anton@iki.fi>
+alias bstd	BSTD <bstd@ipso.se>
+alias bstdf	BSTD-FINLAND <bstd-finland@chem.helsinki.fi>
+alias bstdi	BSTD inner-circle	<BSTDinner@onelist.com>
+alias cavers	<cavers@aquanaut.com>
+alias dage	Dage Sundholm <sundholm@chem.helsinki.fi>
+alias edward	Edward Haegström <haeggstrom@hylk.helsinki.fi>
+alias et	    Esa Tienhaara	<et@clinet.fi>
+alias frankie	Timo Niemi	<Timo.Niemi@sonera.fi>
+alias hypbar	<hypbar-l@techunix.technion.ac.il>
+alias igge	Ingemar Lundgren <ingemar.lundgren@mbox301.swipnet.se>
+alias jaja	Jan Mickos	<jan.mickos@coolsoft.fi>
+alias jaouad	<jaouad@nd.edu>
+alias jari	Jari Pollanen <k22577@kyyppari.hkkk.fi>
+alias johanna	Johanna Rajakangas <joraja@utu.fi>
+alias jukka	Jukka Vuoristo <jukka_vuoristo@planar.com>
+alias kati	Katarina Juselius <katarina.juselius@econ.ku.dk>
+alias katja	Kataja E Bonnevier	<bonnevie@cc.helsinki.fi>
+alias kollwitz Markus Kollwitz <markus@tchibm7.chemie.uni-karlsruhe.de>
+alias leif	Leif Laaksonen <Leif.Laaksonen@csc.fi>
+alias linus	Linus Torvalds <torvalds@transmeta.com>
+alias lundin	Thomas Lundin <TLUNDIN@sockom.helsinki.fi>
+alias mawe	Kauppinen Marko <marko.kauppinen@tammerneon.fi>
+alias milja	Milja Sarkola <MASARKOLA@sockom.helsinki.fi>
+alias nino	Nino Runeberg <runeberg@chem.helsinki.fi>
+alias oskar	Oskar Silen <oskar.silen@pp.inet.fi>
+alias pernilla Pernilla Eriksson <peerikss@ra.abo.fi>
+alias pj	    Petri Järvinen <tkkulta@netti.fi>		
+alias rikard	Richard Lundgren <rikard.lundgren@swipnet.se>
+alias roope	Joakim Berndtsson <jjberndt@cc.hut.fi>
+alias sandra	Sandra Palmgren <spalmgre@cc.helsinki.fi>
+alias sari	Sari A. Kajantie <skajan@cc.helsinki.fi>
+alias seth	Michael Seth <m.seth@auckland.ac.nz>
+alias sigge	Sigmund Lundgren <sigmund@telia.com>
+alias steffe	Stefan Eriksson <sjerikss@rock.helsinki.fi>
+alias sten	Sten Stockmann <sws@iki.fi>
+alias techdiver <techdiver@aquanaut.com>
+alias teknisk-list <teknisk-list-request@tekniskdykking.org>
+alias teppo	Teppo Kurki <teppo.kurki@hut.fi>
+alias tofi	Kristoffer Häggström <khaggstr@ra.abo.fi>
+alias tommy	Tommy Vänskä <tommy.vanska@hut.fi>
+alias liw Lars Wirzenius <liw@iki.fi>
+alias tyni Niko Tyni <Niko.Tyni@helsinki.fi>
+alias toomas Toomas Tamm <toomas@kky.ttu.ee>
+alias jocke Joachim Fazer <joachim.fazer@dtcg.fi>
+alias polkko Jouni Polkko <jouni.polkko@fmi.fi>
+alias kiirikki Mikko Kiirikki <Mikko.Kiirikki@iki.fi>
+alias mika Mikael Juselius <juselius@shh.fi>
+alias peik Peik Joutsen <pjoutsen@cc.hut.fi>
+alias pera Per Andersson <Per.Andersson@ipso.se>
+alias olli Pyykonen, Olli <olli.pyykonen@neste.com>
+alias ljuda Ljudmilla Dombrovskaja <sinbad@ut.ee>
+alias jens Jens K Ehn <ehn@cc.helsinki.fi>
+alias ivan Ivan Ljubic <iljubic@rudjer.irb.hr>
+alias ulf Mikael Johansson <mpjohans@cc.helsinki.fi>
+alias basse Sebastian Packalén <spackale@cc.hut.fi>
+alias nyfalt Christer J Nyfalt <nyfalt@cc.helsinki.fi>
+alias meinander Kristoffer Meinander <kmeinand@rock.helsinki.fi>
+alias joni Jon Eriksson <jon.eriksson@smallplanet.fi>
+alias nenne Raymond Holmberg <s970920@shh.fi>
+alias pikke Birgit Bärlund <birgit.barlund@kolumbus.fi>
+alias kauko Kauko Koistinen <kauko.koistinen@bridge.pp.fi>
+alias mia Mia Tenhunen <miat@evitech.fi>
+alias gauss Juergen Gauss <gauss@mail.uni-mainz.de>
+alias salek Pawel Salek <pawel.salek@kjemi.uio.no>
+alias jussi Juselius Jussi <Jussi.Juselius@m-real.com>
+alias auer Alexander Auer <auer@mail.uni-mainz.de>
+alias heun Oliver Heun <heun@mail.uni-mainz.de>
+alias dan Dan Jonsson <jonsson@mail.uni-mainz.de>
+alias lenhart Michael Lenhart <lenhart@mail.uni-mainz.de>
+alias bamse Christer Nordman <Christer.Nordman@poyry.fi>
+alias sarek tommy, bamse
+alias micha Michael Patzschke <michaelp@chem.helsinki.fi>
+alias yakowlef \"C.K. Yakowlef\" <yakowlef@yakowlef.org>
+alias bondo Thomas B. Pedersen <bondo@slater.quifis.uv.es>
+
+alias ari Ari Sahlstrom <sportwings@hotmail.com>
+alias piotr Piotr Kronka <piotr@lp-mercatura.fi>
+
+alias makev Marko Väyrynen <marko.vayrynen@kolumbus.fi>

@@ -1,0 +1,25 @@
+
+folder-hook . set sort=mailbox-order
+folder-hook 'Mail/.*' set sort=threads
+folder-hook 'Mail/spam' set sort=mailbox-order
+
+#
+# Send hooks
+#
+send-hook . set pgp_autosign=yes
+send-hook . set signature='~/.signature'
+send-hook . "my_hdr From: Jonas Juselius <jonas@iki.fi>"
+
+send-hook '~t jonas$' "set signature=''; set pgp_autosign=no"
+send-hook '~t jonas@iki.fi' "set signature=''; set pgp_autosign=no"
+send-hook '~t jonas@chem.helsinki.fi' "set signature=''; set pgp_autosign=no"
+
+send-hook '~t @chem.helsinki.fi' "my_hdr From: Jonas Juselius <jonas@chem.helsinki.fi>"
+send-hook '~t ^[a-zA-Z]*$' "my_hdr From: Jonas Juselius <jonas@chem.helsinki.fi>"
+
+# Use folders which match on \\.gz$ as gzipped folders:
+open-hook \\.gz$ "gzip -cd %f > %t"
+close-hook \\.gz$ "gzip -c %t > %f"
+append-hook \\.gz$ "gzip -c %t >> %f"
+
+# vim:syntax=muttrc:

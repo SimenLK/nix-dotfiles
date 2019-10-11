@@ -1,0 +1,10 @@
+
+set imap_user='jonas'
+set spoolfile='imaps://imap.chem.helsinki.fi/INBOX'
+set folder='imaps://imap.chem.helsinki.fi/Maildir/'
+set mail_check=60
+set timeout=10
+
+#macro index I "<change-folder>imaps://radon.pc.helsinki.fi/INBOX\n"
+
+# vim:syntax=muttrc:

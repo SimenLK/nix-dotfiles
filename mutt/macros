@@ -1,0 +1,17 @@
+
+# SpamAssassin goodies
+#message-hook . "ignore X-Spam-Level"
+#message-hook '~h "X-Spam-Status: Yes" ! ~h RAZOR' "unignore X-Spam-Level"
+macro index S "<enter-command>unset wait_key\n<pipe-entry>spamassassin -r\n<enter-command>set wait_key\n" "Report spam to Vipul's Razor"
+macro pager S "<enter-command>unset wait_key\n<pipe-entry>spamassassin -r\n<enter-command>set wait_key\n" "Report spam to Vipul's Razor"
+
+# Bogofilter macros
+#macro index <ESC>H "<enter-command>unset wait_key\n<pipe-entry>bogofilter -H\n<enter-command>set wait_key\n" "Register message as ham"
+#macro index <ESC>S "<enter-command>unset wait_key\n<pipe-entry>bogofilter -S\n<enter-command>set wait_key\n>" "Register message as spam " 
+
+# Show documentation when pressing F1
+macro generic <f1> "!zless /usr/share/doc/mutt/manual.txt.gz 2>/dev/null\n" "Show Mutt documentation"
+macro index   <f1> "!zless /usr/share/doc/mutt/manual.txt.gz 2>/dev/null\n" "Show Mutt documentation"
+macro pager   <f1> "!zless /usr/share/doc/mutt/manual.txt.gz 2>/dev/null\n" "Show Mutt documentation"
+
+# vim:syntax=muttrc:

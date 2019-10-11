@@ -1,0 +1,64 @@
+
+my_hdr From: Jonas Juselius <jonas@iki.fi>
+#set alternates="(jonas@chem\.helsinki\.fi|jonas@iki\.fi|jjuseliu@.*\.helsinki\.fi|plomlund@yahoo\.com)"
+
+#source ~/.mutt/imap
+
+mailboxes ! +.root +.lists.bugtraq +.lists.spam +.lists +.lists.debian
+
+lists bugtraq zope oon-list chemistry@ccl.net pbs-users debian hmker zsh-
+subscribe zope bugtraq oon-list chemistry@ccl.net pbs-users debian hmker zsh-
+
+set sort=date
+unset markers
+set mask="!^\\.[^.]"
+#set spoolfile=/var/spool/mail/jonas
+set move=no
+set postpone=ask-no
+set postponed="+.Drafts"
+set mbox="+.mbox"
+set delete=yes
+set abort_nosubject=no
+set abort_unmodified=no
+set editor="vim"
+set beep_new=yes
+set print_command="a2ps -2gEmail"
+#set print_command="muttprint"
+set pager_index_lines=6
+set auto_tag
+unset fcc_attach
+set record=+.Sent
+set forward_format='fwd: %s'
+set pager_stop
+set pgp_timeout=3600
+#set fast_reply
+#set autoedit
+#set edit_hdrs
+set mailcap_path=~/.mutt/mailcap:/usr/local/etc/mailcap:/etc/mailcap
+set certificate_file=~/.mutt/certificates
+set alias_file="~/.mutt/aliases"
+
+
+auto_view text/html 
+auto_view text/x-vcard
+auto_view application/octet-stream 
+#auto_view application/postscript application/x-tar-gz
+#auto_view application/x-gtar
+
+bind pager p previous-undeleted
+bind pager P print-message
+bind pager n next-undeleted
+bind pager . search-next
+bind pager <up> previous-line
+bind pager <down> next-line
+bind index <up> previous-entry
+bind index <down> next-entry
+bind index \ex sync-mailbox
+
+ignore x- thread- resent old precedence 
+unignore date
+
+source ~/.mutt/aliases
+source ~/.mutt/hooks
+source ~/.mutt/macros
+
