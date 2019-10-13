@@ -164,11 +164,10 @@ in
   home.sessionVariables = {};
 
   programs = {
-    browserpass.enable = true;
-    feh.enable = true;
-    firefox.enable = true;
     htop.enable = true;
     man.enable = true;
+    lesspipe.enable = true;
+
     neovim =
       let
         vimPlugins = pkgs.vimPlugins // {
@@ -277,6 +276,11 @@ in
         set -ga terminal-overrides ",xterm-termite:Tc"
       '';
     };
+
+    home-manager = {
+      enable = true;
+      path = "https://github.com/rycee/home-manager/archive/master.tar.gz";
+    };
   };
 
   systemd.user.startServices = true;
@@ -285,7 +289,6 @@ in
     GIT_ALLOW_PROTOCOL = "keybase:ssh:https";
   };
 
-  programs.lesspipe.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -309,10 +312,5 @@ in
       source = ~/.dotfiles/local/share/omf;
       target = "omf";
     };
-  };
-
-  programs.home-manager = {
-    enable = true;
-    path = "https://github.com/rycee/home-manager/archive/master.tar.gz";
   };
 }
