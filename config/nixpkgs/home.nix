@@ -4,11 +4,11 @@ let
   options = {
     desktop = {
       enable = true;
-      dropbox = true;
+      dropbox = false;
     };
-    dotnet = false;
-    node = false;
-    haskell = false;
+    dotnet = true;
+    node = true;
+    haskell = true;
     python = false;
     proton = false;
     languages = false;
@@ -19,19 +19,6 @@ let
     userName = "Jonas Juselius";
     signing = {
       key = "jonas.juselius@gmail.com";
-    };
-  };
-
-  sshConfig = {
-    compression = false;
-    forwardAgent = true;
-    serverAliveInterval = 30;
-    extraConfig = "IPQoS throughput";
-    matchBlocks = {
-      example = {
-        user = "example";
-        hostname = "example.com";
-      };
     };
   };
 
@@ -47,6 +34,82 @@ let
       recursive = true;
     };
   };
+
+  sshConfig = {
+    compression = false;
+    forwardAgent = true;
+    serverAliveInterval = 30;
+    extraConfig = "IPQoS throughput";
+    matchBlocks = {
+      git01 = {
+        user = "itpartner";
+        hostname = "git01.itpartner.intern";
+      };
+      "k8s0-?" = {
+      user = "itpartner";
+      hostname = "%h.itpartner.no";
+      };
+      "k0-0" = {
+      user = "itpartner";
+      hostname = "k0-0.itpartner.no";
+      };
+      "k1-0" = {
+      user = "itpartner";
+      hostname = "k1-0.itpartner.no";
+      };
+      xor = {
+      hostname = "xor.itpartner.no";
+      port = 11022;
+      };
+      rox = {
+      hostname = "xor.itpartner.no";
+      port = 22;
+      };
+      jolynn = {
+      proxyCommand = "ssh -W regnekraft.itpartner.no:%p stallo";
+      };
+      regnekraft = {
+      user = "jonas";
+      hostname = "regnekraft.itpartner.no";
+      };
+      regnekraft-adm = {
+      user = "root";
+      hostname = "regnekraft.itpartner.no";
+      };
+      stallo = {
+      hostname = "stallo.uit.no";
+      serverAliveInterval = 10;
+      };
+      stallo-2 = {
+      hostname = "stallo-login2.uit.no";
+      };
+      stallo-1 = {
+      hostname = "stallo-login1.uit.no";
+      };
+      radon = {
+      hostname = "radon.chem.helsinki.fi";
+      };
+      hep-web01 = {
+      user = "hepadmin";
+      hostname = "10.208.0.130";
+      };
+        # lambda-by-proxy = {
+        #     proxyCommand = "ssh -q jju000@hss.cc.uit.no nc lambda.cc.uit.no 22";
+        # };
+        # "c*-*" = {
+        #     proxyCommand = "ssh -W %h:%p stallo";
+        # };
+        # stallo-forward = {
+        #    hostname = "ssh2.cc.uit.no";
+        #    user = "jju000";
+        #    extraOptions = {
+        #     "PermitLocalCommand" = "yes";
+        #     "LocalCommand" =  "ssh stallo.uit.no";
+        #    };
+        # };
+
+      };
+    };
 
   extraDotfiles = [
     "aliases"
