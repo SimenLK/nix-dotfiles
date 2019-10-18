@@ -16,3 +16,6 @@
 [submodule "pki"]
 	path = pki
 	url = keybase://private/juselius/pki
+[submodule "vpn"]
+	path = vpn
+	url = keybase://private/juselius/vpn

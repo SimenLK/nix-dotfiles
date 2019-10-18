@@ -41,57 +41,46 @@ let
     serverAliveInterval = 30;
     extraConfig = "IPQoS throughput";
     matchBlocks = {
-      git01 = {
-        user = "itpartner";
-        hostname = "git01.itpartner.intern";
-      };
-      "k8s0-?" = {
-      user = "itpartner";
-      hostname = "%h.itpartner.no";
+      "k?-?" = {
+        user = "admin";
+        hostname = "%h.itpartner.no";
       };
       "k0-0" = {
-      user = "itpartner";
-      hostname = "k0-0.itpartner.no";
-      };
-      "k1-0" = {
-      user = "itpartner";
-      hostname = "k1-0.itpartner.no";
+        user = "itpartner";
+        hostname = "k0-0.itpartner.no";
       };
       xor = {
-      hostname = "xor.itpartner.no";
-      port = 11022;
+        hostname = "xor.itpartner.no";
+        port = 11022;
       };
-      rox = {
-      hostname = "xor.itpartner.no";
-      port = 22;
-      };
-      jolynn = {
-      proxyCommand = "ssh -W regnekraft.itpartner.no:%p stallo";
+      xor-intern = {
+        hostname = "xor.itpartner.no";
+        port = 22;
       };
       regnekraft = {
-      user = "jonas";
-      hostname = "regnekraft.itpartner.no";
+        user = "jonas";
+        hostname = "regnekraft.itpartner.no";
       };
       regnekraft-adm = {
-      user = "root";
-      hostname = "regnekraft.itpartner.no";
+        user = "root";
+        hostname = "regnekraft.itpartner.no";
       };
       stallo = {
-      hostname = "stallo.uit.no";
-      serverAliveInterval = 10;
+        hostname = "stallo.uit.no";
+        serverAliveInterval = 10;
       };
       stallo-2 = {
-      hostname = "stallo-login2.uit.no";
+        hostname = "stallo-login2.uit.no";
       };
       stallo-1 = {
-      hostname = "stallo-login1.uit.no";
+        hostname = "stallo-login1.uit.no";
       };
       radon = {
-      hostname = "radon.chem.helsinki.fi";
+        hostname = "radon.chem.helsinki.fi";
       };
       hep-web01 = {
-      user = "hepadmin";
-      hostname = "10.208.0.130";
+        user = "hepadmin";
+        hostname = "10.208.0.130";
       };
         # lambda-by-proxy = {
         #     proxyCommand = "ssh -q jju000@hss.cc.uit.no nc lambda.cc.uit.no 22";
