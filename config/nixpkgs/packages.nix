@@ -28,6 +28,7 @@ let
     tomb
     sshuttle
     minio-client
+    openfortivpn
   ];
   devel = [
     git
@@ -96,6 +97,7 @@ let
     pandoc
     networkmanager
     networkmanagerapplet
+    sshfs-fuse
     pinentry
     polkit_gnome
     steghide
@@ -121,6 +123,7 @@ let
     gnome3.gnome-disk-utility
     gnome3.gnome-tweaks
     gnome3.eog
+    gnome3.networkmanager-fortisslvpn
     blueman
     gparted
     virtmanager
@@ -162,7 +165,7 @@ let
     # glirc
   ];
   dotnet = if ! options.dotnet then [] else with dotnetPackages; [
-    # mono
+    mono
     # dotnet-sdk
   ];
   python = if ! options.python then [] else with pythonPackages;

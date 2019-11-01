@@ -15,7 +15,9 @@ let
     let
       version = "3.0.100";
       netCoreVersion = "3.0.0";
-      rpath = stdenv.lib.makeLibraryPath [ stdenv.cc.cc libunwind libuuid icu openssl zlib curl ];
+      rpath = stdenv.lib.makeLibraryPath [
+        stdenv.cc.cc libunwind libuuid icu openssl zlib curl libkrb5
+      ];
 
       dotnet-sdk =
         stdenv.mkDerivation rec {
