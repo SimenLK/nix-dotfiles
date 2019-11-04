@@ -3,7 +3,7 @@ with pkgs.lib;
 let
   options = {
     desktop = {
-      enable = true;
+      enable = false;
       dropbox = false;
     };
     dotnet = true;
@@ -12,6 +12,7 @@ let
     python = false;
     proton = false;
     languages = false;
+    vimDevPlugins = false;
   };
 
   gitUser = {
@@ -173,19 +174,25 @@ in
             src = ~/.dotfiles/vim-plugins/jonas;
           };
         };
+        devPlugins =
+          if options.vimDevPlugins then
+            [
+              LanguageClient-neovim
+              idris-vim
+              neco-ghc
+              purescript-vim
+              vim-ionide
+            ]
+          else [];
       in
       {
         enable = true;
         plugins = with vimPlugins; [
           jonas
-          LanguageClient-neovim
           ctrlp
-          idris-vim
-          neco-ghc
           neocomplete
           nerdcommenter
           nerdtree
-          purescript-vim
           supertab
           syntastic
           tabular
@@ -204,8 +211,7 @@ in
           vim-surround
           vim-unimpaired
           vim-gnupg
-          vim-ionide
-        ];
+        ] ++ devPlugins;
         extraConfig = builtins.readFile ../../vimrc;
       };
 
