@@ -3,7 +3,7 @@ with pkgs.lib;
 let
   options = {
     desktop = {
-      enable = false;
+      enable = true;
       dropbox = false;
     };
     dotnet = true;
@@ -12,7 +12,7 @@ let
     python = false;
     proton = false;
     languages = false;
-    vimDevPlugins = false;
+    vimDevPlugins = true;
   };
 
   gitUser = {
@@ -176,7 +176,7 @@ in
         };
         devPlugins =
           if options.vimDevPlugins then
-            [
+            with vimPlugins; [
               LanguageClient-neovim
               idris-vim
               neco-ghc
