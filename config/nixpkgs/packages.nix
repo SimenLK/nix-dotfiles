@@ -53,6 +53,7 @@ let
     # libtool
   ];
   desktop = if ! options.desktop.enable then [] else [
+    xmonad-log
     dropbox-cli
     wireshark-qt
     xorg.xmodmap
