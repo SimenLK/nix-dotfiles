@@ -34,10 +34,6 @@ let
         user = "admin";
         hostname = "%h.itpartner.no";
       };
-      "k0-0" = {
-        user = "itpartner";
-        hostname = "k0-0.itpartner.no";
-      };
       xor = {
         hostname = "xor.itpartner.no";
         port = 11022;
