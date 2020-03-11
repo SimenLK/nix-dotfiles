@@ -56,7 +56,7 @@
   };
 
   services = {
-    polybar = import ./polybar.nix { inherit pkgs; };
+    polybar = import ./polybar.nix { inherit pkgs options; };
 
     flameshot.enable =  true;
 
