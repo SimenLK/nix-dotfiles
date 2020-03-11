@@ -29,13 +29,6 @@ let
     # };
   };
 
-  sshConfig = {
-    compression = false;
-    forwardAgent = true;
-    serverAliveInterval = 30;
-    extraConfig = "IPQoS throughput";
-  };
-
   extraDotfiles = [
     "aliases"
     "bcrc"

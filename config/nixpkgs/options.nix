@@ -3,19 +3,16 @@
     enable = true;
     dropbox = false;
   };
-  dotnet = false;
-  node = false;
+  dotnet = true;
+  node = true;
   haskell = false;
-  python = false;
+  python = true;
   proton = false;
   languages = false;
   vimDevPlugins = true;
   gitUser = {
-    userEmail = "jonas.juselius@itpartner.no";
-    userName = "Jonas Juselius";
-    signing = {
-      key = "jonas.juselius@gmail.com";
-    };
+    userEmail = "simen.kirkvik@tromso.serit.no";
+    userName = "Simen Kirkvik";
   };
 }
 

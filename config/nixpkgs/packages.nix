@@ -61,7 +61,7 @@ let
     xorg.xmodmap
     xorg.xev
     glib
-    google-chrome
+    #google-chrome
     # googleearth
     firefox
     drive
