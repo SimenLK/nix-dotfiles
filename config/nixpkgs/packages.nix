@@ -30,6 +30,7 @@ let
     minio-client
     openfortivpn
     lorri
+    direnv
   ];
   devel = [
     git
@@ -162,6 +163,7 @@ let
   ];
   dotnet = if ! options.dotnet then [] else with dotnetCorePackages; [
     sdk_3_1
+    omnisharp-roslyn
     # mono
   ];
   python = if ! options.python then [] else with pythonPackages;
