@@ -1,5 +1,6 @@
 {
   desktop = {
+    laptop = true;
     enable = true;
     dropbox = true;
   };
@@ -10,6 +11,7 @@
   proton = false;
   languages = false;
   vimDevPlugins = true;
+  eth = "wlp0s20f3";
   gitUser = {
     userEmail = "jonas.juselius@itpartner.no";
     userName = "Jonas Juselius";
