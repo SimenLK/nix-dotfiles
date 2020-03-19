@@ -13,12 +13,7 @@ let
     forwardAgent = true;
     serverAliveInterval = 30;
     extraConfig = "IPQoS throughput";
-    matchBlocks = {
-      example = {
-        user = "example";
-        hostname = "example.com";
-      };
-    };
+    matchBlocks = options.sshHosts;
   };
 
   privateFiles = if ! options.desktop.enable then {} else {

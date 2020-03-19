@@ -1,5 +1,6 @@
 {
   desktop = {
+    laptop = true;
     enable = true;
     dropbox = true;
   };
@@ -10,8 +11,15 @@
   proton = false;
   languages = false;
   vimDevPlugins = true;
+  eth = "wlp0s20f3";
   gitUser = {
     userEmail = "simen.kirkvik@tromso.serit.no";
     userName = "Simen Kirkvik";
+  };
+  sshHosts = {
+    example = {
+      user = "demo";
+      hostname = "acme.com";
+    };
   };
 }
