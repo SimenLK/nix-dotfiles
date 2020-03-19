@@ -3,11 +3,6 @@ with pkgs.lib;
 let
   options = import ./options.nix;
 
-  gitUser = {
-    userEmail = "simen.kirkvik@tromso.serit.no";
-    userName = "Simen Kirkvik";
-  };
-
   sshConfig = {
     compression = false;
     forwardAgent = true;
@@ -97,10 +92,6 @@ in
             name = "vim-gnupg";
             src = ~/.dotfiles/vim-plugins/vim-gnupg;
           };
-          vim-ionide = pkgs.vimUtils.buildVimPlugin {
-            name = "vim-ionide";
-            src = ~/.dotfiles/vim-plugins/vim_fsharp_languageclient;
-          };
           jonas = pkgs.vimUtils.buildVimPlugin {
             name = "jonas";
             src = ~/.dotfiles/vim-plugins/jonas;
@@ -113,7 +104,6 @@ in
               idris-vim
               neco-ghc
               purescript-vim
-              vim-ionide
             ]
           else [];
       in

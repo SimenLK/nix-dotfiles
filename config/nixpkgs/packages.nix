@@ -61,7 +61,7 @@ let
     nix-prefetch-scripts
     sqlite-interactive
     gnum4
-    python37Packages.virtualenv
+    # python37Packages.virtualenv
     # sqsh
     # automake
     # autoconf
@@ -188,7 +188,7 @@ let
   ++ gnome
   ++ x11
   ++ media
-  ++ []);
+  ++ [];
   haskell = if ! options.haskell then [] else with haskellPackages; [
     ghc
     # stack
