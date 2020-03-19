@@ -1,7 +1,7 @@
 {
   desktop = {
     enable = true;
-    dropbox = false;
+    dropbox = true;
   };
   dotnet = true;
   node = true;
@@ -15,4 +15,3 @@
     userName = "Simen Kirkvik";
   };
 }
-

@@ -8,3 +8,6 @@
 ! keycode 15 = 6 asciicircum 6 dead_circumflex asciicircum asciicircum asciicircum asciicircum 6 dead_circumflex asciicircum asciicircum
 ! keycode 48 = apostrophe quotedbl apostrophe quotedbl dead_acute dead_diaeresis apostrophe quotedbl dead_acute dead_diaeresis apostrophe quotedbl
 keycode 95 = 0x0000 F11
+remove control = Control_R
+keysym Control_R = Super_L
+add control = Control_R

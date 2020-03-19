@@ -56,6 +56,7 @@ let
     # libtool
   ];
   desktop = if ! options.desktop.enable then [] else [
+    discord
     dropbox-cli
     wireshark-qt
     xorg.xmodmap
@@ -163,12 +164,11 @@ let
     omnisharp-roslyn
     # mono
   ];
-  python = if ! options.python then [] else with pythonPackages;
-     python3.withPackages (ps: with ps; [
-      numpy
-      matplotlib
-      tkinter
-    ]);
+  python = if ! options.python then [] else with python38Packages; [
+      django
+      django-allauth
+      phonenumbers
+  ];
   node = if ! options.node then [] else with nodePackages; [
     nodejs
     npm

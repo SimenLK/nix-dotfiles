@@ -3,6 +3,11 @@ with pkgs.lib;
 let
   options = import ./options.nix;
 
+  gitUser = {
+    userEmail = "simen.kirkvik@tromso.serit.no";
+    userName = "Simen Kirkvik";
+  };
+
   sshConfig = {
     compression = false;
     forwardAgent = true;
