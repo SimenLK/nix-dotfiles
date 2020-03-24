@@ -7,7 +7,7 @@
   dotnet = true;
   node = true;
   haskell = false;
-  python = true;
+  python = false;
   proton = false;
   languages = false;
   vimDevPlugins = true;

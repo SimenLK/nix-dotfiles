@@ -36,6 +36,8 @@ let
     byobu
   ];
   libs = [
+    texlive.combined.scheme-full
+    pkg-config
     icu
     zlib
     lttng-ust
@@ -123,6 +125,8 @@ let
     desktop-file-utils
   ];
   desktop = if ! options.desktop.enable then [] else [
+    zoom-us
+    megatools
     discord
     xmonad-log
     dropbox-cli
