@@ -125,7 +125,6 @@ let
     desktop-file-utils
   ];
   desktop = if ! options.desktop.enable then [] else [
-    zoom-us
     megatools
     discord
     xmonad-log
@@ -186,7 +185,7 @@ let
     haskellPackages.yeganesh
     xmobar
     dmenu
-   # zoom-us
+    zoom-us
     teams
   ]
   ++ gnome
