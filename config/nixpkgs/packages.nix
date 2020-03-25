@@ -146,7 +146,7 @@ let
     pass
     tectonic
     pavucontrol
-    gimp
+    krita
     spotify
     signal-desktop
     inkscape
