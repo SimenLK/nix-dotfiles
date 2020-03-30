@@ -182,7 +182,7 @@ let
     haskellPackages.yeganesh
     xmobar
     dmenu
-   # zoom-us
+    zoom-us
     teams
   ]
   ++ gnome
