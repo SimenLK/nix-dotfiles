@@ -54,7 +54,7 @@
     "module/date" = {
       type = "internal/date";
       internal = 1;
-      date = "%{F#c9aa7c}%d %B %Y%{F-}";
+      date = "%A %{F#c9aa7c}%d %B %Y%{F-}";
       time = "%H:%M:%S";
       label = "%{A1:${pkgs.gsimplecal}/bin/gsimplecal:}%date% %time% %{A}";
     };
