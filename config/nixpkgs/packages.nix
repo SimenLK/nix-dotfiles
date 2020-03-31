@@ -24,6 +24,7 @@ let
     utillinux
   ];
   user = [
+    heroku
     kubernetes-helm
     kubectl
     gnupg
