@@ -3,14 +3,6 @@ with pkgs.lib;
 let
   options = import ./options.nix;
 
-  sshConfig = {
-    compression = false;
-    forwardAgent = true;
-    serverAliveInterval = 30;
-    extraConfig = "IPQoS throughput";
-    matchBlocks = options.sshHosts;
-  };
-
   privateFiles = if ! options.desktop.enable then {} else {
     ssh = {
       source = ~/.dotfiles/ssh;
@@ -22,6 +14,14 @@ let
     #   target = ".gnupg";
     #   recursive = true;
     # };
+  };
+
+  sshConfig = {
+    compression = false;
+    forwardAgent = true;
+    serverAliveInterval = 30;
+    extraConfig = "IPQoS throughput";
+    matchBlocks = options.sshHosts;
   };
 
   extraDotfiles = [
@@ -176,7 +176,7 @@ in
           sslVerify = false;
         };
       };
-    } // gitUser;
+    } // options.gitUser;
 
     ssh = {
       enable = true;

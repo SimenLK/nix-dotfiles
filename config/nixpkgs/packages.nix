@@ -64,7 +64,7 @@ let
     nix-prefetch-scripts
     sqlite-interactive
     gnum4
-    # python37Packages.virtualenv
+    python37Packages.virtualenv
     # sqsh
     # automake
     # autoconf
@@ -168,6 +168,7 @@ let
     pandoc
     networkmanager
     networkmanagerapplet
+    sshfs-fuse
     pinentry
     polkit_gnome
     steghide
@@ -220,11 +221,12 @@ let
     omnisharp-roslyn
     # mono
   ];
-  python = if ! options.python then [] else with python38Packages; [
-      django
-      django-allauth
-      phonenumbers
-  ];
+  python = if ! options.python then [] else with pythonPackages;
+     python3.withPackages (ps: with ps; [
+      numpy
+      matplotlib
+      tkinter
+    ]);
   node = if ! options.node then [] else with nodePackages; [
     nodejs
     npm

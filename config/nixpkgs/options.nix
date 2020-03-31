@@ -6,7 +6,7 @@
   };
   dotnet = true;
   node = true;
-  haskell = false;
+  haskell = true;
   python = false;
   proton = false;
   languages = false;

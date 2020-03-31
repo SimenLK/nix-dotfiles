@@ -44,7 +44,6 @@ endif
 noremap <C-.> @:
 noremap <C-C> "+y
 noremap <C-A> "+p
-
 inoremap jk <Esc>
 
 " zap the damned Ex mode.
