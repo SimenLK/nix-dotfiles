@@ -46,6 +46,7 @@ let
     libkrb5
   ];
   devel = [
+    cask
     git
     niv
     patchelf
@@ -64,7 +65,7 @@ let
     nix-prefetch-scripts
     sqlite-interactive
     gnum4
-    python37Packages.virtualenv
+    # python37Packages.virtualenv
     # sqsh
     # automake
     # autoconf
@@ -126,6 +127,8 @@ let
     desktop-file-utils
   ];
   desktop = if ! options.desktop.enable then [] else [
+    sdcv
+    exercism
     megatools
     discord
     xmonad-log
