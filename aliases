@@ -17,3 +17,5 @@ alias tw='timew'
 alias vim=nvim
 alias home-manager='home-manager -f ~/.dotfiles/config/nixpkgs/home.nix'
 alias lock='xset s activate'
+alias cpwd='pwd | xclip -i '
+alias cdc='cd (xclip -o)'

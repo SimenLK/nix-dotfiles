@@ -1,8 +1,6 @@
 { pkgs, options }:
 with pkgs;
 let
-  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
-  hie = all-hies.selection { selector = p: { inherit (p) ghc865; }; };
   sys = [
     dpkg
     cryptsetup
@@ -37,16 +35,23 @@ let
     byobu
   ];
   libs = [
+    llvmPackages.clang-unwrapped
+    openmpi
     texlive.combined.scheme-full
+    tk
+    cairo
     pkg-config
     icu
     zlib
     lttng-ust
     libsecret
     libkrb5
+    libpng
   ];
   devel = [
+    fzf
     cask
+    cgdb
     git
     niv
     patchelf
@@ -54,6 +59,7 @@ let
     gcc
     gdb
     cmake
+    ctags
     libxml2
     chromedriver
     awscli
@@ -82,6 +88,7 @@ let
     mpv
   ];
   x11 = with xorg; [
+    brightnessctl
     appres
     editres
     listres
@@ -127,10 +134,12 @@ let
     desktop-file-utils
   ];
   desktop = if ! options.desktop.enable then [] else [
+    discord
+    gperftools
+    geckodriver
     sdcv
     exercism
     megatools
-    discord
     xmonad-log
     dropbox-cli
     wireshark-qt
@@ -179,10 +188,9 @@ let
     innoextract
     tectonic
     timewarrior
-    tlaps
     unrtf
     # wireshark-cli
-    wavebox
+    # wavebox
     virtmanager
     qrencode
     wkhtmltopdf
@@ -190,8 +198,8 @@ let
     haskellPackages.yeganesh
     xmobar
     dmenu
-    zoom-us
     teams
+    zoom-us
   ]
   ++ gnome
   ++ x11
@@ -200,7 +208,6 @@ let
   haskell = if ! options.haskell then [] else with haskellPackages; [
     ghc
     # stack
-    hie
     cabal-install
     hlint
     hoogle
@@ -224,12 +231,25 @@ let
     omnisharp-roslyn
     # mono
   ];
-  python = if ! options.python then [] else with pythonPackages;
-     python3.withPackages (ps: with ps; [
-      numpy
-      matplotlib
-      tkinter
-    ]);
+  R-packages = if ! options.R then [] else with rPackages; [
+    readr
+    tidyverse
+    zoo
+    broom
+    lubridate
+  ];
+  python = if ! options.python then [] else with pythonPackages; [
+    (python3.withPackages ( ps: with ps; [
+        numpy
+        matplotlib
+        rpyc
+        aiohttp
+        requests
+        beautifulsoup4
+        pandas
+      ])
+    )
+  ];
   node = if ! options.node then [] else with nodePackages; [
     nodejs
     npm
@@ -268,6 +288,7 @@ in
   ++ haskell
   ++ node
   ++ languages
+  ++ R-packages
   ++ python
   ++ proton
   ++ [] # my monoid friend

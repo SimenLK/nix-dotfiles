@@ -92,47 +92,25 @@ in
             name = "vim-gnupg";
             src = ~/.dotfiles/vim-plugins/vim-gnupg;
           };
-          jonas = pkgs.vimUtils.buildVimPlugin {
-            name = "jonas";
-            src = ~/.dotfiles/vim-plugins/jonas;
-          };
         };
         devPlugins =
           if options.vimDevPlugins then
-            with vimPlugins; [
-              LanguageClient-neovim
-              idris-vim
-              neco-ghc
-              purescript-vim
-            ]
+          with vimPlugins; [
+            LanguageClient-neovim
+          ]
           else [];
       in
       {
         enable = true;
         plugins = with vimPlugins; [
-          jonas
-          ctrlp
-          neocomplete
-          nerdcommenter
-          nerdtree
-          supertab
-          syntastic
-          tabular
-          tlib_vim
-          vim-addon-mw-utils
-          vim-airline
-          vim-airline-themes
+          fugitive
+          fzf-vim
           NeoSolarized
-          vim-commentary
-          vim-fish
-          vim-markdown
-          vim-nix
-          vimproc
-          vim-sensible
-          vim-snipmate
-          vim-surround
-          vim-unimpaired
+          nerdtree
+          tmux-navigator
           vim-gnupg
+          vim-nix
+          vim-surround
         ] ++ devPlugins;
         extraConfig = builtins.readFile ../../vimrc;
       };
@@ -167,7 +145,7 @@ in
           rebase = false;
         };
         core = {
-          editor = "vim";
+          editor = "nvim";
         };
         help = {
           autocorrect = 1;
@@ -187,12 +165,8 @@ in
       baseIndex = 1;
       clock24 = true;
       escapeTime = 10;
-      terminal = "tmux-256color";
-      extraConfig = ''
-        # start windows and panes at 1
-        setw -g pane-base-index 1
-        set -ga terminal-overrides ",xterm-termite:Tc"
-      '';
+      #terminal = "tmux-256color";
+      extraConfig = builtins.readFile ../../tmux.conf;
     };
 
     home-manager = {
