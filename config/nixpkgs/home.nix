@@ -70,9 +70,10 @@ in
   home.packages = import ./packages.nix { inherit pkgs options; };
 
   home.keyboard = {
-    layout = "us(altgr-intl)";
+    layout = "us,no,us";
+    variant = "altgr-intl,,colemak";
     model = "pc104";
-    options = [ "eurosign:e" "caps:none" ];
+    options = [ "eurosign:e" "ctrl:swapcaps" "grp:alt_shift_toggle"];
   };
 
   home.sessionVariables = {

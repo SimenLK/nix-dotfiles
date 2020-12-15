@@ -41,7 +41,7 @@
       font-4 = "Noto Color Emoji:style=Regular:size=10";
       modules-right =
         if options.desktop.laptop then
-          "cpu memory net battery date powermenu"
+          "cpu memory net battery date keyboard powermenu"
         else
           "cpu memory net date powermenu";
       modules-center = "";
@@ -57,6 +57,15 @@
       date = "%A %{F#c9aa7c}%d %B %Y%{F-}";
       time = "%H:%M:%S";
       label = "%{A1:${pkgs.gsimplecal}/bin/gsimplecal:}%date% %time% %{A}";
+    };
+    "module/keyboard" = {
+      type = "internal/xkeyboard";
+      label-layout = "%name%";
+      blacklist-0 = "caps lock";
+      blacklist-1 = "num lock";
+      layout-icon-0 = "us;(qwerty)";
+      layout-icon-1 = "us;(colemak)";
+      layout-icon-2 = "no;(qwerty)";
     };
     "module/cpu" = {
       type = "internal/cpu";
@@ -132,17 +141,17 @@
       label-discharging = "%time% (%percentage%%)";
       format-full-prefix = "F ";
       format-full-prefix-foreground = "\${colors.foreground}";
-      ramp-capacity-0 = "";
-      ramp-capacity-1 = "";
-      ramp-capacity-2 = "";
-      ramp-capacity-3 = "";
-      ramp-capacity-4 = "";
+      ramp-capacity-0 = " ";
+      ramp-capacity-1 = " ";
+      ramp-capacity-2 = " ";
+      ramp-capacity-3 = " ";
+      ramp-capacity-4 = " ";
       ramp-capacity-foreground = "\${colors.foreground}";
-      animation-charging-0 = "";
-      animation-charging-1 = "";
-      animation-charging-2 = "";
-      animation-charging-3 = "";
-      animation-charging-4 = "";
+      animation-charging-0 = " ";
+      animation-charging-1 = " ";
+      animation-charging-2 = " ";
+      animation-charging-3 = " ";
+      animation-charging-4 = " ";
       animation-charging-foreground = "\${colors.foreground}";
       animation-charging-framerate = "750";
     };

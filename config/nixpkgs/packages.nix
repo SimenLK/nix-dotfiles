@@ -25,6 +25,7 @@ let
     heroku
     kubernetes-helm
     kubectl
+    minikube
     gnupg
     tomb
     sshuttle
