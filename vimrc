@@ -25,8 +25,10 @@ set cmdheight=2
 " Syntax highlighting
 syntax on
 
-set termguicolors
 " Colorscheme
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8f=[48;2;%lu;%lu;%lum
+set termguicolors
 colorscheme NeoSolarized
 
 " Background
