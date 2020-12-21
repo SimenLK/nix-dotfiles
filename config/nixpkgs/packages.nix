@@ -22,18 +22,19 @@ let
     utillinux
   ];
   user = [
-    heroku
-    kubernetes-helm
-    kubectl
-    minikube
+    byobu
+    direnv
     gnupg
-    tomb
-    sshuttle
+    heroku
+    kubectl
+    kubernetes-helm
+    lorri
+    minikube
     minio-client
     openfortivpn
-    lorri
-    direnv
-    byobu
+    prometheus-alertmanager
+    sshuttle
+    tomb
   ];
   libs = [
     llvmPackages.clang-unwrapped
@@ -135,71 +136,61 @@ let
     desktop-file-utils
   ];
   desktop = if ! options.desktop.enable then [] else [
+    blueman
+    calibre
+    cargo
+    cdrtools
     discord
-    gperftools
-    geckodriver
-    sdcv
-    exercism
-    megatools
-    xmonad-log
-    dropbox-cli
-    wireshark-qt
-    glib
-    #google-chrome
-    # googleearth
-    firefox
+    dmenu
     drive
-    meld
+    dropbox-cli
+    exercism
+    farstream
+    fira-code
+    firefox
+    freerdp
+    geckodriver
+    glib
+    gparted
+    gperftools
+    haskellPackages.yeganesh
     imagemagick
+    inkscape
+    innoextract
+    keybase
+    keybase-gui
+    krita
+    megatools
+    meld
+    networkmanager
+    networkmanagerapplet
+    pandoc
+    pass
+    pavucontrol
+    pinentry
+    polkit_gnome
+    qrencode
     rdesktop
     remmina
     scrot
-    taskwarrior
-    # timewarrior
-    pass
-    tectonic
-    pavucontrol
-    krita
-    spotify
+    sdcv
     signal-desktop
-    inkscape
-    # ledger
-    # slack
-    # pidgin
-    # pidginsipe
-    vscode
-    # browserpass
-    blueman
-    gparted
-    calibre
-    cargo
-    farstream
-    freerdp
-    fira-code
-    keybase
-    keybase-gui
-    pandoc
-    networkmanager
-    networkmanagerapplet
+    spotify
     sshfs-fuse
-    pinentry
-    polkit_gnome
     steghide
-    cdrtools
-    innoextract
+    taskwarrior
+    teams
+    tectonic
     tectonic
     timewarrior
     unrtf
-    # wireshark-cli
-    # wavebox
     virtmanager
-    qrencode
+    vscode
+    wireshark-qt
     wkhtmltopdf
-    zbar
-    haskellPackages.yeganesh
     xmobar
-    dmenu
-    teams
+    xmonad-log
+    zbar
     zoom-us
   ]
   ++ gnome
