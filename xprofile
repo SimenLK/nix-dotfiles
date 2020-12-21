@@ -8,6 +8,13 @@
 xsetroot -solid '#888888'
 xsetroot -cursor_name left_ptr
 
+laptop=eDP-1
+
+if [ xrandr | grep "DP-2-1 connected" && xrandr | grep "DP-2-2 connected" ];
+then
+    xrandr --output "$laptop" --off --output DP-2-1 --auto --pos 0x0 --output DP-2-2 --auto --rotate left --right-of DP-2-1
+fi
+
 # Set up an icon tray (should try stalonetray)
 #trayer --edge top --align right --SetDockType true --SetPartialStrut true \
  #--expand true --width 15 --transparent true --tint 0x000000 --height 20 \
