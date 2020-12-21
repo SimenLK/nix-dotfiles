@@ -172,7 +172,8 @@ in
 
     home-manager = {
       enable = true;
-      path = "https://github.com/rycee/home-manager/archive/master.tar.gz";
+      path =
+        "https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz";
     };
   };
 
