@@ -43,16 +43,16 @@ set number
 set relativenumber
 
 " Text width
-set textwidth=80
-set colorcolumn=+1
-hi ColorColumn ctermbg=White
+" set textwidth=80
+" set colorcolumn=+1
+" hi ColorColumn ctermbg=White
 
 " Whitespace and tabs
 set listchars=tab:☞☞,nbsp:_,trail:⋅
 set list
 
 " Do not wrap lines
-set nowrap
+" set nowrap
 
 " Split
 set splitright
