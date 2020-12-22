@@ -105,6 +105,7 @@ in
             LanguageClient-neovim
             vim-gnupg
             vim-ionide
+            deoplete-nvim
           ]
           else [];
       in

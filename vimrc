@@ -75,11 +75,11 @@ nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 
 " CoC
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gr <Plug>(coc-references)
+nmap <leader>gd <Plug>(lcn-definition)
+nmap <leader>gr <Plug>(lcn-references)
 
-" Omni completion
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 
 " Fzf
 nnoremap <C-p> :GFiles<CR>
@@ -123,6 +123,19 @@ autocmd FileType sql set expandtab
 
 " F#
 " Seems like standard is 4 spaces for the compiler
+
+" Only check errors on write
+"let g:fsharp_only_check_errors_on_write = 1
+
+" Use keybindings with leader instead of vscode ones
+let g:fsharp#fsi_keymap = "vim-fsharp"
+
+"if has('nvim') && exists('*nvim_open_win')
+"    augroup FSharpShowTooltip
+"        autocmd!
+"        autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
+"    augroup END
+"endif
 
 " C snippets
 autocmd FileType c inoremap ,f <Esc>:-1read $HOME/.vim/skeleton/.forloop.c<CR>Vj=<Esc>f<la
