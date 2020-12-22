@@ -93,11 +93,18 @@ in
             name = "vim-gnupg";
             src = ~/.dotfiles/vim-plugins/vim-gnupg;
           };
+          vim-ionide = pkgs.vimUtils.buildVimPlugin {
+            name = "vim-ionide";
+            src = ~/.dotfiles/vim-plugins/Ionide-vim;
+            buildInputs = [ pkgs.curl pkgs.which pkgs.unzip ];
+          };
         };
         devPlugins =
           if options.vimDevPlugins then
           with vimPlugins; [
             LanguageClient-neovim
+            vim-gnupg
+            vim-ionide
           ]
           else [];
       in
@@ -109,7 +116,6 @@ in
           NeoSolarized
           nerdtree
           tmux-navigator
-          vim-gnupg
           vim-nix
           vim-surround
         ] ++ devPlugins;
