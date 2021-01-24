@@ -68,21 +68,27 @@ set updatetime=300
 " Commands
 command! MakeTags !ctags -R .
 
+" Terminal mode
+tnoremap <Esc> <C-\><C-N>
+
 " Fugitive
 nmap <leader>gs :G<CR>
 nmap <leader>gp :diffput<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 
-" CoC
+" LanguageClient-neovim
 nmap <leader>gd <Plug>(lcn-definition)
 nmap <leader>gr <Plug>(lcn-references)
+
+"let g:LanguageClient_changeThrottle = 1.0
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
 " Fzf
 nnoremap <C-p> :GFiles<CR>
+nnoremap <leader>p :Files<CR>
 
 " Latex settings
 " NB: Don't need it because of spell shortcuts
@@ -123,12 +129,23 @@ autocmd FileType sql set expandtab
 
 " F#
 " Seems like standard is 4 spaces for the compiler
+autocmd FileType fsharp set shiftwidth=4
+autocmd FileType fsharp set tabstop=4
+autocmd FileType fsharp set expandtab
 
-" Only check errors on write
-"let g:fsharp_only_check_errors_on_write = 1
+" Auto-initilize Ionide
+let g:fsharp#automatic_workspace_init = 1
 
 " Use keybindings with leader instead of vscode ones
 let g:fsharp#fsi_keymap = "vim-fsharp"
+
+function LC_fsharp_maps()
+    if has_key(g:LanguageClient_serverCommands, &filetype)
+        nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+    endif
+endfunction
+
+autocmd FileType fsharp call LC_fsharp_maps()
 
 "if has('nvim') && exists('*nvim_open_win')
 "    augroup FSharpShowTooltip
