@@ -51,43 +51,45 @@ let
     libpng
   ];
   devel = [
-    fzf
-    cask
-    cgdb
-    git
-    niv
-    patchelf
-    binutils
-    gcc
-    gdb
-    cmake
-    ctags
-    libxml2
-    chromedriver
-    awscli
-    postgresql
-    docker_compose
-    gnumake
-    gradle
-    gettext
-    nix-prefetch-scripts
-    sqlite-interactive
-    gnum4
+    # autoconf
+    # automake
+    # libtool
     # python37Packages.virtualenv
     # sqsh
-    # automake
-    # autoconf
-    # libtool
+    awscli
+    binutils
+    cask
+    cgdb
+    chromedriver
+    cmake
+    ctags
+    docker_compose
+    fzf
+    gcc
+    gdb
+    gettext
+    git
+    gnum4
+    gnumake
+    gradle
+    libxml2
+    niv
+    nix-prefetch-scripts
+    patchelf
+    postgresql
+    ripgrep
+    sqlite-interactive
   ]
   ++ libs;
   media = [
-    guvcview # webcam
-    shotcut
-    simplescreenrecorder
     audacity
     gcolor3
-    xf86_input_wacom
+    guvcview # webcam
     mpv
+    rhythmbox
+    shotcut
+    simplescreenrecorder
+    xf86_input_wacom
   ];
   x11 = with xorg; [
     brightnessctl
@@ -136,6 +138,7 @@ let
     desktop-file-utils
   ];
   desktop = if ! options.desktop.enable then [] else [
+    ardour
     blueman
     calibre
     cargo
@@ -219,7 +222,7 @@ let
     # glirc
   ];
   dotnet = if ! options.dotnet then [] else with dotnetCorePackages; [
-    sdk_3_1
+    sdk_5_0
     omnisharp-roslyn
     # mono
   ];
