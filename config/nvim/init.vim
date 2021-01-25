@@ -68,6 +68,9 @@ set updatetime=300
 " Commands
 command! MakeTags !ctags -R .
 
+" Bindings
+let mapleader = " "
+
 " Terminal mode
 tnoremap <Esc> <C-\><C-N>
 
@@ -116,9 +119,6 @@ map <F7> :setlocal spell! spelllang=nb<CR>
 " TeX shortcuts
 autocmd FileType tex nnoremap <C-b> :w<CR> :! pdflatex %<CR>
 
-" Not optimal when manually tabbing
-" autocmd FileType c inoremap <Tab><Tab> <Esc>/<++><Enter>"_c4l
-
 " Language specific
 
 " SQL
@@ -126,12 +126,6 @@ autocmd FileType tex nnoremap <C-b> :w<CR> :! pdflatex %<CR>
 autocmd FileType sql set shiftwidth=2
 autocmd FileType sql set tabstop=2
 autocmd FileType sql set expandtab
-
-" F#
-" Seems like standard is 4 spaces for the compiler
-autocmd FileType fsharp set shiftwidth=4
-autocmd FileType fsharp set tabstop=4
-autocmd FileType fsharp set expandtab
 
 " Auto-initilize Ionide
 let g:fsharp#automatic_workspace_init = 1
@@ -146,26 +140,6 @@ function LC_fsharp_maps()
 endfunction
 
 autocmd FileType fsharp call LC_fsharp_maps()
-
-"if has('nvim') && exists('*nvim_open_win')
-"    augroup FSharpShowTooltip
-"        autocmd!
-"        autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
-"    augroup END
-"endif
-
-" C snippets
-autocmd FileType c inoremap ,f <Esc>:-1read $HOME/.vim/skeleton/.forloop.c<CR>Vj=<Esc>f<la
-autocmd FileType c inoremap ,i <Esc>:-1read $HOME/.vim/skeleton/.iftest.c<CR>Vj=<Esc>f(a
-autocmd FileType c inoremap ,e <Esc>:-1read $HOME/.vim/skeleton/.else.c<CR>Vj=<Esc>o
-autocmd FileType c inoremap ,ie <Esc>:-1read $HOME/.vim/skeleton/.ifelse.c<CR>V4j=<Esc>f(a
-autocmd FileType c inoremap ,ei <Esc>:-1read $HOME/.vim/skeleton/.elseif.c<CR>V4j=<Esc>f(a
-autocmd FileType c inoremap ,s <Esc>:-1read $HOME/.vim/skeleton/.switch.c<CR>V16j=<Esc>f(a
-
-autocmd FileType c inoremap ,w while()<CR><++><Esc>kf(a
-
-" HTML
-nnoremap ,html :-1read $HOME/.vim/skeleton/.html<CR>3jf>a
 
 " Statusline
 
