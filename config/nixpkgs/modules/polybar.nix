@@ -46,9 +46,9 @@ let
         font-4 = "Noto Color Emoji:style=Regular:size=10";
         modules-right =
           if cfg.laptop then
-          "cpu memory net battery date powermenu"
+            "cpu memory net fs battery keyboard date powermenu"
           else
-          "cpu memory net date powermenu";
+            "cpu memory net fs keyboard date powermenu";
           modules-center = "";
           modules-left = "xmonad";
           tray-position = "right";
@@ -62,6 +62,15 @@ let
           date = "%{F#c9aa7c}%d %B %Y%{F-}";
           time = "%H:%M:%S";
           label = "%{A1:${pkgs.gsimplecal}/bin/gsimplecal:}%date% %time% %{A}";
+        };
+        "module/keyboard" = {
+          type = "internal/xkeyboard";
+          label-layout = "%layout%";
+          blacklist-0 = "caps lock";
+          blacklist-1 = "num lock";
+          layout-icon-0 = "us;(qwerty)";
+          layout-icon-1 = "us;(colemak)";
+          layout-icon-2 = "no;(qwerty)";
         };
         "module/cpu" = {
           type = "internal/cpu";
@@ -88,13 +97,17 @@ let
           bar-used-empty = "▐";
           bar-used-empty-foreground = "#444444";
         };
+        "module/fs" = {
+          type = "internal/fs";
+          mount-0 = "/";
+        };
         "module/net" = if (cfg.interface != null) then
         {
           type = "internal/network";
           interface = "\${env:DEFAULT_NETWORK_INTERFACE:${cfg.interface}}";
           interval = 1;
           format-connected = "<label-connected>";
-          label-connected = "%ifname%: %{F#83a598}↓%{F-}%downspeed% %{F#fb4934}↑%{F-}%upspeed%";
+          label-connected = "Net: %{F#83a598}↓%{F-}%downspeed% %{F#fb4934}↑%{F-}%upspeed%";
         } else {};
         "module/powermenu" = {
           type = "custom/menu";
@@ -113,12 +126,12 @@ let
           menu-0-1-exec = "menu-open-2";
 
           menu-1-0 = "%{F#ff4000}yes%{F-}";
-          menu-1-0-exec = "sudo reboot";
+          menu-1-0-exec = "reboot";
           menu-1-1 = "%{F#999999}no%{F-}";
           menu-1-1-exec = "menu-close";
 
           menu-2-0 = "%{F#ff4000}yes%{F-}";
-          menu-2-0-exec = "sudo poweroff";
+          menu-2-0-exec = "poweroff";
           menu-2-1 = "%{F#999999}no%{F-}";
           menu-2-1-exec = "menu-close";
         };
@@ -144,11 +157,11 @@ let
           ramp-capacity-3 = "";
           ramp-capacity-4 = "";
           ramp-capacity-foreground = "\${colors.foreground}";
-          animation-charging-0 = "";
-          animation-charging-1 = "";
-          animation-charging-2 = "";
-          animation-charging-3 = "";
-          animation-charging-4 = "";
+          animation-charging-0 = "A";
+          animation-charging-1 = "B";
+          animation-charging-2 = "C";
+          animation-charging-3 = "D";
+          animation-charging-4 = "E";
           animation-charging-foreground = "\${colors.foreground}";
           animation-charging-framerate = "750";
         };
