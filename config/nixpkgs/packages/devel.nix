@@ -19,6 +19,7 @@ let
   base = with pkgs; [
     git
     binutils
+    fzf
     gcc
     gdb
     gnumake
@@ -34,7 +35,7 @@ let
     automake
     autoconf
     libtool
-    # sqsh
+    ripgrep
   ];
 
   haskell = with pkgs; [

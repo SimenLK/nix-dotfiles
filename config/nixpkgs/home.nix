@@ -31,7 +31,7 @@
         chat = true;
         graphics = true;
         wavebox = false;
-        zoom = false;
+        zoom = true;
       };
       kubernetes = true;
       cloud = true;
@@ -45,7 +45,7 @@
       "taskrc"
     ];
     sshFiles = false;
-    vimDevPlugins = false;
+    vimDevPlugins = true;
   };
 
   home.packages = with pkgs; [];

@@ -107,53 +107,53 @@ let
       enable = true;
       clickableUrl = false;
       font = "Monospace 10";
-      foregroundColor         = "#d8d8d8";
-      foregroundBoldColor     = "#e8e8e8";
-      cursorColor             = "#e8e8e8";
-      cursorForegroundColor   = "#181818";
-      #backgroundColor        = "rgba(24, 24, 24, 1)";
+      foregroundColor         = "#586e75";
+      foregroundBoldColor     = "#586e75";
+      cursorColor             = "#586e75";
+      cursorForegroundColor   = "#fdf6e3";
+      backgroundColor         = "#fdf6e3";
       colorsExtra = ''
-        # Base16 Default Dark
-        # Author: Chris Kempson (http://chriskempson.com)
+        # Base16 Solarized Light
+        # Author: Ethan Schoonover (modified by aramisgithub)
+        # 16 color space
 
         # Black, Gray, Silver, White
-        color0  = #0b1c2c
-        #color0  = #181818
-        color8  = #585858
-        color7  = #d8d8d8
-        color15 = #f8f8f8
+        color0  = #fdf6e3
+        color8  = #839496
+        color7  = #586e75
+        color15 = #002b36
 
         # Red
-        color1  = #ab4642
-        color9  = #ab4642
+        color1  = #dc322f
+        color9  = #dc322f
 
         # Green
-        color2  = #a1b56c
-        color10 = #a1b56c
+        color2  = #859900
+        color10 = #859900
 
         # Yellow
-        color3  = #f7ca88
-        color11 = #f7ca88
+        color3  = #b58900
+        color11 = #b58900
 
         # Blue
-        color4  = #7cafc2
-        color12 = #7cafc2
+        color4  = #268bd2
+        color12 = #268bd2
 
         # Purple
-        color5  = #ba8baf
-        color13 = #ba8baf
+        color5  = #6c71c4
+        color13 = #6c71c4
 
         # Teal
-        color6  = #86c1b9
-        color14 = #86c1b9
+        color6  = #2aa198
+        color14 = #2aa198
 
         # Extra colors
-        color16 = #dc9656
-        color17 = #a16946
-        color18 = #282828
-        color19 = #383838
-        color20 = #b8b8b8
-        color21 = #e8e8e8
+        color16 = #cb4b16
+        color17 = #d33682
+        color18 = #eee8d5
+        color19 = #93a1a1
+        color20 = #657b83
+        color21 = #073642
       '';
     };
   };

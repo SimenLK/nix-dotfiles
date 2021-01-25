@@ -98,7 +98,7 @@ let
     # timewarrior
     pass
     pavucontrol
-    # spotify
+    spotify
     # ledger
     # browserpass
     blueman
@@ -124,7 +124,7 @@ let
   chat = with pkgs; [
     teams
     discord
-    signal-desktop
+    # signal-desktop
     # slack
     # pidgin
     # pidginsipe
