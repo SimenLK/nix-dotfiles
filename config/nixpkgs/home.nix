@@ -2,11 +2,11 @@
 {
   dotfiles = {
     desktop = {
-      enable = false;
+      enable = true;
       dropbox.enable = false;
       polybar = {
-        interface = "eno1";
-        laptop = false;
+        interface = "enp0s31f6";
+        laptop = true;
       };
     };
     packages = {
@@ -24,12 +24,12 @@
         clojure = false;
       };
       desktop = {
-        enable = false;
+        enable = true;
         gnome = true;
         x11 = true;
-        media = true;
+        media = false;
         chat = true;
-        graphics = true;
+        graphics = false;
         wavebox = false;
         zoom = true;
       };

@@ -88,6 +88,7 @@ let
 
   desktop = with pkgs; [
     #wireshark-qt
+    brightnessctl
     google-chrome
     firefox
     drive
