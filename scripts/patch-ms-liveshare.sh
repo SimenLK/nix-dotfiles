@@ -68,7 +68,7 @@ function patch {
         echo "Patching exes..."
         get-exes
         get-exes | xargs -n 1 chmod u+x
-        get-exes | xargs -n 1 patchelf --set-rpath "\$DRIGIN/netcoredeps:$RPATH"
+        get-exes | xargs -n 1 patchelf --set-rpath "\$ORIGIN/netcoredeps:$RPATH"
         get-exes | xargs -n 1 patchelf --set-interpreter "$(resolve glibc)/lib/ld-linux-x86-64.so.2"
 
         echo "Patching libs..."
@@ -85,7 +85,7 @@ if [[ $# -eq 0 ]]; then
     patch
     cd ~/.config/Code/User/globalStorage/ms-vsliveshare.vsliveshare
     rm -rf dotnet-3.1.1
-    ln -s "$(resolve dotnetCorePackages.sdk_3_1)" dotnet-3.1.1
+    ln -s "$(resolve dotnetCorePackages.sdk_5_0)" dotnet-3.1.1
 else
     "$@"
 fi

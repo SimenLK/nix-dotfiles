@@ -66,7 +66,11 @@ function patch {
         echo "Patching exes..."
         get-exes
         get-exes | xargs -n 1 chmod u+x
+<<<<<<< HEAD
         get-exes | xargs -n 1 patchelf --set-rpath "\$DRIGIN/netcoredeps:$RPATH"
+=======
+        get-exes | xargs -n 1 patchelf --set-rpath "\$ORIGIN/netcoredeps:$RPATH"
+>>>>>>> ad57f41420c1805f4b385989faf53a69bb336d11
         get-exes | xargs -n 1 patchelf --set-interpreter "$(resolve glibc)/lib/ld-linux-x86-64.so.2"
 
         echo "Patching libs..."
