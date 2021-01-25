@@ -17,7 +17,6 @@ let
         shellInit = ''
           set -e TMUX_TMPDIR
           set PATH ~/.local/bin $HOME/.nix-profile/bin ~/.dotnet/tools $PATH
-          bind \cp push-line
         '';
         shellAliases = {
           ll = "ls -l";
@@ -65,7 +64,7 @@ let
             vim-nix
             vim-surround
           ];
-          extraConfig = builtins.readFile ../../../vimrc;
+          extraConfig = builtins.readFile ../../nvim/init.vim;
         };
 
       git = {
@@ -122,8 +121,8 @@ let
         baseIndex = 1;
         clock24 = true;
         escapeTime = 10;
-        #terminal = "tmux-256color";
-        extraConfig = builtins.readFile ../../tmux.conf;
+        terminal = "xterm-256color";
+        extraConfig = builtins.readFile ../../../tmux.conf;
       };
 
       home-manager = {
@@ -165,6 +164,11 @@ let
         target = "fish";
         recursive = true;
       };
+      nvim = {
+        source = ~/.dotfiles/config/nvim;
+        target = "nvim";
+        recursive = true;
+      };
       nixpkgs = {
         source = ~/.dotfiles/config/nixpkgs/overlays;
         target = "nixpkgs/overlays";
@@ -177,14 +181,6 @@ let
         source = ~/.dotfiles/local/share/omf;
         target = "omf";
         recursive = true;
-      };
-    };
-
-    xdg.dataFile = {
-      j = {
-        source = ~/.dotfiles/config/fish/themes/j;
-        target = "omf/themes/j";
-        recursive = false;
       };
     };
 
