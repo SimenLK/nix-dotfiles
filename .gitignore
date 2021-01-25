@@ -9,9 +9,3 @@ pki/*.pem
 vim/spell
 vim/.netrwhist
 vim-plugins/vim_fsharp_languageclient
-emacs.d/*
-!emacs.d/init.el
-!emacs.d/sensible-defaults.el
-!emacs.d/key-chord.el
-!emacs.d/snippets
-!emacs.d/configuration.org
