@@ -64,5 +64,19 @@
     };
   };
 
+  xsession.initExtra = ''
+    xsetroot -solid '#888888'
+    xsetroot -cursor_name left_ptr
+    ${pkgs.gnome3.gnome-settings-daemon}/libexec/gsd-xsettings &
+    systemctl --user start gvfs-udisks2-volume-monitor.service
+    xset s 1800
+    xset +dpms
+    xset dpms 1800 2400 3600
+    xmodmap $HOME/.dotfiles/Xmodmap
+    if xrandr | grep -q "DP-2-2 connected"; then
+      xrandr --output DP-2-2 --auto --rotate left --right-of DP-2-1
+    fi
+  '';
+
   imports = [ ./modules ];
 }
