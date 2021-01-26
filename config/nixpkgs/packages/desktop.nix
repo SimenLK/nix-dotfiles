@@ -89,12 +89,10 @@ let
   desktop = with pkgs; [
     #wireshark-qt
     brightnessctl
-    google-chrome
     firefox
     drive
     rdesktop
     remmina
-    # googleearth
     # taskwarrior
     # timewarrior
     pass
