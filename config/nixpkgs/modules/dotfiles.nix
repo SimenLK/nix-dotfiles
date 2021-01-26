@@ -38,6 +38,8 @@ let
           vim = "nvim";
           home-manager = "home-manager -f ~/.dotfiles/config/nixpkgs/home.nix";
           lock = "xset s activate";
+          cpwd = "pwd | xclip -i";
+          cdc = "cd (xclip -o)";
         };
       };
 
