@@ -40,6 +40,7 @@ let
           lock = "xset s activate";
           cpwd = "pwd | xclip -i";
           cdc = "cd (xclip -o)";
+          disc = "Discord";
         };
       };
 

@@ -32,23 +32,23 @@ let
           alert = "red";
         };
         "bar/top" = {
-        # monitor = "\${env:MONITOR:VGA-1}";
-        width = "100%";
-        height = 20;
-        radius = 0;
-        padding = 1;
-        module-margin = 2;
-        separator = "|";
-        font-0 = "NotoSans Regular:size=8;2";
-        font-1 = "Termsynu:size=8;-1";
-        font-2 = "Material Icons:style=Regular:size=10";
-        font-3 = "Noto Sans Symbols2:size=10";
-        font-4 = "Noto Color Emoji:style=Regular:size=10";
-        modules-right =
+          # monitor = "\${env:MONITOR:VGA-1}";
+          width = "100%";
+          height = 20;
+          radius = 0;
+          padding = 1;
+          module-margin = 2;
+          separator = "|";
+          font-0 = "NotoSans Regular:size=8;2";
+          font-1 = "Termsynu:size=8;-1";
+          font-2 = "Material Icons:style=Regular:size=14;2";
+          font-3 = "Noto Sans Symbols2:size=10";
+          font-4 = "Noto Color Emoji:style=Regular:size=10";
+          modules-right =
           if cfg.laptop then
-            "cpu memory net fs battery keyboard date powermenu"
+            "fs cpu memory net battery keyboard date powermenu"
           else
-            "cpu memory net fs keyboard date powermenu";
+            "fs cpu memory net keyboard date powermenu";
           modules-center = "";
           modules-left = "xmonad";
           tray-position = "right";
@@ -65,12 +65,9 @@ let
         };
         "module/keyboard" = {
           type = "internal/xkeyboard";
-          label-layout = "%layout%";
+          label-layout = "%number% %layout%";
           blacklist-0 = "caps lock";
           blacklist-1 = "num lock";
-          layout-icon-0 = "us;(qwerty)";
-          layout-icon-1 = "us;(colemak)";
-          layout-icon-2 = "no;(qwerty)";
         };
         "module/cpu" = {
           type = "internal/cpu";
@@ -84,7 +81,7 @@ let
           type = "internal/memory";
           interval = 2;
           format = "<bar-used>";
-          format-prefix = "mem ";
+          format-prefix = "";
           format-prefix-foreground = "\${colors.foreground}";
           label = "%percentage_used%%";
           bar-used-indicator = "";
@@ -107,7 +104,7 @@ let
           interface = "\${env:DEFAULT_NETWORK_INTERFACE:${cfg.interface}}";
           interval = 1;
           format-connected = "<label-connected>";
-          label-connected = "Net: %{F#83a598}↓%{F-}%downspeed% %{F#fb4934}↑%{F-}%upspeed%";
+          label-connected = "%{F#83a598}↓%{F-}%downspeed% %{F#fb4934}↑%{F-}%upspeed%";
         } else {};
         "module/powermenu" = {
           type = "custom/menu";
@@ -146,24 +143,12 @@ let
           adapter = "AC";
           full-at = "98";
           time-format = "%H:%M";
-          format-charging = "<animation-charging>";
-          format-discharging = "<ramp-capacity> <label-discharging>";
-          label-discharging = "%time% (%percentage%%)";
-          format-full-prefix = "F ";
+          format-full-prefix = " ";
           format-full-prefix-foreground = "\${colors.foreground}";
-          ramp-capacity-0 = "";
-          ramp-capacity-1 = "";
-          ramp-capacity-2 = "";
-          ramp-capacity-3 = "";
-          ramp-capacity-4 = "";
-          ramp-capacity-foreground = "\${colors.foreground}";
-          animation-charging-0 = "A";
-          animation-charging-1 = "B";
-          animation-charging-2 = "C";
-          animation-charging-3 = "D";
-          animation-charging-4 = "E";
-          animation-charging-foreground = "\${colors.foreground}";
-          animation-charging-framerate = "750";
+          format-charging = "<label-charging>";
+          label-charging = " (%percentage%%)";
+          format-discharging = "<label-discharging>";
+          label-discharging = " (%percentage%%)";
         };
         "module/volume" = {
           type = "internal/alsa";

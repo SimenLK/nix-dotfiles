@@ -59,6 +59,7 @@ let
   ];
 
   gnome = with pkgs.gnome3; [
+    gucharmap
     gnome-settings-daemon
     gnome-font-viewer
     adwaita-icon-theme
