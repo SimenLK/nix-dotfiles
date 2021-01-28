@@ -14,8 +14,8 @@
         enable = true;
         nix = true;
         db = false;
-        dotnet = false;
-        node = false;
+        dotnet = true;
+        node = true;
         rust = false;
         haskell = false;
         python = false;
@@ -60,6 +60,10 @@
       uvcluster = {
         user = "ski027";
         hostname = "uvcluster.cs.uit.no";
+      };
+      kirkvik = {
+        user = "w306647";
+        hostname = "306647.web.tornado-node.net";
       };
     };
   };
