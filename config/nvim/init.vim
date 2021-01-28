@@ -140,6 +140,7 @@ function LC_fsharp_maps()
 endfunction
 
 autocmd FileType fsharp call LC_fsharp_maps()
+autocmd FileType fsharp set signcolumn=yes
 
 " Statusline
 
