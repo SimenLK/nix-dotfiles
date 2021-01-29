@@ -59,6 +59,7 @@ let
             deoplete-nvim
             fugitive
             fzf-vim
+            indentLine
             LanguageClient-neovim
             NeoSolarized
             nerdtree

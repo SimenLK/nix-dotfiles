@@ -48,7 +48,7 @@ set relativenumber
 " hi ColorColumn ctermbg=White
 
 " Whitespace and tabs
-set listchars=tab:☞☞,nbsp:_,trail:⋅
+set listchars=tab:>-,nbsp:_,trail:⋅
 set list
 
 " Do not wrap lines
