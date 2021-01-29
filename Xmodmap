@@ -7,7 +7,10 @@
 ! keycode 49 = grave asciitilde section onehalf dead_grave dead_tilde paragraph threequarters
 ! keycode 15 = 6 asciicircum 6 dead_circumflex asciicircum asciicircum asciicircum asciicircum 6 dead_circumflex asciicircum asciicircum
 ! keycode 48 = apostrophe quotedbl apostrophe quotedbl dead_acute dead_diaeresis apostrophe quotedbl dead_acute dead_diaeresis apostrophe quotedbl
-keycode 95 = 0x0000 F11
-remove control = Menu
-keysym Menu = Super_L
-add control = Menu
+clear lock
+clear control
+clear mod4
+keycode 37 = Control_L
+keycode 135 = Super_R
+add control = Control_L Control_R
+add mod4 = Super_L Super_R
