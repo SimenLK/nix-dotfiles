@@ -25,6 +25,7 @@ let
   ];
 
   kubernetes = with pkgs; [
+    minikube
     kubernetes-helm
     kubectl
     linkerd
