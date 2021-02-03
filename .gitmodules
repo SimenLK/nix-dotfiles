@@ -1,9 +1,6 @@
 [submodule "local/share/omf"]
 	path = local/share/omf
 	url = https://github.com/oh-my-fish/oh-my-fish.git
-[submodule "vim/bundle/vim-gnupg"]
-	path = vim-plugins/vim-gnupg
-	url = https://github.com/jamessan/vim-gnupg.git
 [submodule "vim-plugins/Ionide-vim"]
 	path = vim-plugins/Ionide-vim
 	url = https://github.com/ionide/Ionide-vim.git
