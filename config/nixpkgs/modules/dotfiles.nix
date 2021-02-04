@@ -19,6 +19,9 @@ let
           set PATH ~/.local/bin $HOME/.nix-profile/bin ~/.dotnet/tools $PATH
         '';
         shellAliases = {
+          rm = "rm -i";
+          mv = "mv -i";
+          cp = "cp -i";
           ll = "ls -l";
           la = "ls -a";
           lla = "ls -la";
@@ -40,7 +43,6 @@ let
           lock = "xset s activate";
           cpwd = "pwd | xclip -i";
           cdc = "cd (xclip -o)";
-          disc = "Discord";
         };
       };
 
