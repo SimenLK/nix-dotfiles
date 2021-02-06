@@ -170,6 +170,11 @@ let
         target = "fish";
         recursive = true;
       };
+      mutt = {
+        source = ~/.dotfiles/config/mutt;
+        target = "mutt";
+        recursive = true;
+      };
       nvim = {
         source = ~/.dotfiles/config/nvim;
         target = "nvim";

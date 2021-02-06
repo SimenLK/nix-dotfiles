@@ -46,6 +46,7 @@ set relativenumber
 " set textwidth=80
 " set colorcolumn=+1
 " hi ColorColumn ctermbg=White
+autocmd FileType mail set textwidth=80
 
 " Whitespace and tabs
 set listchars=tab:>-,nbsp:_,trail:⋅

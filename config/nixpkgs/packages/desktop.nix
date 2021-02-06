@@ -94,6 +94,8 @@ let
     drive
     rdesktop
     remmina
+    thunderbird
+    neomutt
     # taskwarrior
     # timewarrior
     pass
