@@ -61,9 +61,9 @@
         user = "ski027";
         hostname = "uvcluster.cs.uit.no";
       };
-      kirkvik = {
-        user = "w306647";
-        hostname = "306647.web.tornado-node.net";
+      uit = {
+        user = "simen";
+        hostname = "kirkvik.td.org.uit.no";
       };
     };
   };
