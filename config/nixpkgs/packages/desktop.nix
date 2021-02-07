@@ -88,37 +88,31 @@ let
   ];
 
   desktop = with pkgs; [
-    #wireshark-qt
-    brightnessctl
-    firefox
-    drive
-    rdesktop
-    remmina
-    thunderbird
-    neomutt
-    # taskwarrior
-    # timewarrior
-    pass
-    pavucontrol
-    spotify
-    # ledger
-    # browserpass
     blueman
-    gparted
-    # calibre
+    brightnessctl
+    cdrtools
+    drive
     fira-code
+    firefox
+    godot
+    gparted
+    innoextract
     keybase
     keybase-gui
+    neomutt
     pandoc
+    pass
+    pavucontrol
     pinentry
     polkit_gnome
+    qrencode
+    rdesktop
+    remmina
+    spotify
     steghide
-    cdrtools
-    innoextract
     tectonic
     unrtf
     virtmanager
-    qrencode
     wkhtmltopdf
     zbar
   ];
