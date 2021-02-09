@@ -72,6 +72,9 @@ command! MakeTags !ctags -R .
 " Bindings
 let mapleader = " "
 
+" TeX shortcuts
+autocmd FileType tex nnoremap <leader>b :w<CR> :! pdflatex %<CR>
+
 " Terminal mode
 tnoremap <Esc> <C-\><C-N>
 
@@ -81,26 +84,10 @@ nmap <leader>gp :diffput<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 
-" LanguageClient-neovim
 nmap <leader>gd <Plug>(lcn-definition)
 nmap <leader>gr <Plug>(lcn-references)
 
-"let g:LanguageClient_changeThrottle = 1.0
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-
-" Fzf
-nnoremap <C-p> :GFiles<CR>
-nnoremap <leader>p :Files<CR>
-
-" Latex settings
-" NB: Don't need it because of spell shortcuts
-autocmd FileType tex setlocal wrap
-
-" Tmux
-let g:tmux_navigator_no_mappings = 1
-
+" tmux vim navigation
 nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
 nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
 nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
@@ -117,8 +104,28 @@ inoremap jk <Esc>
 map <F6> :setlocal spell! spelllang=en_us<CR>
 map <F7> :setlocal spell! spelllang=nb<CR>
 
-" TeX shortcuts
-autocmd FileType tex nnoremap <C-b> :w<CR> :! pdflatex %<CR>
+" Fzf
+nnoremap <C-p> :GFiles<CR>
+nnoremap <leader>p :Files<CR>
+
+" LanguageClient-neovim
+"let g:LanguageClient_changeThrottle = 1.0
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+
+" Latex settings
+" NB: Don't need it because of spell shortcuts
+autocmd FileType tex setlocal tw=80
+" autocmd FileType tex setlocal wrap
+
+" vimtex
+let g:tex_flavor = 'latex'
+"
+" Tmux
+let g:tmux_navigator_no_mappings = 1
+
 
 " Language specific
 
