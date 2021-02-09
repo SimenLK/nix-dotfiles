@@ -43,7 +43,7 @@ let
           lock = "xset s activate";
           cpwd = "pwd | xclip -i";
           cdc = "cd (xclip -o)";
-          report = "git clone git@github.com:simenlk/latexreport.git && source latexreport/install.sh";
+          report = "git clone git@github.com:simenlk/latexreport.git && sh latexreport/install.sh";
         };
       };
 
