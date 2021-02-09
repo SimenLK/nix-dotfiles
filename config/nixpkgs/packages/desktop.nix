@@ -99,6 +99,7 @@ let
     innoextract
     keybase
     keybase-gui
+    lynx
     neomutt
     pandoc
     pass
@@ -136,7 +137,8 @@ let
     useIf cfg.chat chat ++
     useIf cfg.graphics graphics ++
     useIf cfg.wavebox [ pkgs.wavebox ] ++
-    useIf cfg.zoom [ pkgs.zoom-us ];
+    useIf cfg.zoom [ pkgs.zoom-us ] ++
+    useIf cfg.tex [ pkgs.texlive.combined.scheme-full ];
 
 in {
   options.dotfiles.packages.desktop = {
@@ -148,6 +150,7 @@ in {
     graphics = mkEnableOption "Enable graphics packages";
     wavebox = mkEnableOption "Enable wavebox";
     zoom = mkEnableOption "Enable zoom";
+    tex = mkEnableOption "Enable LaTeX";
   };
 
   config = mkIf cfg.enable (mkMerge [

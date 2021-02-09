@@ -43,6 +43,7 @@ let
           lock = "xset s activate";
           cpwd = "pwd | xclip -i";
           cdc = "cd (xclip -o)";
+          report = "git clone git@github.com:simenlk/latexreport.git && source latexreport/install.sh";
         };
       };
 
@@ -69,6 +70,7 @@ let
             vim-gnupg
             vim-nix
             vim-surround
+            vimtex
           ];
           extraConfig = builtins.readFile ../../nvim/init.vim;
         };

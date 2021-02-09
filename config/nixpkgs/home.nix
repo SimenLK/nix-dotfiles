@@ -32,8 +32,9 @@
         graphics = false;
         wavebox = false;
         zoom = true;
+        tex = true;
       };
-      kubernetes = true;
+      kubernetes = false;
       cloud = true;
       geo = false;
     };
