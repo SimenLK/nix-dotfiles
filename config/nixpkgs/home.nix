@@ -53,7 +53,7 @@
 
   programs = {
     git = {
-      userEmail = "simenlundkirkvik@hotmail.com ";
+      userEmail = "simen@kirkvik.no";
       userName = "Simen Kirkvik";
     };
 
