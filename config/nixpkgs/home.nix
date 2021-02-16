@@ -34,7 +34,7 @@
         zoom = true;
         tex = true;
       };
-      kubernetes = false;
+      kubernetes = true;
       cloud = true;
       geo = false;
     };
