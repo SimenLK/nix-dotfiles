@@ -63,6 +63,7 @@ let
             fugitive
             fzf-vim
             indentLine
+            jedi-vim
             LanguageClient-neovim
             NeoSolarized
             nerdtree

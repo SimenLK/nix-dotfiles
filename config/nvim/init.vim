@@ -135,6 +135,12 @@ autocmd FileType sql set shiftwidth=2
 autocmd FileType sql set tabstop=2
 autocmd FileType sql set expandtab
 
+" Yaml
+
+autocmd FileType yaml set shiftwidth=2
+autocmd FileType yaml set tabstop=2
+autocmd FileType yaml set expandtab
+
 " Auto-initilize Ionide
 let g:fsharp#automatic_workspace_init = 1
 
@@ -168,8 +174,6 @@ endfunction
 
 set statusline=
 set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
 set statusline+=\ %f
 set statusline+=\ %2*[%M%R%H%W]%*
 " Right side of statusline
