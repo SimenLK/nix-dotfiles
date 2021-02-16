@@ -131,6 +131,33 @@ let
         escapeTime = 10;
         terminal = "xterm-256color";
         extraConfig = builtins.readFile ../../../tmux.conf;
+        plugins = with pkgs; [
+          (tmuxPlugins.mkDerivation {
+            pluginName = "statusline";
+            version = "0.1";
+            src = ../../../tmux-plugins;
+          })
+          (tmuxPlugins.mkDerivation {
+            pluginName = "simple-git-status";
+            version = "master";
+            src = fetchFromGitHub {
+              owner = "kristijanhusak";
+              repo = "tmux-simple-git-status";
+              rev = "287da42f47d7204618b62f2c4f8bd60b36d5c7ed";
+              sha256 = "04vs4afxcr118p78mw25nnzvlms7pmgmi2a80h92vw5pzw9a0msq";
+            };
+          })
+          (tmuxPlugins.mkDerivation {
+            pluginName = "current-pane-hostname";
+            version = "master";
+            src = fetchFromGitHub {
+              owner = "soyuka";
+              repo = "tmux-current-pane-hostname";
+              rev = "6bb3c95250f8120d8b072f46a807d2678ecbc97c";
+              sha256 = "1w1x8w351v9yppw37kcs985mm5ikpmdnckfjwqyhlqx90lf9sqdy";
+            };
+          })
+        ];
       };
 
       home-manager = {
