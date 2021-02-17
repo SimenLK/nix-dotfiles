@@ -1,0 +1,20 @@
+IMAPStore simen-remote
+Host tornado.email
+Port 993
+User simen@kirkvik.no
+PassCmd "pass @kirkvik"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore simen-local
+Path ~/keybase/private/simenlk/mail/
+Inbox ~/keybase/private/simenlk/mail/INBOX
+Subfolders Verbatim
+
+Channel simen
+Master :simen-remote:
+Slave :simen-local:
+Create Both
+Expunge Both
+Patterns *
+SyncState *

@@ -11,16 +11,15 @@
 set realname = "Simen Lund Kirkvik"
 set from = "simen@kirkvik.no"
 
-# If you have another address:
-# alternates "^mutt@example\.com$"
 
 ###############
 # Folders
 #
-set folder = "imaps://simen@kirkvik.no@tornado.email/"
+set folder = "/home/simkir/keybase/private/simenlk/mail/"
+#set folder = "imaps://simen@kirkvik.no@tornado.email:993/"
 set imap_pass="`gpg --batch -q --decrypt ~/.password-store/@kirkvik.gpg`"
 
-set smtp_url = "smtps://simen@kirkvik.no@tornado.email/"
+set smtp_url = "smtps://simen@kirkvik.no@tornado.email:465/"
 set smtp_pass="`gpg --batch -q --decrypt ~/.password-store/@kirkvik.gpg`"
 
 set spoolfile = "+INBOX"
@@ -31,6 +30,7 @@ set postponed = "+Drafts"
 mailboxes =INBOX =Sent =Trash =Drafts =Archive
 
 set mail_check = 60
+
 
 ###############
 # Pager settings
@@ -55,14 +55,20 @@ auto_view text/html
 
 source ~/.config/mutt/color.muttrc
 
+
 ###############
 # Index settings
 #
 set quit = ask-yes
-set sort = threads
+set sort = 'reverse-date'
 
 # Remember to `mkdir -p ~/.mutt/hcache` first:
 set header_cache= "~/.config/mutt/hcache"
+
+## Sidebar
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
 
 ###############
 # Message composition settings

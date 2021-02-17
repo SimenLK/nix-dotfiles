@@ -44,12 +44,15 @@
       "ghci"
       "haskeline"
       "taskrc"
+      "mbsyncrc"
     ];
     sshFiles = false;
     vimDevPlugins = true;
   };
 
-  home.packages = with pkgs; [];
+  home.packages = with pkgs; [
+    isync
+  ];
 
   programs = {
     git = {
