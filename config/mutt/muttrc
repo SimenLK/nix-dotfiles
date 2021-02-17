@@ -70,6 +70,12 @@ set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 set mail_check_stats
 
+bind index,pager \Cp sidebar-prev
+bind index,pager \Cn sidebar-next
+bind index,pager \Co sidebar-open
+
+bind index,pager B sidebar-toggle-visible
+
 ###############
 # Message composition settings
 #

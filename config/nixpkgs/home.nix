@@ -45,6 +45,7 @@
       "haskeline"
       "taskrc"
       "mbsyncrc"
+      "mailcap"
     ];
     sshFiles = false;
     vimDevPlugins = true;
