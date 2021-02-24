@@ -42,6 +42,8 @@ highlight MatchParen ctermbg=cyan
 set number
 set relativenumber
 
+set nohlsearch
+
 " Text width
 " set textwidth=80
 " set colorcolumn=+1
