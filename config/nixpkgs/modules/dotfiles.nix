@@ -168,10 +168,10 @@ let
     };
 
     home.keyboard = {
-      layout = "us,no,us";
-      variant = "altgr-intl,,colemak";
+      layout = "us,us";
+      variant = "altgr-intl,colemak";
       model = "pc104";
-      options = [ "eurosign:e" "ctrl:swapcaps" "grp:alt_shift_toggle"];
+      options = [ "eurosign:e" "grp:alt_shift_toggle"];
     };
 
     home.sessionVariables = {
