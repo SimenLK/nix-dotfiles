@@ -62,7 +62,6 @@ let
             deoplete-nvim
             fugitive
             fzf-vim
-            indentLine
             jedi-vim
             LanguageClient-neovim
             NeoSolarized

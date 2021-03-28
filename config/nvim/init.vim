@@ -48,7 +48,8 @@ set nohlsearch
 " set textwidth=80
 " set colorcolumn=+1
 " hi ColorColumn ctermbg=White
-autocmd FileType mail set textwidth=80
+autocmd FileType mail setlocal tw=80
+autocmd FileType tex setlocal tw=80
 
 " Whitespace and tabs
 set listchars=tab:>-,nbsp:_,trail:⋅
@@ -119,12 +120,12 @@ let g:deoplete#enable_at_startup = 1
 
 " Latex settings
 " NB: Don't need it because of spell shortcuts
-autocmd FileType tex setlocal tw=80
 " autocmd FileType tex setlocal wrap
 
 " vimtex
+let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
-"
+
 " Tmux
 let g:tmux_navigator_no_mappings = 1
 
