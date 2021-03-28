@@ -53,6 +53,7 @@
 
   home.packages = with pkgs; [
     isync
+    wally-cli
   ];
 
   programs = {
