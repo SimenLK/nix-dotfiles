@@ -110,7 +110,6 @@ let
     rdesktop
     remmina
     spotify
-    steghide
     tectonic
     unrtf
     virtmanager
@@ -121,10 +120,6 @@ let
   chat = with pkgs; [
     teams
     discord
-    # signal-desktop
-    # slack
-    # pidgin
-    # pidginsipe
   ];
 
   useIf = x: y: if x then y else [];
