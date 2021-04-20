@@ -1,4 +1,5 @@
-! Xmodmap, I want two controls on left side, no caps, and menu button to be super
+! Xmodmap, I want standard colemak caps backspace, but ctrl on laptop >< keys.
+! This it to mimic moonlander
 clear lock
 clear control
 clear mod4
@@ -9,7 +10,8 @@ keycode 55 = v V d D registered registered oe OE
 keycode 56 = b B v V b B dead_breve asciitilde
 keycode 58 = m M h H mu mu dead_macron asciitilde
 keycode 37 = Control_L
-keycode 66 = Control_L NoSymbol Control_L NoSymbol
+keycode 66 = BackSpace Caps_Lock BackSpace Caps_Lock
+keycode 94 = Control_L NoSymbol Control_L NoSymbol
 keycode 135 = Super_R
 add control = Control_L Control_R
 add mod4 = Super_L Super_R

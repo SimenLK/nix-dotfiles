@@ -15,7 +15,7 @@
         nix = true;
         db = false;
         dotnet = true;
-        node = true;
+        node = false;
         rust = false;
         haskell = false;
         python = false;
