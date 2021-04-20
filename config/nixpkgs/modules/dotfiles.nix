@@ -105,7 +105,7 @@ let
             rebase = false;
           };
           core = {
-            editor = "vim";
+            editor = "nvim";
           };
           help = {
             autocorrect = 1;
