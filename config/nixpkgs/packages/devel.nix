@@ -84,15 +84,6 @@ let
     npm
     yarn
     webpack
-    # node2nix
-    # gulp
-    # bundler
-    # bundix
-    # yo
-    # purescript
-    # psc-package
-    # pulp
-    # cordova
   ];
 
   rust = with pkgs; [

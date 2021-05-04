@@ -7,12 +7,12 @@ let
 in
 {
   vscode = super.vscode.overrideAttrs (attrs: rec {
-      version = "1.52.1";
+      version = "1.55.2";
       name = "vscode-${version}";
 
       src = super.fetchurl {
         name = "VSCode_${version}_${plat}.${archive_fmt}";
-        url = "https://vscode-update.azurewebsites.net/${version}/${plat}/stable";
+        url = "https://update.code.visualstudio.com/${version}/${plat}/stable";
         sha256 = "1kbjbqb03yapz7067q589gaa7d6cqaipj7hmp1l3nh0bmggzsc4c";
       };
       # postFixup = ''
