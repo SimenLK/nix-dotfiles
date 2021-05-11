@@ -16,6 +16,7 @@ let
       gnome = mkDefault true;
       chat = mkDefault true;
       graphics = mkDefault true;
+      tex = mkDefault false;
     };
 
     home.packages = enabledPackages;
@@ -59,7 +60,7 @@ let
   ];
 
   gnome = with pkgs.gnome3; [
-    gucharmap
+    #gucharmap
     gnome-settings-daemon
     gnome-font-viewer
     adwaita-icon-theme
@@ -94,7 +95,7 @@ let
     drive
     fira-code
     firefox
-    godot
+    #godot
     gparted
     innoextract
     keybase

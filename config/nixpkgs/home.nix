@@ -15,7 +15,7 @@
         nix = true;
         db = false;
         dotnet = true;
-        node = false;
+        node = true;
         rust = false;
         haskell = false;
         python = false;
@@ -32,7 +32,7 @@
         graphics = false;
         wavebox = false;
         zoom = true;
-        tex = true;
+        tex = false;
       };
       kubernetes = true;
       cloud = true;
@@ -58,7 +58,7 @@
 
   programs = {
     git = {
-      userEmail = "simen@kirkvik.no";
+      userEmail = "simen.kirkvik@tromso.serit.no";
       userName = "Simen Kirkvik";
     };
 
@@ -83,8 +83,8 @@
     xset +dpms
     xset dpms 1800 2400 3600
     xmodmap $HOME/.dotfiles/Xmodmap
-    if xrandr | grep -q "DP-2-2 connected"; then
-      xrandr --output eDP-1 --off --output DP-2-2 --auto --rotate left --right-of DP-2-1
+    if xrandr | grep -q "DP-2 connected"; then
+      xrandr --output DP-2 --primary --output DP-1 --right-of DP-2
     elif xrandr | grep -q "DP-2 connected 2560"; then
       xrandr --output eDP-1 --off
     fi
