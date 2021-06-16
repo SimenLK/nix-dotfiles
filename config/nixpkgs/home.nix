@@ -13,7 +13,7 @@
       devel = {
         enable = true;
         nix = true;
-        db = false;
+        db = true;
         dotnet = true;
         node = true;
         rust = false;

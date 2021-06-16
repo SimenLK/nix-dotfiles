@@ -119,6 +119,8 @@ let
   db = with pkgs; [
     postgresql
     sqlite-interactive
+    sqsh
+    unixODBC
   ];
 
   java = with pkgs; [

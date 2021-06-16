@@ -36,8 +36,11 @@ let
     appres
     editres
     listres
-    viewres
     luit
+    pkgs.glxinfo
+    pkgs.xclip
+    pkgs.xsel
+    viewres
     xdpyinfo
     xdriinfo
     xev
@@ -48,15 +51,12 @@ let
     xlsclients
     xlsfonts
     xmessage
+    xmessage
+    xmodmap
     xprop
     xvinfo
-    xwininfo
-    xmessage
     xvinfo
-    xmodmap
-    pkgs.glxinfo
-    pkgs.xclip
-    pkgs.xsel
+    xwininfo
   ];
 
   gnome = with pkgs.gnome3; [
