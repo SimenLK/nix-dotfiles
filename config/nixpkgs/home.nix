@@ -84,7 +84,7 @@
     xset dpms 1800 2400 3600
     xmodmap $HOME/.dotfiles/Xmodmap
     if xrandr | grep -q "DP-2 connected 1920"; then
-      xrandr --output DP-2 --rotate left
+      xrandr --output DP-2 --rotate left --right-of DP-1
     elif xrandr | grep -q "DP-2 connected 2560"; then
       xrandr --output eDP-1 --off
     fi
