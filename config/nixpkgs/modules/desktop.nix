@@ -169,5 +169,5 @@ in
       (mkIf cfg.dropbox.enable dropbox)
   ]);
 
-  imports = [ ./xmonad.nix ];
+  imports = [ ./sway.nix ];
 }
