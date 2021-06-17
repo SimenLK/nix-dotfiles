@@ -6,7 +6,8 @@ let
   configuration = {
     dotfiles.packages.desktop.enable = mkDefault true;
 
-    dotfiles.desktop.xmonad.enable = mkDefault true;
+    dotfiles.desktop.xmonad.enable = mkDefault false;
+    #dotfiles.desktop.sway.enable = mkDefault true;
 
     programs = {
       browserpass.enable = true;
@@ -169,5 +170,5 @@ in
       (mkIf cfg.dropbox.enable dropbox)
   ]);
 
-  imports = [ ./sway.nix ];
+  imports = [ ./xmonad.nix ];
 }
