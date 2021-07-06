@@ -6,7 +6,15 @@ let
   configuration = {
     services.polybar = {
       enable = true;
-      script = "polybar top &";
+      script = ''
+        #!${pkgs.stdenv.shell}
+
+        killall -q polybar
+        while pgrep -x polybar > /dev/null; do sleep 1.0; done
+
+        export MONITOR=DP-2
+        polybar main &
+      '';
       config = {
         "colors" = {
           background = "#d0303030";
@@ -31,9 +39,9 @@ let
           secondary = "blue";
           alert = "red";
         };
-        "bar/top" = {
-          # monitor = "\${env:MONITOR:VGA-1}";
-          width = "100%";
+        "bar/main" = {
+          monitor = "\${env:MONITOR:}";
+          bottom = true;
           height = 20;
           radius = 0;
           padding = 1;

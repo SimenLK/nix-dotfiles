@@ -175,11 +175,12 @@ let
 
     home.sessionVariables = {
       EDITOR = "nvim";
-      VISUAL = "nvim";
-      KUBE_EDITOR = "nvim";
-      LESS = "-MiScR";
       GIT_ALLOW_PROTOCOL = "ssh:https:keybase:file";
+      KUBE_EDITOR = "nvim";
       LD_LIBRARY_PATH = "$HOME/.nix-profile/lib";
+      LESS = "-MiScR";
+      MONITOR = "DP-2";
+      VISUAL = "nvim";
     };
 
     systemd.user.startServices = true;
