@@ -6,7 +6,7 @@ let
   configuration = {
     dotfiles.packages.desktop.enable = mkDefault true;
 
-    dotfiles.desktop.xmonad.enable = mkDefault false;
+    dotfiles.desktop.xmonad.enable = mkDefault true;
     #dotfiles.desktop.sway.enable = mkDefault true;
 
     programs = {
