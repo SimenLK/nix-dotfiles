@@ -46,7 +46,7 @@ set nohlsearch
 
 " Text width
 " set textwidth=80
-" set colorcolumn=+1
+set colorcolumn=80
 " hi ColorColumn ctermbg=White
 autocmd FileType mail setlocal tw=80
 autocmd FileType tex setlocal tw=80
@@ -102,7 +102,7 @@ nnoremap <silent> <Bar> <C-w><Bar><CR>
 map <C-N> :NERDTreeToggle<CR>
 
 nnoremap <C-c> <C-w>c
-inoremap jk <Esc>
+" inoremap jk <Esc> " Not needed with moonlander
 
 map <F6> :setlocal spell! spelllang=en_us<CR>
 map <F7> :setlocal spell! spelllang=nb<CR>
@@ -182,6 +182,7 @@ set statusline+=\ %2*[%M%R%H%W]%*
 " Right side of statusline
 set statusline+=%#CursorColumn#
 set statusline+=%=
+set statusline+=\ [%{&fo}]
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
