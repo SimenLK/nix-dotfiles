@@ -37,7 +37,6 @@ let
         enableContribAndExtras = true;
         extraPackages = self: [
           self.yeganesh
-          self.xmobar
           pkgs.dmenu
           self.string-conversions
         ];
@@ -47,7 +46,6 @@ let
     home.packages = with pkgs; [
       xmonad-log
       haskellPackages.yeganesh
-      xmobar
       networkmanager
       networkmanagerapplet
       dmenu
