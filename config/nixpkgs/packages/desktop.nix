@@ -8,6 +8,7 @@ let
       (import ../overlays/wavebox.nix)
       (import ../overlays/teams.nix)
       (import ../overlays/vscode.nix)
+      (import ../overlays/kind.nix)
     ];
 
     dotfiles.packages.desktop = {
@@ -100,6 +101,7 @@ let
     innoextract
     keybase
     keybase-gui
+    kind
     lynx
     neomutt
     pandoc
