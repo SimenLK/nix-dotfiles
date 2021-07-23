@@ -1,12 +1,25 @@
 self: super:
 let
-in
-{
-  kind = super.kind.overrideAttrs (attrs: rec {
+  kind = { buildGoModule, fetchFromGitHub }:
+
+  buildGoModule rec {
+    pname = "kind";
     version = "v0.11.1";
-    src = super.fetchurl {
-      url = "https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64";
-      sha256 = "0kpcd9q6v2qh0dzddykisdbi3djbxj2rl70wchlzrb6bx95hkzmc";
+
+    src = fetchFromGitHub {
+      rev = "${version}";
+      owner = "kubernetes-sigs";
+      repo = "kind";
+      sha256 = "1k6m4xwkrjgq7rjpj2zy5kw1wn0jz8q0f3m1sdqa6y3cwgc3jf56";
     };
-  });
+
+    vendorSha256 = "08cjvhk587f3aar4drn0hq9q1zlsnl4p7by4j38jzb4r8ix5s98y";
+
+    subPackages = [ "." ];
+  };
+in {
+  kind = kind {
+    buildGoModule = super.buildGoModule;
+    fetchFromGitHub = super.fetchFromGitHub;
+  };
 }
