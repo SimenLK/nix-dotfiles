@@ -9,6 +9,7 @@ let
       (import ../overlays/teams.nix)
       (import ../overlays/vscode.nix)
       (import ../overlays/kind.nix)
+      #(import ../overlays/neovim.nix)
     ];
 
     dotfiles.packages.desktop = {
