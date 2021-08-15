@@ -72,7 +72,7 @@ let
             vim-surround
             vimtex
           ];
-          extraConfig = builtins.readFile ../../nvim/init.vim;
+          extraConfig = builtins.readFile ../../../vimrc;
         };
 
       git = {
@@ -132,12 +132,12 @@ let
         terminal = "xterm-256color";
         extraConfig = builtins.readFile ../../../tmux.conf;
         plugins = with pkgs; [
-          (tmuxPlugins.mkDerivation {
+          (tmuxPlugins.mkTmuxPlugin {
             pluginName = "statusline";
             version = "0.1";
             src = ../../../tmux-plugins;
           })
-          (tmuxPlugins.mkDerivation {
+          (tmuxPlugins.mkTmuxPlugin {
             pluginName = "simple-git-status";
             version = "master";
             src = fetchFromGitHub {
@@ -147,7 +147,7 @@ let
               sha256 = "04vs4afxcr118p78mw25nnzvlms7pmgmi2a80h92vw5pzw9a0msq";
             };
           })
-          (tmuxPlugins.mkDerivation {
+          (tmuxPlugins.mkTmuxPlugin {
             pluginName = "current-pane-hostname";
             version = "master";
             src = fetchFromGitHub {
@@ -162,7 +162,7 @@ let
 
       home-manager = {
         enable = true;
-        path = "https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz";
+        path = "https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz";
       };
     };
 
@@ -202,11 +202,6 @@ let
       mutt = {
         source = ~/.dotfiles/config/mutt;
         target = "mutt";
-        recursive = true;
-      };
-      nvim = {
-        source = ~/.dotfiles/config/nvim;
-        target = "nvim";
         recursive = true;
       };
       nixpkgs = {

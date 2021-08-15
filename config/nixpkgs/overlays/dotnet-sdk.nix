@@ -9,7 +9,7 @@ in
     version = "5.0.202";
     src = super.fetchurl {
       url = "https://dotnetcli.azureedge.net/dotnet/Sdk/${version}/${pname}-${version}-${platform}-${suffix}.tar.gz";
-      sha512 = "27gp0ndypymmr1pigx2sd1fzkwq7ks06a0ypi0a2y71zrn1hq78ipa5xd059fln4w4kbvz7jaqc8ylfap99iin7rwsjia67msyjsidz";
+      sha512 = "0w9hgfrbfiiz63bvwqqlkz9nwcm7lagxq6pl10ik7f03yg65mqlcq4y0f9kih7xasaw3fvx1s1rvqjwsm04klkkar08fj8q6vr5kv81";
     };
   });
 

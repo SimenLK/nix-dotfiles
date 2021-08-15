@@ -54,6 +54,7 @@
   home.packages = with pkgs; [
     isync
     wally-cli
+    tree
   ];
 
   programs = {
