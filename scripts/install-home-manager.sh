@@ -7,7 +7,7 @@ git checkout master
 git submodule init
 git submodule update
 
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
 
@@ -15,8 +15,4 @@ export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 
 mkdir -p ~/.config/omf
 
-<<<<<<< HEAD
 home-manager switch -f $top/config/nixpkgs/home.nix
-=======
-~/.nix-profile/bin/home-manager switch -f $top/config/nixpkgs/home.nix
->>>>>>> ad57f41420c1805f4b385989faf53a69bb336d11

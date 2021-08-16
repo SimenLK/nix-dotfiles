@@ -7,11 +7,6 @@ let
     services.polybar = {
       enable = true;
       script = ''
-        #!${pkgs.stdenv.shell}
-
-        killall -q polybar
-        while pgrep -x polybar > /dev/null; do sleep 1.0; done
-
         export MONITOR=DP-2
         polybar main &
       '';

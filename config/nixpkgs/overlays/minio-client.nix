@@ -1,6 +1,6 @@
 self: super:
 let
-  minio-client = { stdenv, buildGoModule, fetchFromGitHub }:
+  minio-client = { lib, buildGoModule, fetchFromGitHub }:
 
   buildGoModule rec {
     pname = "minio-client";
@@ -25,7 +25,7 @@ let
       sed -i "s/CommitID.*/CommitID = \"${src.rev}\"/g" cmd/build-constants.go
     '';
 
-    meta = with stdenv.lib; {
+    meta = with lib; {
       homepage = "https://github.com/minio/mc";
       description = "A replacement for ls, cp, mkdir, diff and rsync commands for filesystems and object storage";
       maintainers = with maintainers; [ eelco bachp ];
@@ -36,7 +36,7 @@ let
 in
   {
     minio-client = minio-client {
-      stdenv = super.stdenv;
+      lib = super.lib;
       buildGoModule = super.buildGoModule;
       fetchFromGitHub = super.fetchFromGitHub;
     };
