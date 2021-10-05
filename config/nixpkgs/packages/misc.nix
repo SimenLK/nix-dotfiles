@@ -25,13 +25,14 @@ let
   ];
 
   kubernetes = with pkgs; [
-    minikube
-    kubernetes-helm
-    kubectl
-    krew
-    linkerd
     argocd
-    step-cli
+    krew
+    kubectl
+    kubernetes-helm
+    kubeseal
+    linkerd
+    minikube
+    step-cli # cert swiss army knife
   ];
 
   useIf = x: y: if x then y else [];
