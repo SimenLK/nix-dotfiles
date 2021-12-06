@@ -81,10 +81,10 @@ let
   ];
 
   graphics = with pkgs; [
-    imagemagick
-    scrot
+    # imagemagick
+    # scrot
     krita
-    # inkscape
+    inkscape
   ];
 
   desktop = with pkgs; [
