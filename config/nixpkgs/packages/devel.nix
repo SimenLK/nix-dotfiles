@@ -87,7 +87,8 @@ let
   ];
 
   rust = with pkgs; [
-    cargo
+    rustup
+    rust-analyzer
   ];
 
   go = with pkgs; [
