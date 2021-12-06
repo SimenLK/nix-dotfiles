@@ -16,7 +16,7 @@
         db = false;
         dotnet = true;
         node = false;
-        rust = false;
+        rust = true;
         haskell = false;
         python = false;
         go = false;
@@ -29,7 +29,7 @@
         x11 = true;
         media = false;
         chat = true;
-        graphics = false;
+        graphics = true;
         wavebox = false;
         zoom = true;
         tex = true;
@@ -55,6 +55,8 @@
     isync
     wally-cli
     tree
+    vlc
+    openfortivpn
   ];
 
   programs = {
