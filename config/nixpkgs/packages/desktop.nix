@@ -118,7 +118,7 @@ let
   ];
 
   chat = with pkgs; [
-    teams
+    # teams
     discord
   ];
 

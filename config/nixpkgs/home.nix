@@ -48,7 +48,7 @@
       "mailcap"
     ];
     sshFiles = false;
-    vimDevPlugins = true;
+    vimDevPlugins = false;
   };
 
   home.packages = with pkgs; [

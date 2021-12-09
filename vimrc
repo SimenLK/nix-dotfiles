@@ -87,8 +87,8 @@ nmap <leader>gp :diffput<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 
-nmap <leader>gd <Plug>(lcn-definition)
-nmap <leader>gr <Plug>(lcn-references)
+"nmap <leader>gd <Plug>(lcn-definition)
+"nmap <leader>gr <Plug>(lcn-references)
 
 " tmux vim navigation
 nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
@@ -145,19 +145,19 @@ autocmd FileType yaml set tabstop=2
 autocmd FileType yaml set expandtab
 
 " Auto-initilize Ionide
-let g:fsharp#automatic_workspace_init = 1
-
-" Use keybindings with leader instead of vscode ones
-let g:fsharp#fsi_keymap = "vim-fsharp"
-
-function LC_fsharp_maps()
-    if has_key(g:LanguageClient_serverCommands, &filetype)
-        nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-    endif
-endfunction
-
-autocmd FileType fsharp call LC_fsharp_maps()
-autocmd FileType fsharp set signcolumn=yes
+"let g:fsharp#automatic_workspace_init = 1
+"
+"" Use keybindings with leader instead of vscode ones
+"let g:fsharp#fsi_keymap = "vim-fsharp"
+"
+"function LC_fsharp_maps()
+"    if has_key(g:LanguageClient_serverCommands, &filetype)
+"        nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+"    endif
+"endfunction
+"
+"autocmd FileType fsharp call LC_fsharp_maps()
+"autocmd FileType fsharp set signcolumn=yes
 
 " Statusline
 

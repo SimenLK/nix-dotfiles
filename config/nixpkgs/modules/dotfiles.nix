@@ -62,10 +62,9 @@ let
             deoplete-nvim
             fugitive
             fzf-vim
-            jedi-vim
-            LanguageClient-neovim
             NeoSolarized
             nerdtree
+            nvim-lspconfig
             tmux-navigator
             vim-gnupg
             vim-nix
