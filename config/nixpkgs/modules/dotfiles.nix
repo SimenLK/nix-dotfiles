@@ -60,6 +60,7 @@ let
           enable = true;
           plugins = with vimPlugins; [
             deoplete-nvim
+            deoplete-lsp
             fugitive
             fzf-vim
             NeoSolarized
@@ -71,7 +72,7 @@ let
             vim-surround
             vimtex
           ];
-          extraConfig = builtins.readFile ../../../vimrc;
+          extraConfig = builtins.readFile ../../nvim/init.vim;
         };
 
       git = {

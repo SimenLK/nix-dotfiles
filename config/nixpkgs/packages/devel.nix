@@ -82,8 +82,9 @@ let
   node = with pkgs.nodePackages; [
     pkgs.nodejs
     npm
-    yarn
     webpack
+    typescript
+    typescript-language-server
   ];
 
   rust = with pkgs; [
@@ -106,6 +107,7 @@ let
     lorri
     nix-prefetch-scripts
     patchelf
+    rnix-lsp
   ];
 
   db = with pkgs; [
