@@ -6,7 +6,7 @@ let
   configuration = {
     nixpkgs.overlays = [
       (import ../overlays/wavebox.nix)
-      (import ../overlays/teams.nix)
+      #(import ../overlays/teams.nix)
       (import ../overlays/vscode.nix)
     ];
 
@@ -118,7 +118,8 @@ let
   ];
 
   chat = with pkgs; [
-    # teams
+    teams
+    slack
     discord
   ];
 
