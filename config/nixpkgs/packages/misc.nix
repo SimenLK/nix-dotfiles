@@ -29,6 +29,8 @@ let
     kubernetes-helm
     kubectl
     linkerd
+    argocd
+    step-cli
   ];
 
   useIf = x: y: if x then y else [];
