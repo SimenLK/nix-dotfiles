@@ -36,7 +36,6 @@ let
         enable = true;
         enableContribAndExtras = true;
         extraPackages = self: [
-          self.yeganesh
           pkgs.dmenu
           self.string-conversions
         ];
