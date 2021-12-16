@@ -6,7 +6,7 @@ let
   configuration = {
     nixpkgs.overlays = [
       (import ../overlays/wavebox.nix)
-      (import ../overlays/teams.nix)
+      #(import ../overlays/teams.nix)
       (import ../overlays/vscode.nix)
       (import ../overlays/kind.nix)
       #(import ../overlays/neovim.nix)
@@ -91,20 +91,22 @@ let
   ];
 
   desktop = with pkgs; [
+    #godot
     blueman
     brightnessctl
     cdrtools
     drive
     fira-code
     firefox
-    #godot
     gparted
     innoextract
     keybase
     keybase-gui
     kind
     lynx
+    mysql-workbench
     neomutt
+    openfortivpn
     pandoc
     pass
     pavucontrol
@@ -122,8 +124,8 @@ let
   ];
 
   chat = with pkgs; [
+    slack
     teams
-    discord
   ];
 
   useIf = x: y: if x then y else [];
