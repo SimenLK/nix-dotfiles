@@ -56,6 +56,7 @@
     wally-cli
     tree
     jetbrains.rider
+    gollum
   ];
 
   programs = {
