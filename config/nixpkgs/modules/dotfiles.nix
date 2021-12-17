@@ -16,7 +16,7 @@ let
         enable = true;
         shellInit = ''
           set -e TMUX_TMPDIR
-          set PATH ~/.local/bin $HOME/.nix-profile/bin ~/.dotnet/tools $PATH
+          set PATH ~/.local/bin $HOME/.nix-profile/bin ~/.dotnet/tools ~/.krew/bin $PATH
         '';
         shellAliases = {
           rm = "rm -i";

@@ -28,6 +28,7 @@ let
     minikube
     kubernetes-helm
     kubectl
+    krew
     linkerd
     argocd
     step-cli
