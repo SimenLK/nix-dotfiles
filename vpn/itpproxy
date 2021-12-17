@@ -1,0 +1,8 @@
+# config file for openfortivpn, see man openfortivpn(1)
+host = vpn.itpartner.no
+realm = itpproxy
+port = 443
+pppd-use-peerdns = 1
+set-routes = 1
+trusted-cert = 4ab5b4f6d24002df95db4d68d5e38040c542f9908cd7258473accce6cf4edabb
+username = simkir
