@@ -55,6 +55,7 @@
     isync
     wally-cli
     tree
+    jetbrains.rider
   ];
 
   programs = {
