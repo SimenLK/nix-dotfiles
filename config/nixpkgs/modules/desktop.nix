@@ -49,7 +49,7 @@ let
 
       screen-locker = {
         enable = true;
-        inactiveInterval = 45;
+        inactiveInterval = 120;
         lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
       };
 
