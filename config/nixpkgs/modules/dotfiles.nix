@@ -59,20 +59,19 @@ let
         {
           enable = true;
           plugins = with vimPlugins; [
-            deoplete-nvim
+            NeoSolarized
+            deoplete-lsp
             fugitive
             fzf-vim
-            jedi-vim
-            LanguageClient-neovim
-            NeoSolarized
             nerdtree
+            nvim-lspconfig
             tmux-navigator
             vim-gnupg
             vim-nix
             vim-surround
             vimtex
           ];
-          extraConfig = builtins.readFile ../../../vimrc;
+          extraConfig = builtins.readFile ../../nvim/init.vim;
         };
 
       git = {

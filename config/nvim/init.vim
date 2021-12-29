@@ -25,6 +25,9 @@ set cmdheight=2
 " Syntax highlighting
 syntax on
 
+" Highlight yanking
+au TextYankPost * silent! lua vim.highlight.on_yank()
+
 " Colorscheme
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8f=[48;2;%lu;%lu;%lum
@@ -111,12 +114,14 @@ map <F7> :setlocal spell! spelllang=nb<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>p :Files<CR>
 
-" LanguageClient-neovim
-"let g:LanguageClient_changeThrottle = 1.0
+" nvim-lsp
+lua require('lspconfig').tsserver.setup{}
+autocmd FileType typescript set signcolumn=yes
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-
+let g:deoplete#lsp#handler_enabled = 1
+let g:deoplete#lsp#use_icons_for_candidates = 1
 
 " Latex settings
 " NB: Don't need it because of spell shortcuts
@@ -150,13 +155,6 @@ let g:fsharp#automatic_workspace_init = 1
 " Use keybindings with leader instead of vscode ones
 let g:fsharp#fsi_keymap = "vim-fsharp"
 
-function LC_fsharp_maps()
-    if has_key(g:LanguageClient_serverCommands, &filetype)
-        nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-    endif
-endfunction
-
-autocmd FileType fsharp call LC_fsharp_maps()
 autocmd FileType fsharp set signcolumn=yes
 
 " Statusline

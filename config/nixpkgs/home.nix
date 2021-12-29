@@ -48,7 +48,7 @@
       "mailcap"
     ];
     sshFiles = false;
-    vimDevPlugins = true;
+    vimDevPlugins = false;
   };
 
   home.packages = with pkgs; [
@@ -66,6 +66,10 @@
     };
 
     ssh.matchBlocks = {
+      omikron = {
+        user = "simenlk";
+        hostname = "omikron.kirkvik.no";
+      };
       uvcluster = {
         user = "ski027";
         hostname = "uvcluster.cs.uit.no";

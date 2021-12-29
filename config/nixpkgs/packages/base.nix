@@ -9,7 +9,6 @@ let
 
   sys = with pkgs; [
     bind
-    cryptsetup
     dmidecode
     dpkg
     ethtool

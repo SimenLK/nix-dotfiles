@@ -63,10 +63,10 @@ let
 
   dotnet = {
     home.sessionVariables = {
-      DOTNET_ROOT = pkgs.dotnetCorePackages.sdk_5_0;
+      DOTNET_ROOT = pkgs.dotnetCorePackages.sdk_6_0;
     };
     home.packages = [
-      pkgs.dotnetCorePackages.sdk_5_0
+      pkgs.dotnetCorePackages.sdk_6_0
     ];
   };
 
@@ -82,17 +82,9 @@ let
   node = with pkgs.nodePackages; [
     pkgs.nodejs
     npm
-    yarn
     webpack
-    # node2nix
-    # gulp
-    # bundler
-    # bundix
-    # yo
-    # purescript
-    # psc-package
-    # pulp
-    # cordova
+    typescript
+    typescript-language-server
   ];
 
   rust = with pkgs; [

@@ -7,7 +7,7 @@ let
     nixpkgs.overlays = [
       (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
-      (import ../overlays/vscode.nix)
+      #(import ../overlays/vscode.nix)
       (import ../overlays/kind.nix)
       #(import ../overlays/neovim.nix)
     ];
@@ -104,7 +104,6 @@ let
     keybase-gui
     kind
     lynx
-    mysql-workbench
     neomutt
     openfortivpn
     pandoc
