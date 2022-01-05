@@ -112,6 +112,10 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>p :Files<CR>
 
 " nvim-lsp
+" cpp
+autocmd FileType cpp set signcolumn=yes
+lua require('lspconfig').ccls.setup{}
+
 " typescript
 autocmd FileType typescript set signcolumn=yes
 lua require('lspconfig').tsserver.setup{}
