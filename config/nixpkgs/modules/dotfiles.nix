@@ -25,9 +25,11 @@ let
           ll = "ls -l";
           la = "ls -a";
           lla = "ls -la";
-          ltr = "ls -ltr";
-          vi = "vim";
+          ltr = "ls -l --sort newest";
+          # ltr = "ls -ltr";
+          cat = "bat -p";
           diff = "diff -u";
+          vimdiff = "nvim -d";
           pssh = "parallel-ssh -t 0";
           xopen = "xdg-open";
           lmod = "module";
@@ -89,6 +91,9 @@ let
         };
         ignores = ["*~" "*.o" "*.a" "*.dll" "*.bak" "*.old"];
         extraConfig = {
+          init = {
+            defaultBranch = "main";
+          };
           merge = {
             tool = "meld";
           };
@@ -121,7 +126,10 @@ let
         compression = false;
         forwardAgent = true;
         serverAliveInterval = 30;
-        extraConfig = "IPQoS throughput";
+        extraConfig = ''
+          IPQoS throughput
+          UpdateHostKeys no
+        '';
       };
 
       tmux = {
@@ -129,12 +137,12 @@ let
         baseIndex = 1;
         clock24 = true;
         escapeTime = 10;
-        terminal = "xterm-256color";
+        terminal = "tmux-256color";
         extraConfig = builtins.readFile ../../../tmux.conf;
         plugins = with pkgs; [
           (tmuxPlugins.mkTmuxPlugin {
             pluginName = "statusline";
-            version = "0.1";
+            version = "1.0";
             src = ../../../tmux-plugins;
           })
           (tmuxPlugins.mkTmuxPlugin {
@@ -162,7 +170,7 @@ let
 
       home-manager = {
         enable = true;
-        path = "https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz";
+        path = "https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz";
       };
     };
 
@@ -205,16 +213,22 @@ let
         recursive = true;
       };
       nixpkgs = {
-        source = ~/.dotfiles/config/nixpkgs/overlays;
-        target = "nixpkgs/overlays";
+        source = ~/.dotfiles/config/nixpkgs;
+        target = "nixpkgs/";
         recursive = true;
       };
     };
 
     xdg.dataFile = {
       omf = {
-        source = ~/.dotfiles/local/share/omf;
+        source = "${pkgs.oh-my-fish}/share/oh-my-fish";
         target = "omf";
+        recursive = true;
+      };
+
+      themes = {
+        source = ~/.dotfiles/config/fish/themes;
+        target = "omf/themes";
         recursive = true;
       };
     };
@@ -246,14 +260,6 @@ let
         a // mkHomeFile x) {} cfg.extraDotfiles;
   };
 
-  sshFiles = {
-    home.file.ssh = {
-      source = ~/.dotfiles/ssh;
-      target = ".ssh";
-      recursive = true;
-    };
-  };
-
   vimDevPlugins =
     let
       vim-ionide = pkgs.vimUtils.buildVimPlugin {
@@ -269,7 +275,6 @@ let
   # settings when not running under NixOS
   plainNix = {
     home.sessionVariables = {
-      SSH_AUTH_SOCK = "$HOME/.gnupg/S.gpg-agent.ssh";
       NIX_PATH = "$HOME/.nix-defexpr/channels/:$NIX_PATH";
     };
 
@@ -293,8 +298,6 @@ in
       default = [];
     };
 
-    sshFiles = mkEnableOption "Enable ssh files in ~/.dotfiles/ssh";
-
     vimDevPlugins = mkEnableOption "Enable vim devel plugins";
 
     plainNix = mkEnableOption "Tweaks for non-NixOS systems";
@@ -303,7 +306,6 @@ in
   config = mkMerge [
     configuration
     extraHomeFiles
-    (mkIf cfg.sshFiles sshFiles)
     (mkIf cfg.vimDevPlugins vimDevPlugins)
   ];
 }

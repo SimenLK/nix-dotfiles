@@ -12,10 +12,5 @@ in
       sha512 = "0w9hgfrbfiiz63bvwqqlkz9nwcm7lagxq6pl10ik7f03yg65mqlcq4y0f9kih7xasaw3fvx1s1rvqjwsm04klkkar08fj8q6vr5kv81";
     };
   });
-
-# workaround for a bug in nixpkgs
-  dotnetCorePackages.aspnetcore_2_1 = {};
-  dotnetCorePackages.netcore_2_1 = {};
-  dotnetCorePackages.sdk_2_1 = {};
 }
 

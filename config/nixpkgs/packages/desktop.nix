@@ -8,6 +8,8 @@ let
       (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
       (import ../overlays/vscode.nix)
+      (import ../overlays/rider.nix)
+      (import ../overlays/i3-auto-layout.nix)
     ];
 
     dotfiles.packages.desktop = {
@@ -22,10 +24,9 @@ let
   };
 
   media = with pkgs; [
-    guvcview # for webcam
-    shotcut
+    # guvcview # webcam
+    # shotcut
     obs-studio
-    simplescreenrecorder
     audacity
     xf86_input_wacom
     mpv
@@ -78,6 +79,7 @@ let
     dconf-editor
     pkgs.desktop-file-utils
     pkgs.gcolor3
+    pkgs.lxappearance
   ];
 
   graphics = with pkgs; [
@@ -115,6 +117,7 @@ let
     virtmanager
     wkhtmltopdf
     zbar
+    yubikey-personalization
   ];
 
   chat = with pkgs; [

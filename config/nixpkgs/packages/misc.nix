@@ -16,6 +16,7 @@ let
     awscli
     minio-client
     vault-bin
+    morph
   ];
 
   geo = with pkgs; [
@@ -29,6 +30,9 @@ let
     kubernetes-helm
     kubectl
     linkerd
+    step-cli # cert swiss army knife
+    kubeseal
+    argocd
   ];
 
   useIf = x: y: if x then y else [];

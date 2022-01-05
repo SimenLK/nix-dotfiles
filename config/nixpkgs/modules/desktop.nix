@@ -6,7 +6,9 @@ let
   configuration = {
     dotfiles.packages.desktop.enable = mkDefault true;
 
-    dotfiles.desktop.xmonad.enable = mkDefault true;
+    dotfiles.desktop.onedrive.enable = mkDefault false;
+    dotfiles.desktop.xmonad.enable = mkDefault false;
+    dotfiles.desktop.i3.enable = mkDefault true;
 
     programs = {
       browserpass.enable = true;
@@ -21,6 +23,11 @@ let
     };
 
     home.file = {
+      icons = {
+        source = ~/.dotfiles/icons;
+        target = ".icons";
+        recursive = true;
+      };
       xmodmap = {
         source = ~/.dotfiles/Xmodmap;
         target = ".Xmodmap";
@@ -28,19 +35,19 @@ let
       };
     };
 
-    systemd.user.services.pa-applet = {
-      Unit = {
-        Description = "PulseAudio volume applet";
-      };
-      Service = {
-        ExecStart = "${pkgs.pa_applet}/bin/pa-applet";
-        Restart = "on-failure";
-        RestartSec = "10s";
-      };
-      Install = {
-        # WantedBy = [ "default.target" ];
-      };
-    };
+    # systemd.user.services.pa-applet = {
+    #   Unit = {
+    #     Description = "PulseAudio volume applet";
+    #   };
+    #   Service = {
+    #     ExecStart = "${pkgs.pa_applet}/bin/pa-applet";
+    #     Restart = "on-failure";
+    #     RestartSec = "10s";
+    #   };
+    #   Install = {
+    #     WantedBy = [ "default.target" ];
+    #   };
+    # };
 
     services = {
       pasystray.enable = true;
@@ -50,7 +57,8 @@ let
       screen-locker = {
         enable = true;
         inactiveInterval = 120;
-        lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
+        lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 121212";
+        # lockCmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -n -p";
       };
 
       network-manager-applet.enable = true;
@@ -63,9 +71,13 @@ let
         defaultCacheTtlSsh = 43200;
         maxCacheTtl = 604800; # 7 days
         maxCacheTtlSsh = 604800;
-        extraConfig = ''
-          pinentry-program ${pkgs.pinentry-gtk2}/bin/pinentry
-        '';
+        # pinentryFlavor = "gtk2";
+        pinentryFlavor = "gnome3";
+      };
+
+      gnome-keyring = {
+        enable = true;
+        components = [ "pkcs11" "secrets" ];
       };
     };
 
@@ -78,7 +90,25 @@ let
       font.name = "DejaVu Sans 11";
       iconTheme.name = "Ubuntu-mono-dark";
       theme.name = "Adwaita";
-      gtk3.extraConfig = { gtk-application-prefer-dark-theme = 0; };
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = 0;
+        # gtk-theme-name = "Sierra-compact-light";
+        # gtk-icon-theme-name = "ePapirus";
+        # gtk-font-name = "Ubuntu 11";
+        gtk-cursor-theme-name = "Deepin";
+        gtk-cursor-theme-size = 0;
+        gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
+        gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
+        gtk-button-images = 1;
+        gtk-menu-images = 1;
+        gtk-enable-event-sounds = 1;
+        gtk-enable-input-feedback-sounds = 1;
+        gtk-xft-antialias = 1;
+        gtk-xft-hinting = 1;
+        gtk-xft-hintstyle = "hintfull";
+        gtk-xft-rgba = "rgb";
+        gtk-modules = "gail:atk-bridge";
+      };
     };
 
     xresources.properties = {
@@ -98,58 +128,17 @@ let
       };
     };
 
-    programs.termite = {
+    programs.alacritty = {
       enable = true;
-      clickableUrl = false;
-      font = "Monospace 10";
-      foregroundColor         = "#586e75";
-      foregroundBoldColor     = "#586e75";
-      cursorColor             = "#586e75";
-      cursorForegroundColor   = "#fdf6e3";
-      backgroundColor         = "#fdf6e3";
-      colorsExtra = ''
-        # Base16 Solarized Light
-        # Author: Ethan Schoonover (modified by aramisgithub)
-        # 16 color space
-
-        # Black, Gray, Silver, White
-        color0  = #fdf6e3
-        color8  = #839496
-        color7  = #586e75
-        color15 = #002b36
-
-        # Red
-        color1  = #dc322f
-        color9  = #dc322f
-
-        # Green
-        color2  = #859900
-        color10 = #859900
-
-        # Yellow
-        color3  = #b58900
-        color11 = #b58900
-
-        # Blue
-        color4  = #268bd2
-        color12 = #268bd2
-
-        # Purple
-        color5  = #6c71c4
-        color13 = #6c71c4
-
-        # Teal
-        color6  = #2aa198
-        color14 = #2aa198
-
-        # Extra colors
-        color16 = #cb4b16
-        color17 = #d33682
-        color18 = #eee8d5
-        color19 = #93a1a1
-        color20 = #657b83
-        color21 = #073642
-      '';
+      # settings = {
+      #   font.size = 11.0;
+      #   colors = {
+      #     primary = {
+      #       background = "";
+      #       dim_background = "";
+      #     };
+      #   };
+      # };
     };
   };
 
@@ -157,17 +146,36 @@ let
     services.dropbox.enable = true;
     home.packages = with pkgs; [ dropbox-cli ];
   };
+
+  onedrive = {
+    systemd.user.services.onedrive = {
+      Unit = {
+        Description = "OneDrive sync";
+      };
+      Service = {
+        ExecStart = "${pkgs.onedrive}/bin/onedrive --monitor";
+        Restart = "on-failure";
+        RestartSec = "10s";
+      };
+      Install = {
+        WantedBy = [ "default.target" ];
+      };
+    };
+  };
 in
 {
   options.dotfiles.desktop = {
     enable = mkEnableOption "Enable desktop";
+    laptop = mkEnableOption "Enable laptop features";
     dropbox.enable = mkEnableOption "Enable Dropbox";
+    onedrive.enable = mkEnableOption "Enable OneDrive";
   };
 
   config = mkIf cfg.enable (mkMerge [
       configuration
       (mkIf cfg.dropbox.enable dropbox)
+      (mkIf cfg.onedrive.enable onedrive)
   ]);
 
-  imports = [ ./xmonad.nix ];
+  imports = [ ./wm.nix ];
 }

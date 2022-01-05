@@ -169,8 +169,6 @@ in {
       default = null;
       description = "Interface for network monitor";
     };
-
-    laptop = mkEnableOption "Enable laptop features";
   };
 
   config = mkIf cfg.enable configuration;

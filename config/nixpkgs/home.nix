@@ -47,7 +47,6 @@
       "mbsyncrc"
       "mailcap"
     ];
-    sshFiles = false;
     vimDevPlugins = false;
   };
 
