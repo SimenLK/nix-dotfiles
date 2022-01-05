@@ -101,7 +101,7 @@ let
           fonts = {
             names = [ "DejaVu Sans Mono" "FontAwesome5Free" ];
             style = "Normal";
-            size = 9.0;
+            size = 12.0;
           };
           colors = {
             separator  = base03;
@@ -152,9 +152,9 @@ let
             "${mod}+Ctrl+n" = "exec --no-startup-id ${pkgs.gnome3.nautilus}/bin/nautilus";
 
             # Pulse Audio controls
-            "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 +5%";
-            "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 -5%";
-            "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle";
+            "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+            "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+            "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
 
             # Sreen brightness controls
             "XF86MonBrightnessUp" = "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -inc 20";
@@ -174,6 +174,11 @@ let
       bars = {
         default = {
           blocks = [
+            (if config.dotfiles.desktop.laptop then {
+              block = "battery";
+              allow_missing = true;
+              format = "{percentage} {time} {power}";
+            } else {})
             {
               block = "disk_space";
               path = "/";
@@ -212,11 +217,14 @@ let
               interval = 1;
               format = "{1m}";
             }
+            (if config.dotfiles.desktop.laptop then {
+              block = "backlight";
+            } else {})
             { block = "sound"; }
             {
               block = "time";
               interval = 60;
-              format = "%a %d/%m %R";
+              format = "%a %d-%m-%Y %R";
             }
           ];
           settings = {
