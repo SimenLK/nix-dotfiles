@@ -60,6 +60,7 @@ let
           enable = true;
           plugins = with vimPlugins; [
             NeoSolarized
+            deoplete-nvim
             deoplete-lsp
             fugitive
             fzf-vim
@@ -256,13 +257,13 @@ let
 
   vimDevPlugins =
     let
-      vim-ionide = pkgs.vimUtils.buildVimPlugin {
-          name = "vim-ionide";
+      Ionide-vim = pkgs.vimUtils.buildVimPlugin {
+          name = "Ionide-vim";
           src = ~/.dotfiles/vim-plugins/Ionide-vim;
           buildInputs = [ pkgs.curl pkgs.which pkgs.unzip ];
         };
       devPlugins = with pkgs.vimPlugins; [
-          vim-ionide
+          Ionide-vim
         ];
     in { programs.neovim.plugins = devPlugins; };
 
