@@ -7,7 +7,7 @@ let
     services.polybar = {
       enable = true;
       script = ''
-        export MONITOR=HDMI-2
+        export MONITOR=DP-2
         polybar main &
       '';
       config = {
