@@ -149,11 +149,9 @@ autocmd FileType yaml set shiftwidth=2
 autocmd FileType yaml set tabstop=2
 autocmd FileType yaml set expandtab
 
-" Auto-initilize Ionide
-let g:fsharp#automatic_workspace_init = 1
-
-" Use keybindings with leader instead of vscode ones
-let g:fsharp#fsi_keymap = "vim-fsharp"
+" fsharp
+autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
+lua require('lspconfig').fsautocomplete.setup{}
 
 autocmd FileType fsharp set signcolumn=yes
 
