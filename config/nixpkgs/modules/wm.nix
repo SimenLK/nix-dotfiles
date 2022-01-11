@@ -89,10 +89,6 @@ let
         defaultWorkspace = "workspace number 1";
         assigns = {
           "1" = [
-            { class = "^Mailspring$"; }
-            { class = "^Microsoft Teams - Preview"; }
-          ];
-          "2" = [
             { class = "^Firefox$"; }
             { class = "^google-chrome$"; }
           ];
