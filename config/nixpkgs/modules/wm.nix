@@ -60,7 +60,7 @@ let
     ];
   };
 
-  i3 =
+  i3-sway =
     let
       base00 = "#101218";
       base01 = "#1f222d";
@@ -79,8 +79,6 @@ let
       base0E = "#c0b7f9";
       base0F = "#fcc09e";
     in {
-    xsession.windowManager.i3 = {
-      enable = true;
       config = {
         window.titlebar = false;
         # terminal = "alacritty --working-directory $($HOME/nixos-configuration/get-last-location.sh)";
@@ -95,9 +93,11 @@ let
           ];
         };
         floating.criteria = [ { title = "^zoom$"; } ];
+        focus.mouseWarping = false;
         bars = [{
+          id = "top";
           position = "top";
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-top.toml";
           fonts = {
             names = [ "DejaVu Sans Mono" "FontAwesome5Free" ];
             style = "Normal";
@@ -122,8 +122,16 @@ let
           Return = "mode default";
         };
         startup = [
-          { command = "${pkgs.i3-auto-layout}/bin/i3-auto-layout"; always = true; notification = false; }
-        ];
+          { command = "${pkgs.autotiling}/bin/autotiling"; always = false; }
+          { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
+        ] ++ (if cfg.sway.enable then
+           [ { command = "${pkgs.swaybg}/bin/swaybg -c '#444444'"; always = false; }
+             { command = ''
+                  swayidle timeout 900 'swaylock -c 111111' \
+                           timeout 60 'swaymsg "output * dpms off"' \
+                           resume 'swaymsg "output * dpms on"' \
+                           before-sleep 'swaylock -c 111111' ''; always = false; }
+           ] else []);
         keybindings =
           let
             mod = config.xsession.windowManager.i3.config.modifier;
@@ -132,7 +140,7 @@ let
               builtins.foldl' (a: x:
                 a // { "${mod}+${x}" = switch x; }
               ) {} (builtins.genList (x: toString x) 10);
-          in lib.mkOptionDefault {
+          in lib.mkOptionDefault ({
             "${mod}+1" = switch "1";
             "${mod}+2" = switch "2";
             "${mod}+3" = switch "3";
@@ -152,28 +160,40 @@ let
             "${mod}+Ctrl+n" = "exec --no-startup-id ${pkgs.gnome3.nautilus}/bin/nautilus";
 
             # Pulse Audio controls
-            "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 +5%";
-            "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 -5%";
-            "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle";
+            "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+            "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+            "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
 
             # Sreen brightness controls
-            "XF86MonBrightnessUp" = "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -inc 20";
-            "XF86MonBrightnessDown" = "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -dec 20";
+            "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+            "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
 
             # Media player controls
             "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play";
             "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl pause";
             "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
             "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
-          };
+          }
+          // (if cfg.sway.enable then
+              {
+                "${mod}+Ctrl+l" = "exec --no-startup-id ${pkgs.swaylock}/bin/swaylock -n -c 111111";
+                "${mod}+Shift+r" = "exec --no-startup-id ${pkgs.sway}/bin/sway reload";
+              }
+              else {})
+        );
       };
-    };
 
-    programs.i3status-rust = {
+
+    i3status-rust = {
       enable = true;
       bars = {
-        default = {
+        top = {
           blocks = [
+            (if config.dotfiles.desktop.laptop then {
+              block = "battery";
+              allow_missing = true;
+              format = "{percentage} {time} {power}";
+            } else {})
             {
               block = "disk_space";
               path = "/";
@@ -187,10 +207,6 @@ let
             # {
             #   block = "temperature";
             # }
-            (if config.dotfiles.desktop.laptop then {
-              block = "battery";
-              allow_missing = true;
-            } else {})
             {
               block = "memory";
               display_type = "memory";
@@ -212,11 +228,14 @@ let
               interval = 1;
               format = "{1m}";
             }
+            (if config.dotfiles.desktop.laptop then {
+              block = "backlight";
+            } else {})
             { block = "sound"; }
             {
               block = "time";
               interval = 60;
-              format = "%a %d/%m %R";
+              format = "%a %d-%m-%Y %R";
             }
           ];
           settings = {
@@ -232,9 +251,47 @@ let
 
     home.packages = with pkgs; [
       dmenu
+      gtk-engine-murrine
+      gtk_engines
+      gsettings-desktop-schemas
+      lxappearance
+    ];
+
+    programs.qt5ct.enable = true;
+  };
+
+  i3 = {
+    xsession.windowManager.i3 = {
+      enable = true;
+      config = i3-sway.config;
+    };
+
+    programs.i3status-rust = i3-sway.i3status-rust;
+
+    home.packages = with pkgs; [
       i3lock
-      i3-wk-switch
-      i3-auto-layout
+    ];
+  };
+
+  sway = {
+    wayland.windowManager.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true ;
+      config = i3-sway.config;
+    };
+
+    home.packages = with pkgs; [
+      swaylock
+      swayidle
+      wl-clipboard
+      mako
+      alacritty
+      wf-recorder
+      wofi
+      clipman
+      swaybg
+      networkmanager
+      networkmanagerapplet
     ];
   };
 
@@ -248,6 +305,10 @@ in {
       enable = mkEnableOption "Enable i3";
     };
 
+    sway = {
+      enable = mkEnableOption "Enable sway";
+    };
+
     xsessionInitExtra = mkOption {
       type = types.str;
       default = "";
@@ -258,6 +319,7 @@ in {
     (mkIf (cfg.xmonad.enable || cfg.i3.enable) xorg)
     (mkIf cfg.xmonad.enable xmonad)
     (mkIf cfg.i3.enable i3)
+    (mkIf cfg.sway.enable sway)
   ];
 
   imports = [ ./polybar.nix ];
