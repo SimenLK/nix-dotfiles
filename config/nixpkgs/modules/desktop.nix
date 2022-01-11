@@ -8,6 +8,7 @@ let
 
     dotfiles.desktop.onedrive.enable = mkDefault false;
     dotfiles.desktop.xmonad.enable = mkDefault false;
+    dotfiles.desktop.sway.enable = mkDefault false;
     dotfiles.desktop.i3.enable = mkDefault true;
 
     programs = {
