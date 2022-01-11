@@ -69,7 +69,7 @@ let
       base04 = "#C0C5CE";
       base05 = "#d1d4e0";
       base06 = "#C9CCDB";
-      base07 = "#ffffff";
+      base07 = "#fffff0";
       base08 = "#ee829f";
       base09 = "#f99170";
       base0A = "#ffefcc";
@@ -104,12 +104,12 @@ let
           };
           colors = {
             separator  = base03;
-            background = base01;
+            background = base07;
             statusline = base05;
             focusedWorkspace  = { background = base01; border = base01; text = base07; };
-            activeWorkspace   = { background = base01; border = base02; text = base03; };
-            inactiveWorkspace = { background = base01; border = base01; text = base03; };
-            urgentWorkspace   = { background = base01; border = base01; text = base08; };
+            activeWorkspace   = { background = base07; border = base02; text = base01; };
+            inactiveWorkspace = { background = base07; border = base01; text = base03; };
+            urgentWorkspace   = { background = base07; border = base01; text = base08; };
           };
         }];
         modes.resize = {
@@ -142,6 +142,9 @@ let
             "${mod}+8" = switch "8";
             "${mod}+9" = switch "9";
             "${mod}+0" = switch "0";
+
+            "${mod}+t" = "focus output DP-1";
+            "${mod}+n" = "focus output DP-2";
 
             "${mod}+Ctrl+l" = "exec --no-startup-id ${pkgs.i3lock}/bin/i3lock -n -c 111111";
             "${mod}+Ctrl+s" = "exec --no-startup-id ${pkgs.flameshot}/bin/flameshot gui";
@@ -217,15 +220,11 @@ let
           ];
           settings = {
             theme =  {
-              name = "nord-dark";
-              overrides = {
-                idle_bg = base01;
-                # idle_fg = "#abcdef";
-              };
+              name = "solarized-light";
             };
           };
           icons = "awesome5";
-          theme = "nord-dark";
+          theme = "solarized-light";
         };
       };
     };
