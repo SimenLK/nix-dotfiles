@@ -4,10 +4,6 @@
     desktop = {
       enable = true;
       dropbox.enable = false;
-      polybar = {
-        interface = "eno2";
-        laptop = false;
-      };
     };
     packages = {
       devel = {
