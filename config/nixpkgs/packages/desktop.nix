@@ -7,9 +7,9 @@ let
     nixpkgs.overlays = [
       (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
-      #(import ../overlays/vscode.nix)
-      (import ../overlays/kind.nix)
-      #(import ../overlays/neovim.nix)
+      (import ../overlays/vscode.nix)
+      (import ../overlays/rider.nix)
+      (import ../overlays/i3-auto-layout.nix)
     ];
 
     dotfiles.packages.desktop = {
@@ -25,10 +25,7 @@ let
   };
 
   media = with pkgs; [
-    guvcview # for webcam
-    shotcut
     obs-studio
-    simplescreenrecorder
     audacity
     xf86_input_wacom
     mpv
@@ -38,11 +35,8 @@ let
     appres
     editres
     listres
-    luit
-    pkgs.glxinfo
-    pkgs.xclip
-    pkgs.xsel
     viewres
+    luit
     xdpyinfo
     xdriinfo
     xev
@@ -53,16 +47,19 @@ let
     xlsclients
     xlsfonts
     xmessage
-    xmessage
-    xmodmap
     xprop
     xvinfo
-    xvinfo
     xwininfo
+    xmessage
+    xvinfo
+    xmodmap
+    pkgs.glxinfo
+    pkgs.xclip
+    pkgs.xsel
   ];
 
   gnome = with pkgs.gnome3; [
-    #gucharmap
+    gucharmap
     gnome-settings-daemon
     gnome-font-viewer
     adwaita-icon-theme
@@ -81,13 +78,14 @@ let
     dconf-editor
     pkgs.desktop-file-utils
     pkgs.gcolor3
+    pkgs.lxappearance
   ];
 
   graphics = with pkgs; [
-    imagemagick
-    scrot
+    # imagemagick
+    # scrot
     krita
-    # inkscape
+    inkscape
   ];
 
   desktop = with pkgs; [

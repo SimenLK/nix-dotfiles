@@ -29,10 +29,10 @@
         x11 = true;
         media = false;
         chat = true;
-        graphics = false;
+        graphics = true;
         wavebox = false;
         zoom = true;
-        tex = false;
+        tex = true;
       };
       kubernetes = true;
       cloud = true;
@@ -47,7 +47,6 @@
       "mbsyncrc"
       "mailcap"
     ];
-    sshFiles = false;
     vimDevPlugins = false;
   };
 
@@ -57,6 +56,8 @@
     tree
     jetbrains.rider
     gollum
+    vlc
+    openfortivpn
   ];
 
   programs = {

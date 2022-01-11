@@ -88,7 +88,8 @@ let
   ];
 
   rust = with pkgs; [
-    cargo
+    rustup
+    rust-analyzer
   ];
 
   go = with pkgs; [
@@ -106,6 +107,7 @@ let
     lorri
     nix-prefetch-scripts
     patchelf
+    rnix-lsp
   ];
 
   db = with pkgs; [
