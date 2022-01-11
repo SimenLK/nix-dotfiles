@@ -99,58 +99,17 @@ let
       };
     };
 
-    programs.termite = {
+    programs.alacritty = {
       enable = true;
-      clickableUrl = false;
-      font = "Monospace 10";
-      foregroundColor         = "#586e75";
-      foregroundBoldColor     = "#586e75";
-      cursorColor             = "#586e75";
-      cursorForegroundColor   = "#fdf6e3";
-      backgroundColor         = "#fdf6e3";
-      colorsExtra = ''
-        # Base16 Solarized Light
-        # Author: Ethan Schoonover (modified by aramisgithub)
-        # 16 color space
-
-        # Black, Gray, Silver, White
-        color0  = #fdf6e3
-        color8  = #839496
-        color7  = #586e75
-        color15 = #002b36
-
-        # Red
-        color1  = #dc322f
-        color9  = #dc322f
-
-        # Green
-        color2  = #859900
-        color10 = #859900
-
-        # Yellow
-        color3  = #b58900
-        color11 = #b58900
-
-        # Blue
-        color4  = #268bd2
-        color12 = #268bd2
-
-        # Purple
-        color5  = #6c71c4
-        color13 = #6c71c4
-
-        # Teal
-        color6  = #2aa198
-        color14 = #2aa198
-
-        # Extra colors
-        color16 = #cb4b16
-        color17 = #d33682
-        color18 = #eee8d5
-        color19 = #93a1a1
-        color20 = #657b83
-        color21 = #073642
-      '';
+      # settings = {
+      #   font.size = 11.0;
+      #   colors = {
+      #     primary = {
+      #       background = "";
+      #       dim_background = "";
+      #     };
+      #   };
+      # };
     };
   };
 
