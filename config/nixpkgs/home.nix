@@ -4,19 +4,16 @@
     desktop = {
       enable = true;
       dropbox.enable = false;
-      polybar = {
-        interface = "enp0s31f6";
-        laptop = true;
-      };
+      laptop = true;
     };
     packages = {
       devel = {
         enable = true;
         nix = true;
-        db = false;
+        db = true;
         dotnet = true;
         node = true;
-        rust = true;
+        rust = false;
         haskell = false;
         python = false;
         go = false;
@@ -55,7 +52,6 @@
     wally-cli
     tree
     vlc
-    openfortivpn
   ];
 
   programs = {
@@ -65,6 +61,10 @@
     };
 
     ssh.matchBlocks = {
+      omikron = {
+        user = "simenlk";
+        hostname = "omikron.kirkvik.no";
+      };
       uvcluster = {
         user = "ski027";
         hostname = "uvcluster.cs.uit.no";

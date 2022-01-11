@@ -25,6 +25,9 @@ set cmdheight=2
 " Syntax highlighting
 syntax on
 
+" Highlight yanking
+au TextYankPost * silent! lua vim.highlight.on_yank()
+
 " Colorscheme
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8f=[48;2;%lu;%lu;%lum
@@ -46,7 +49,7 @@ set nohlsearch
 
 " Text width
 " set textwidth=80
-" set colorcolumn=+1
+set colorcolumn=80
 " hi ColorColumn ctermbg=White
 autocmd FileType mail setlocal tw=80
 autocmd FileType tex setlocal tw=80
@@ -102,7 +105,7 @@ nnoremap <silent> <Bar> <C-w><Bar><CR>
 map <C-N> :NERDTreeToggle<CR>
 
 nnoremap <C-c> <C-w>c
-inoremap jk <Esc>
+" inoremap jk <Esc> " Not needed with moonlander
 
 map <F6> :setlocal spell! spelllang=en_us<CR>
 map <F7> :setlocal spell! spelllang=nb<CR>
@@ -128,7 +131,6 @@ lua require('lspconfig').tsserver.setup{}
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#lsp#handler_enabled = 1
 let g:deoplete#lsp#use_icons_for_candidates = 1
-
 
 " Latex settings
 " NB: Don't need it because of spell shortcuts
@@ -156,6 +158,12 @@ autocmd FileType yaml set shiftwidth=2
 autocmd FileType yaml set tabstop=2
 autocmd FileType yaml set expandtab
 
+" fsharp
+autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
+lua require('lspconfig').fsautocomplete.setup{}
+
+autocmd FileType fsharp set signcolumn=yes
+
 " Statusline
 
 set laststatus=2
@@ -179,6 +187,7 @@ set statusline+=\ %2*[%M%R%H%W]%*
 " Right side of statusline
 set statusline+=%#CursorColumn#
 set statusline+=%=
+set statusline+=\ [%{&fo}]
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]

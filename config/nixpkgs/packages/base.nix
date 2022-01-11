@@ -8,24 +8,24 @@ let
   };
 
   sys = with pkgs; [
-    dpkg
-    cryptsetup
-    fuse
-    nmap
     bind
-    openldap
-    iftop
-    openssl
-    inetutils
-    unrar
     dmidecode
+    dpkg
     ethtool
+    fuse
+    iftop
+    inetutils
+    lshw
+    nmap
+    openldap
+    openssl
     parted
     pciutils
     pwgen
+    sshfs-fuse
+    unrar
     usbutils
     utillinux
-    sshfs-fuse
   ];
 
   user = with pkgs; [

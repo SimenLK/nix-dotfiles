@@ -18,14 +18,13 @@ let
       gnome = mkDefault true;
       chat = mkDefault true;
       graphics = mkDefault true;
+      tex = mkDefault false;
     };
 
     home.packages = enabledPackages;
   };
 
   media = with pkgs; [
-    # guvcview # webcam
-    # shotcut
     obs-studio
     audacity
     xf86_input_wacom
@@ -90,19 +89,21 @@ let
   ];
 
   desktop = with pkgs; [
+    #godot
     blueman
     brightnessctl
     cdrtools
     drive
     fira-code
     firefox
-    godot
     gparted
     innoextract
     keybase
     keybase-gui
+    kind
     lynx
     neomutt
+    openfortivpn
     pandoc
     pass
     pavucontrol
@@ -117,12 +118,11 @@ let
     virtmanager
     wkhtmltopdf
     zbar
-    yubikey-personalization
   ];
 
   chat = with pkgs; [
-    teams
     slack
+    teams
     discord
   ];
 

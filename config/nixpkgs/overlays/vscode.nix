@@ -17,9 +17,5 @@ in
       };
 
       buildInputs = attrs.buildInputs ++ [ super.xorg.libxshmfence ];
-      # src = /home/jonas/Downloads/code-stable-x64.tar.gz;
-      # postFixup = ''
-      #     wrapProgram $out/bin/code --prefix PATH : ${lib.makeBinPath [hie]}
-      # '';
   });
 }

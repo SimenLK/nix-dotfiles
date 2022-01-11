@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+[ $# -lt 1 ] && echo "Usage: k8s-all [namespace]" && exit 1;
+
+for r in $(kubectl api-resources --verbs=list --namespaced -o name)
+do
+    echo "Resource: $r" \
+        && kubectl get $r -n $1 --ignore-not-found \
+        && echo
+done
+
+# kubectl api-resources --verbs=list --namespaced -o name \
+#    | xargs -n 1 kubectl get --ignore-not-found -n $1

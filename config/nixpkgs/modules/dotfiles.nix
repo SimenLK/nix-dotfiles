@@ -16,7 +16,7 @@ let
         enable = true;
         shellInit = ''
           set -e TMUX_TMPDIR
-          set PATH ~/.local/bin $HOME/.nix-profile/bin ~/.dotnet/tools $PATH
+          set PATH ~/.local/bin $HOME/.nix-profile/bin ~/.dotnet/tools ~/.krew/bin $PATH
         '';
         shellAliases = {
           rm = "rm -i";
@@ -262,13 +262,13 @@ let
 
   vimDevPlugins =
     let
-      vim-ionide = pkgs.vimUtils.buildVimPlugin {
-          name = "vim-ionide";
+      Ionide-vim = pkgs.vimUtils.buildVimPlugin {
+          name = "Ionide-vim";
           src = ~/.dotfiles/vim-plugins/Ionide-vim;
           buildInputs = [ pkgs.curl pkgs.which pkgs.unzip ];
         };
       devPlugins = with pkgs.vimPlugins; [
-          vim-ionide
+          Ionide-vim
         ];
     in { programs.neovim.plugins = devPlugins; };
 
