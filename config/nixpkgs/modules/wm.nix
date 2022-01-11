@@ -86,6 +86,7 @@ let
         # terminal = "alacritty --working-directory $($HOME/nixos-configuration/get-last-location.sh)";
         terminal = "alacritty";
         modifier = "Mod4";  # this is the "windows" key
+        focus.followMouse = false;
         defaultWorkspace = "workspace number 1";
         assigns = {
           "1" = [
