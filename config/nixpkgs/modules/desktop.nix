@@ -130,15 +130,19 @@ let
 
     programs.alacritty = {
       enable = true;
-      # settings = {
-      #   font.size = 11.0;
-      #   colors = {
-      #     primary = {
-      #       background = "";
-      #       dim_background = "";
-      #     };
-      #   };
-      # };
+      settings = {
+        font.size = 11.0;
+        colors = {
+          primary = {
+            background = "#fdf6e3";
+            foreground = "#657b83";
+          };
+          cursor = {
+            text = "#fdf6e3";
+            cursor = "#657b83";
+          };
+        };
+      };
     };
   };
 
