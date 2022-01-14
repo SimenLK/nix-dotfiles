@@ -53,7 +53,6 @@
     jetbrains.rider
     gollum
     vlc
-    openfortivpn
   ];
 
   programs = {
