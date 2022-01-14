@@ -59,6 +59,7 @@ let
   ];
 
   gnome = with pkgs.gnome3; [
+    cheese
     gucharmap
     gnome-settings-daemon
     gnome-font-viewer
