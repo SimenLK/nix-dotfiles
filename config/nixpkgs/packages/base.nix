@@ -29,10 +29,20 @@ let
   ];
 
   user = with pkgs; [
-    gnupg
-    tomb
-    sshuttle
+    bat
+    bottom
     direnv
+    du-dust
+    duf
+    exa
+    fd
+    gnupg
+    procs
+    ripgrep
+    sd
+    sshuttle
+    tomb
+    zellij
   ];
 
   enabledPackages =
