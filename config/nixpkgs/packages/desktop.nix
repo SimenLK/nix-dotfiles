@@ -91,6 +91,7 @@ let
 
   desktop = with pkgs; [
     #godot
+    blender
     blueman
     brightnessctl
     cdrtools
