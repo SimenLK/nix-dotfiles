@@ -4,6 +4,7 @@
     desktop = {
       enable = true;
       dropbox.enable = false;
+      i3.enable = true;
     };
     packages = {
       devel = {
