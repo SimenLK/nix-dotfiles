@@ -29,8 +29,6 @@ syntax on
 au TextYankPost * silent! lua vim.highlight.on_yank()
 
 " Colorscheme
-set t_8f=[38;2;%lu;%lu;%lum
-set t_8f=[48;2;%lu;%lu;%lum
 set termguicolors
 colorscheme NeoSolarized
 
@@ -39,7 +37,9 @@ set background=light
 
 " Show matching brackets
 set showmatch
-highlight MatchParen ctermbg=cyan
+highlight MatchParen guibg=cyan
+
+highlight NonText gui=italic guifg=LightGray
 
 " Show line numbers
 set number
@@ -55,7 +55,7 @@ autocmd FileType mail setlocal tw=80
 autocmd FileType tex setlocal tw=80
 
 " Whitespace and tabs
-set listchars=tab:>-,nbsp:_,trail:⋅
+set listchars=tab:>\ ,eol:$,nbsp:_,trail:⋅
 set list
 
 " Do not wrap lines
