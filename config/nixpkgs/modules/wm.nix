@@ -151,8 +151,12 @@ let
             "${mod}+9" = switch "9";
             "${mod}+0" = switch "0";
 
-            "${mod}+t" = "focus output DP-1";
-            "${mod}+n" = "focus output DP-2";
+            "${mod}+p" = "layout default";
+
+            "${mod}+n" = "focus left";
+            "${mod}+e" = "focus down";
+            "${mod}+i" = "focus up";
+            "${mod}+o" = "focus right";
 
             "${mod}+Ctrl+l" = "exec --no-startup-id ${pkgs.i3lock}/bin/i3lock -n -c 111111";
             "${mod}+Ctrl+s" = "exec --no-startup-id ${pkgs.flameshot}/bin/flameshot gui";
