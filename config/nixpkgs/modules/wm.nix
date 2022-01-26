@@ -92,6 +92,11 @@ let
             { class = "^google-chrome$"; }
           ];
         };
+        gaps = {
+          smartGaps = true;
+          smartBorders = "on";
+          inner = 12;
+        };
         floating.criteria = [ { title = "^zoom$"; } ];
         bars = [{
           id = "top";
@@ -270,12 +275,14 @@ let
   i3 = {
     xsession.windowManager.i3 = {
       enable = true;
+      package = pkgs.i3-gaps;
       config = i3-sway.config;
     };
 
     programs.i3status-rust = i3-sway.i3status-rust;
 
     home.packages = with pkgs; [
+      i3-gaps
       i3lock
     ];
   };
