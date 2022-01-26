@@ -51,7 +51,6 @@
     isync
     wally-cli
     tree
-    jetbrains.rider
     gollum
     vlc
   ];

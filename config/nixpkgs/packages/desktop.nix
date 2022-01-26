@@ -113,6 +113,7 @@ let
     qrencode
     rdesktop
     remmina
+    rider
     spotify
     tectonic
     unrtf
