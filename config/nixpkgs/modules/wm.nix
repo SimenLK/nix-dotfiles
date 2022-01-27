@@ -81,6 +81,7 @@ let
     in {
       config = {
         window.titlebar = false;
+        window.border = 5;
         # terminal = "alacritty --working-directory $($HOME/nixos-configuration/get-last-location.sh)";
         terminal = "alacritty";
         modifier = "Mod4";  # this is the "windows" key
