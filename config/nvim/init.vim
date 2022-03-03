@@ -42,28 +42,21 @@ highlight MatchParen guibg=cyan
 highlight NonText gui=italic guifg=LightGray
 
 " Show line numbers
-set number
-set relativenumber
+" set number
+" set relativenumber
 
 set nohlsearch
 
 " Text width
-" set textwidth=80
-set colorcolumn=80
+set textwidth=120
+set colorcolumn=120
 " hi ColorColumn ctermbg=White
 autocmd FileType mail setlocal tw=80
 autocmd FileType tex setlocal tw=80
 
 " Whitespace and tabs
-set listchars=tab:>\ ,eol:$,nbsp:_,trail:⋅
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:⋅,extends:⟩,precedes:⟨
 set list
-
-" Do not wrap lines
-" set nowrap
-
-" Split
-set splitright
-set splitbelow
 
 " Wildmenu
 " set wildmenu
@@ -102,7 +95,7 @@ nnoremap <silent> <Bar> <C-w><Bar><CR>
 map <C-N> :NERDTreeToggle<CR>
 
 nnoremap <C-c> <C-w>c
-" inoremap jk <Esc> " Not needed with moonlander
+" inoremap jk <Esc> " Not needed with colemak
 
 map <F6> :setlocal spell! spelllang=en_us<CR>
 map <F7> :setlocal spell! spelllang=nb<CR>
