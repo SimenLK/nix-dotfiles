@@ -27,7 +27,7 @@ let
           lla = "ls -la";
           ltr = "ls -l --sort newest";
           # ltr = "ls -ltr";
-          cat = "bat -p --theme GitHub";
+          cat = "bat -P -p --theme GitHub";
           diff = "diff -u";
           vimdiff = "nvim -d";
           pssh = "parallel-ssh -t 0";
