@@ -115,6 +115,14 @@ nnoremap <leader>p :Files<CR>
 lua require('lspconfig').tsserver.setup{}
 autocmd FileType typescript set signcolumn=yes
 
+" fsharp
+autocmd FileType fsharp set signcolumn=yes
+" let g:fsharp#lsp_auto_setup = 0
+let g:fsharp#backend = "nvim"
+let g:fsharp#fsi_keymap = "vim-fsharp"
+
+" lua require('lspconfig').ionide.setup{}
+
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#lsp#handler_enabled = 1
@@ -131,7 +139,6 @@ let g:tex_flavor = 'latex'
 " Tmux
 let g:tmux_navigator_no_mappings = 1
 
-
 " Language specific
 
 " SQL
@@ -146,11 +153,6 @@ autocmd FileType yaml set shiftwidth=2
 autocmd FileType yaml set tabstop=2
 autocmd FileType yaml set expandtab
 
-" fsharp
-autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
-lua require('lspconfig').fsautocomplete.setup{}
-
-autocmd FileType fsharp set signcolumn=yes
 
 " Statusline
 
