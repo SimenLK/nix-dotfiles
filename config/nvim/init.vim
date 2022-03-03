@@ -87,11 +87,8 @@ tnoremap <Esc> <C-\><C-N>
 " Fugitive
 nmap <leader>gs :G<CR>
 nmap <leader>gp :diffput<CR>
-nmap <leader>gj :diffget //3<CR>
-nmap <leader>gf :diffget //2<CR>
-
-nmap <leader>gd <Plug>(lcn-definition)
-nmap <leader>gr <Plug>(lcn-references)
+nmap <leader>gn :diffget //3<CR>
+nmap <leader>gt :diffget //2<CR>
 
 " tmux vim navigation
 nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
