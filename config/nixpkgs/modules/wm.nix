@@ -89,7 +89,6 @@ let
         defaultWorkspace = "workspace number 1";
         assigns = {
           "1" = [
-            { class = "^Firefox$"; }
             { class = "^google-chrome$"; }
           ];
         };
@@ -191,7 +190,6 @@ let
               else {})
         );
       };
-
 
     i3status-rust = {
       enable = true;
