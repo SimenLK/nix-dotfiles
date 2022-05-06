@@ -114,7 +114,7 @@ let
     xresources.properties = {
       "Xclip.selection" = "clipboard";
       "Xcursor.theme" = "cursor-theme";
-      "Xcursor.size" = 16;
+      "Xcursor.size" = 11;
     };
 
     programs.vscode = {
@@ -131,7 +131,7 @@ let
     programs.alacritty = {
       enable = true;
       settings = {
-        font.size = 13.0;
+        font.size = 11.0;
         colors = {
           primary = {
             background = "#fdf6e3";

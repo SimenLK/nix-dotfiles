@@ -5,6 +5,9 @@
       enable = true;
       dropbox.enable = false;
       i3.enable = true;
+      xsessionInitExtra = ''
+        xrandr --output DP1 --mode 2560x1440 -r 120
+      '';
     };
     packages = {
       devel = {

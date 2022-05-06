@@ -81,7 +81,7 @@ let
     in {
       config = {
         window.titlebar = false;
-        window.border = 5;
+        window.border = 3;
         # terminal = "alacritty --working-directory $($HOME/nixos-configuration/get-last-location.sh)";
         terminal = "alacritty";
         modifier = "Mod4";  # this is the "windows" key
@@ -95,7 +95,7 @@ let
         gaps = {
           smartGaps = true;
           smartBorders = "on";
-          inner = 12;
+          inner = 8;
         };
         floating.criteria = [ { title = "^zoom$"; } ];
         bars = [{
@@ -105,7 +105,7 @@ let
           fonts = {
             names = [ "DejaVu Sans Mono" "FontAwesome5Free" ];
             style = "Normal";
-            size = 12.0;
+            size = 11.0;
           };
           colors = {
             separator  = base03;
