@@ -104,17 +104,40 @@ map <F7> :setlocal spell! spelllang=nb<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>p :Files<CR>
 
-" nvim-lsp
+" plug?
+" This installs vim-plug automatically when missing.
+" Remove this if .. endif if you don't need this.
+if   empty(glob('~/.vim/autoload/plug.vim'))
+\ || empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'ionide/Ionide-vim'
+
+call plug#end()
+
+" === nvim-lsp ===
+
+" F#
+au BufNewFile,BufRead *.fsproj set filetype=xml 
+" lua require'lspconfig'.fsautocomplete.setup{}
+" let g:fsharp#lsp_auto_setup = 0
+
+" lua require('lspconfig').fsautocomplete.setup{}
+
+" Rust
+lua require('lspconfig').rust_analyzer.setup{}
+
+" Typescript
 lua require('lspconfig').tsserver.setup{}
 autocmd FileType typescript set signcolumn=yes
 
-" fsharp
-autocmd FileType fsharp set signcolumn=yes
-" let g:fsharp#lsp_auto_setup = 0
-let g:fsharp#backend = "nvim"
-let g:fsharp#fsi_keymap = "vim-fsharp"
-
-" lua require('lspconfig').ionide.setup{}
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1

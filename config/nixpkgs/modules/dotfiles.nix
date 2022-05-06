@@ -262,14 +262,19 @@ let
 
   vimDevPlugins =
     let
-      Ionide-vim = pkgs.vimUtils.buildVimPlugin {
-          name = "Ionide-vim";
-          src = ~/.dotfiles/vim-plugins/Ionide-vim;
-          buildInputs = [ pkgs.curl pkgs.which pkgs.unzip ];
-        };
+      vim-ionide = pkgs.vimUtils.buildVimPlugin {
+        name = "vim-ionide";
+        src = ~/.dotfiles/vim-plugins/Ionide-vim;
+        buildInputs = [ pkgs.curl pkgs.wget pkgs.which pkgs.unzip ];
+      };
+      neofsharp-vim = pkgs.vimUtils.buildVimPlugin {
+        name = "neofsharp.vim";
+        src = ~/.dotfiles/vim-plugins/neofsharp.vim;
+        buildInputs = [ ];
+      };
       devPlugins = with pkgs.vimPlugins; [
-          Ionide-vim
-        ];
+        vim-ionide
+      ];
     in { programs.neovim.plugins = devPlugins; };
 
   # settings when not running under NixOS
