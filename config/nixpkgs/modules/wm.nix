@@ -15,6 +15,12 @@ let
         xset +dpms
         xset dpms 1800 2400 3600
         xmodmap $HOME/.dotfiles/Xmodmap
+        if xrandr | grep -q "DP1 connected"; then
+            xrandr --output DP1 --mode 2560x1440 --rate 120
+            if xrandr | grep -q "DP2 connected"; then
+                xrandr --output DP2 --left-of DP1 --rotate left --auto
+            fi
+        fi
       '' + cfg.xsessionInitExtra;
       numlock.enable = true;
     };
@@ -105,7 +111,7 @@ let
           fonts = {
             names = [ "DejaVu Sans Mono" "FontAwesome5Free" ];
             style = "Normal";
-            size = 11.0;
+            size = 9.0;
           };
           colors = {
             separator  = base03;

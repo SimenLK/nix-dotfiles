@@ -104,24 +104,6 @@ map <F7> :setlocal spell! spelllang=nb<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>p :Files<CR>
 
-" plug?
-" This installs vim-plug automatically when missing.
-" Remove this if .. endif if you don't need this.
-if   empty(glob('~/.vim/autoload/plug.vim'))
-\ || empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'ionide/Ionide-vim'
-
-call plug#end()
-
 " === nvim-lsp ===
 
 " F#
@@ -156,6 +138,12 @@ let g:tex_flavor = 'latex'
 let g:tmux_navigator_no_mappings = 1
 
 " Language specific
+
+" HTML
+
+autocmd FileType html set shiftwidth=2
+autocmd FileType html set tabstop=2
+autocmd FileType html set expandtab
 
 " SQL
 

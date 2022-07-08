@@ -25,10 +25,9 @@ let
     gnumake
     cmake
     libxml2
-    docker_compose
+    docker-compose
     gettext
     gnum4
-    chromedriver # for selenium
     jq
     websocat
     meld
@@ -63,10 +62,10 @@ let
 
   dotnet = {
     home.sessionVariables = {
-      DOTNET_ROOT = pkgs.dotnet-sdk_5;
+      DOTNET_ROOT = pkgs.dotnet-sdk_6;
     };
     home.packages = [
-      pkgs.dotnet-sdk_5
+        pkgs.dotnet-sdk_6
     ];
   };
 
@@ -88,7 +87,8 @@ let
   ];
 
   rust = with pkgs; [
-    rustup
+    rustc
+    cargo
     rust-analyzer
   ];
 

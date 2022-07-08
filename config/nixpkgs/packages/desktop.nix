@@ -5,9 +5,7 @@ let
 
   configuration = {
     nixpkgs.overlays = [
-      (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
-      (import ../overlays/vscode.nix)
       (import ../overlays/rider.nix)
     ];
 
@@ -69,7 +67,6 @@ let
     gnome-bluetooth
     seahorse
     nautilus
-    dconf
     gnome-disk-utility
     gnome-tweaks
     eog
@@ -93,7 +90,9 @@ let
     blender
     blueman
     brightnessctl
+    burpsuite
     cdrtools
+    dconf
     drive
     fira-code
     firefox
@@ -102,6 +101,7 @@ let
     keybase
     keybase-gui
     kind
+    libreoffice
     lynx
     neomutt
     openfortivpn

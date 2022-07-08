@@ -10,8 +10,11 @@ xsetroot -cursor_name left_ptr
 
 laptop=eDP-1
 
-if xrandr | grep -q "DP-2-2 connected"; then
-    xrandr --output DP-2-2 --auto --rotate left --right-of DP-2-1
+if xrandr | grep -q "DP1 connected"; then
+    xrandr --output DP1 --mode 2560x1440 --rate 120
+    if xrandr | grep -q "DP2 connected"; then
+        xrandr --output DP2 --left-of DP1 --rotate left --auto
+    fi
 fi
 
 # Set up an icon tray (should try stalonetray)
