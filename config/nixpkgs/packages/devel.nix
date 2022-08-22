@@ -60,12 +60,18 @@ let
     # glirc
   ];
 
+  combined = (with pkgs.dotnetCorePackages; combinePackages [
+    pkgs.dotnet-sdk_3
+    pkgs.dotnet-sdk_5
+    pkgs.dotnet-sdk_6
+  ]);
+
   dotnet = {
     home.sessionVariables = {
-      DOTNET_ROOT = pkgs.dotnet-sdk_6;
+      DOTNET_ROOT = combined;
     };
     home.packages = [
-        pkgs.dotnet-sdk_6
+      combined
     ];
   };
 
