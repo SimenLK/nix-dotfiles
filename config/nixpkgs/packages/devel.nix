@@ -82,6 +82,7 @@ let
     pkgs.nodejs
     npm
     webpack
+    webpack-cli
     typescript
     typescript-language-server
   ];

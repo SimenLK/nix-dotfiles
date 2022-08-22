@@ -139,6 +139,12 @@ let g:tmux_navigator_no_mappings = 1
 
 " Language specific
 
+" tsx
+
+autocmd FileType typescriptreact set shiftwidth=2
+autocmd FileType typescriptreact set tabstop=2
+autocmd FileType typescriptreact set expandtab
+
 " HTML
 
 autocmd FileType html set shiftwidth=2

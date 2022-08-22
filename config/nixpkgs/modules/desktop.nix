@@ -64,6 +64,8 @@ let
       network-manager-applet.enable = true;
       blueman-applet.enable = true;
 
+      lorri.enable = true;
+
       gpg-agent = {
         enable = true;
         enableSshSupport = true;
@@ -119,11 +121,55 @@ let
     programs.vscode = {
       enable = true;
       extensions = [];
-      haskell = {
-        enable = false;
-        hie.enable = false;
-      };
       userSettings = {
+        "editor.minimap.enabled" = false;
+        "editor.renderWhitespace" = "trailing";
+        "editor.renderControlCharacters" = true;
+        "editor.rulers" = [ 80 120 ];
+        "editor.lineNumbers" = "relative";
+        "editor.renderLineHighlight" = "all";
+        "editor.smoothScrolling" = true;
+        "editor.cursorBlinking" = "smooth";
+        "editor.guides.indentation" = true;
+        "editor.guides.highlightActiveIndentation" = false;
+        "window.menuBarVisibility" = "toggle";
+        "workbench.startupEditor" = "newUntitledFile";
+        "workbench.settings.editor" = "json";
+        "files.trimTrailingWhitespace" = true;
+        "FSharp.dotnetRoot" = pkgs.dotnet-sdk_6;
+        "vim.leader" = "<space>";
+        "vim.normalModeKeyBindings" = [
+          {
+            "before" = [ "C-n" ];
+            "commands" = [
+              { "command" = "workbench.action.toggleSidebarVisibility"; }
+            ];
+          }
+          {
+          "before" = [ "<leader>" "r" ];
+          "commands" = [
+              { "command" = "editor.action.rename"; }
+            ];
+          }
+          {
+            "before" = [ "<leader>" "n" ];
+            "commands" = [
+              { "command" = "editor.action.goToReferences"; }
+            ];
+          }
+          {
+            "before" = [ "<leader>" "r" "g" ];
+            "commands" = [
+              { "command" = "workbench.action.findInFiles"; }
+            ];
+          }
+          {
+            "before" = [ "<leader>" "g" "e" ];
+            "commands" = [
+              { "command" = "editor.action.marker.nextInFiles"; }
+            ];
+          }
+        ];
       };
     };
 
