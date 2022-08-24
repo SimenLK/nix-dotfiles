@@ -13,7 +13,7 @@ laptop=eDP-1
 if xrandr | grep -q "DP1 connected"; then
     xrandr --output DP1 --mode 2560x1440 --rate 120
     if xrandr | grep -q "DP2 connected"; then
-        xrandr --output DP2 --left-of DP1 --rotate left --auto
+        xrandr --output DP2 --left-of DP1 --mode 1920x1200 --pos 0x240
     fi
 fi
 
