@@ -27,7 +27,7 @@ let
           lla = "ls -la";
           ltr = "ls -l --sort newest";
           # ltr = "ls -ltr";
-          cat = "bat -p";
+          # cat = "bat -p";
           diff = "diff -u";
           vimdiff = "nvim -d";
           pssh = "parallel-ssh -t 0";
@@ -57,6 +57,15 @@ let
               src = ~/.dotfiles/vim-plugins/vim-gnupg;
             };
           };
+          # Ionide-vim = pkgs.vimUtils.buildVimPlugin {
+          #     name = "Ionide-vim";
+          #     src = pkgs.fetchFromGitHub {
+          #       owner = "ionide";
+          #       repo = "Ionide-vim";
+          #       rev = "3092ca0fed470c01457d0cecbe5e108e2b008f0d";
+          #       sha256 = "0fbkmsqpnwrh8skv5yiva8y4aj4d7zm2z5vxbzl0hl6k728dwxvz";
+          #     };
+          #   };
         in
         {
           enable = true;
@@ -264,12 +273,16 @@ let
     let
       Ionide-vim = pkgs.vimUtils.buildVimPlugin {
           name = "Ionide-vim";
-          src = ~/.dotfiles/vim-plugins/Ionide-vim;
-          buildInputs = [ pkgs.curl pkgs.which pkgs.unzip ];
+          src = pkgs.fetchFromGitHub {
+            owner = "ionide";
+            repo = "Ionide-vim";
+            rev = "3092ca0fed470c01457d0cecbe5e108e2b008f0d";
+            sha256 = "0fbkmsqpnwrh8skv5yiva8y4aj4d7zm2z5vxbzl0hl6k728dwxvz";
+          };
         };
       devPlugins = with pkgs.vimPlugins; [
-          Ionide-vim
-        ];
+        Ionide-vim
+      ];
     in { programs.neovim.plugins = devPlugins; };
 
   # settings when not running under NixOS

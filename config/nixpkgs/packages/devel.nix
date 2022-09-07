@@ -63,10 +63,10 @@ let
 
   dotnet = {
     home.sessionVariables = {
-      DOTNET_ROOT = pkgs.dotnet-sdk_5;
+      DOTNET_ROOT = pkgs.dotnet-sdk_6;
     };
     home.packages = [
-      pkgs.dotnet-sdk_5
+      pkgs.dotnet-sdk_6
     ];
   };
 
@@ -113,6 +113,7 @@ let
   db = with pkgs; [
     postgresql
     sqlite-interactive
+    sqlitebrowser
   ];
 
   java = with pkgs; [

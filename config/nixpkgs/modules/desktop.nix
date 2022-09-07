@@ -56,7 +56,7 @@ let
       clipmenu.enable =  true;
 
       screen-locker = {
-        enable = true;
+        enable = false;
         inactiveInterval = 120;
         lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 121212";
         # lockCmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -n -p";
@@ -120,12 +120,25 @@ let
 
     programs.vscode = {
       enable = true;
-      extensions = [];
-      haskell = {
-        enable = false;
-        hie.enable = false;
-      };
+      extensions = with pkgs.vscode-extensions; [
+        ms-dotnettools.csharp
+        ionide.ionide-fsharp
+        vscodevim.vim
+      ];
       userSettings = {
+        "editor.minimap.enabled" = false;
+        "editor.renderControlCharacters" = false;
+        "keyboard.dispatch" = "keyCode";
+        "window.menuBarVisibility" = "toggle";
+        "workbench.editor.enablePreview" = false;
+        "workbench.colorCustomizations" = {
+            "editorWhitespace.foreground" = "#e0e0e0";
+        };
+        "vim.textwidth" = 120;
+        "editor.fontFamily" = "'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'";
+        "editor.fontLigatures" = true;
+        "workbench.activityBar.visible" = true;
+        "FSharp.dotnetRoot" = pkgs.dotnet-sdk_6;
       };
     };
 

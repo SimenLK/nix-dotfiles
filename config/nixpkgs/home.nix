@@ -28,12 +28,12 @@
         chat = true;
         graphics = true;
         wavebox = false;
-        zoom = true;
+        zoom = false;
         tex = true;
       };
       kubernetes = true;
-      cloud = true;
-      geo = false;
+      cloud = false;
+      geo = true;
     };
     extraDotfiles = [
       "bcrc"
@@ -61,7 +61,7 @@
     };
 
     ssh.matchBlocks = {
-      omikron = {
+      omikron-r = {
         user = "simenlk";
         hostname = "omikron.kirkvik.no";
       };
@@ -72,6 +72,10 @@
       uit = {
         user = "simen";
         hostname = "kirkvik.td.org.uit.no";
+      };
+      ads1-master-0 = {
+        user = "root";
+        hostname = "10.255.168.199";
       };
     };
   };

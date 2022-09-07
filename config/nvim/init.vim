@@ -116,8 +116,12 @@ nnoremap <leader>p :Files<CR>
 
 " nvim-lsp
 " cpp
-autocmd FileType cpp set signcolumn=yes
-lua require('lspconfig').ccls.setup{}
+" autocmd FileType cpp set signcolumn=yes
+" lua require('lspconfig').clangd.setup{}
+
+" rust
+autocmd FileType rust set signcolumn=yes
+lua require('lspconfig').rust_analyzer.setup{}
 
 " typescript
 autocmd FileType typescript set signcolumn=yes
@@ -145,6 +149,11 @@ let g:tmux_navigator_no_mappings = 1
 
 
 " Language specific
+
+" C/C++
+" autocmd FileType cpp set tabstop=8
+" autocmd FileType cpp set shiftwidth=8
+" autocmd FileType cpp set noexpandtab
 
 " SQL
 

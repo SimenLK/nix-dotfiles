@@ -15,8 +15,8 @@ set from = "simen@kirkvik.no"
 ###############
 # Folders
 #
-set folder = "/home/simkir/keybase/private/simenlk/mail/"
-#set folder = "imaps://simen@kirkvik.no@tornado.email:993/"
+#set folder = "/home/simkir/keybase/private/simenlk/mail/"
+set folder = "imaps://simen@kirkvik.no@tornado.email:993/"
 set imap_pass="`gpg --batch -q --decrypt ~/.password-store/@kirkvik.gpg`"
 
 set smtp_url = "smtps://simen@kirkvik.no@tornado.email:465/"
@@ -28,8 +28,6 @@ set trash = "+Trash"
 set postponed = "+Drafts"
 
 mailboxes =INBOX =Sent =Trash =Drafts =Archive
-
-set mail_check = 60
 
 
 ###############

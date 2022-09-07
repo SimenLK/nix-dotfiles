@@ -92,7 +92,10 @@ let
             { class = "^google-chrome$"; }
           ];
         };
-        floating.criteria = [ { title = "^zoom$"; } ];
+        floating.criteria = [
+          { title = "^zoom$"; }
+          { title = "^GAME$"; }
+        ];
         focus.mouseWarping = false;
         bars = [{
           id = "top";
@@ -166,7 +169,7 @@ let
 
             # Sreen brightness controls
             "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
-            "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set -5%";
+            "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
 
             # Media player controls
             "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play";
@@ -218,11 +221,11 @@ let
               interval = 1;
               format = "{utilization} {frequency}";
             }
-            {
+            (if !config.dotfiles.desktop.laptop then {
               block = "net";
               interval = 2;
               hide_inactive = true;
-            }
+            } else {})
             {
               block = "load";
               interval = 1;
@@ -231,7 +234,6 @@ let
             (if config.dotfiles.desktop.laptop then {
               block = "backlight";
             } else {})
-            { block = "sound"; }
             {
               block = "time";
               interval = 60;

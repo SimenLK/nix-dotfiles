@@ -7,8 +7,9 @@ let
     nixpkgs.overlays = [
       (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
-      (import ../overlays/vscode.nix)
+      # (import ../overlays/vscode.nix)
       (import ../overlays/rider.nix)
+      (import ../overlays/discord.nix)
     ];
 
     dotfiles.packages.desktop = {
@@ -83,7 +84,7 @@ let
   graphics = with pkgs; [
     # imagemagick
     # scrot
-    krita
+    # krita
     inkscape
   ];
 
@@ -97,6 +98,7 @@ let
     firefox
     gparted
     innoextract
+    jetbrains.idea-community
     keybase
     keybase-gui
     kind
@@ -111,6 +113,7 @@ let
     qrencode
     rdesktop
     remmina
+    rider
     spotify
     tectonic
     unrtf
