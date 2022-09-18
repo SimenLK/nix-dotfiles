@@ -69,7 +69,7 @@ let
     gnome-bluetooth
     seahorse
     nautilus
-    dconf
+    pkgs.dconf
     gnome-disk-utility
     gnome-tweaks
     eog
@@ -90,7 +90,6 @@ let
 
   desktop = with pkgs; [
     #godot
-    blueman
     brightnessctl
     cdrtools
     drive

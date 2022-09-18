@@ -63,7 +63,7 @@ let
       };
 
       network-manager-applet.enable = true;
-      blueman-applet.enable = true;
+      blueman-applet.enable = false;
 
       gpg-agent = {
         enable = true;
