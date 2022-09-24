@@ -167,6 +167,11 @@ autocmd FileType yaml set shiftwidth=2
 autocmd FileType yaml set tabstop=2
 autocmd FileType yaml set expandtab
 
+" TeX
+autocmd FileType tex set shiftwidth=2
+autocmd FileType tex set tabstop=2
+autocmd FileType tex set expandtab
+
 " fsharp
 autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
 lua require('lspconfig').fsautocomplete.setup{}
