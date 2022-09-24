@@ -135,6 +135,21 @@ let
             "editorWhitespace.foreground" = "#e0e0e0";
         };
         "vim.textwidth" = 120;
+        "vim.leader" = "<space>";
+        "vim.normalModeKeyBindingsNonRecursive" = [
+          {
+            "before" = [ "S-k" ];
+            "commands" = [ "editor.action.showHover" ];
+          }
+          {
+            "before" = [ "g" "e" ];
+            "commands" = [ "editor.action.marker.next" ];
+          }
+          {
+            "before" = [ "g" "p" ];
+            "commands" = [ "editor.action.marker.prev" ];
+          }
+        ];
         "editor.fontFamily" = "'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'";
         "editor.fontLigatures" = true;
         "workbench.activityBar.visible" = true;
