@@ -7,3 +7,6 @@
 [submodule "vim-plugins/vim-singularity-syntax"]
 	path = vim-plugins/vim-singularity-syntax
 	url = https://github.com/rbberger/vim-singularity-syntax.git
+[submodule "local/share/omf"]
+	path = local/share/omf
+	url = git@github.com:oh-my-fish/oh-my-fish.git
