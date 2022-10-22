@@ -72,8 +72,8 @@ let
         defaultCacheTtlSsh = 43200;
         maxCacheTtl = 604800; # 7 days
         maxCacheTtlSsh = 604800;
-        # pinentryFlavor = "gtk2";
-        pinentryFlavor = "gnome3";
+        pinentryFlavor = "gtk2";
+        #pinentryFlavor = "gnome3";
       };
 
       gnome-keyring = {
@@ -124,6 +124,7 @@ let
         ms-dotnettools.csharp
         ionide.ionide-fsharp
         vscodevim.vim
+        jnoortheen.nix-ide
       ];
       userSettings = {
         "editor.minimap.enabled" = false;
@@ -154,43 +155,44 @@ let
         "editor.fontLigatures" = true;
         "workbench.activityBar.visible" = true;
         "FSharp.dotnetRoot" = pkgs.dotnet-sdk_6;
+        "nix.enableLanguageServer" = true;
       };
     };
 
     programs.alacritty = {
       enable = true;
       settings = {
-        font.size = 11.0;
-        colors = {
-          primary = {
-            background = "#fdf6e3";
-            foreground = "#657b83";
-          };
-          cursor = {
-            text = "#fdf6e3";
-            cursor = "#657b83";
-          };
-          normal = {
-            black =   "#073642"; # base02
-            red =     "#dc322f"; # red
-            green =   "#859900"; # green
-            yellow =  "#b58900"; # yellow
-            blue =    "#268bd2"; # blue
-            magenta = "#d33682"; # magenta
-            cyan =    "#2aa198"; # cyan
-            white =   "#eee8d5"; # base2;
-          };
-          bright = {
-            black =   "#002b36"; # base03
-            red =     "#cb4b16"; # orange
-            green =   "#586e75"; # base01
-            yellow =  "#657b83"; # base00
-            blue =    "#839496"; # base0
-            magenta = "#6c71c4"; # violet
-            cyan =    "#93a1a1"; # base1
-            white =   "#fdf6e3"; # base3
-          };
-        };
+        font.size = 13.0;
+        # colors = {
+        #   primary = {
+        #     background = "#fdf6e3";
+        #     foreground = "#657b83";
+        #   };
+        #   cursor = {
+        #     text = "#fdf6e3";
+        #     cursor = "#657b83";
+        #   };
+        #   normal = {
+        #     black =   "#073642"; # base02
+        #     red =     "#dc322f"; # red
+        #     green =   "#859900"; # green
+        #     yellow =  "#b58900"; # yellow
+        #     blue =    "#268bd2"; # blue
+        #     magenta = "#d33682"; # magenta
+        #     cyan =    "#2aa198"; # cyan
+        #     white =   "#eee8d5"; # base2;
+        #   };
+        #   bright = {
+        #     black =   "#002b36"; # base03
+        #     red =     "#cb4b16"; # orange
+        #     green =   "#586e75"; # base01
+        #     yellow =  "#657b83"; # base00
+        #     blue =    "#839496"; # base0
+        #     magenta = "#6c71c4"; # violet
+        #     cyan =    "#93a1a1"; # base1
+        #     white =   "#fdf6e3"; # base3
+        #   };
+        # };
       };
     };
   };

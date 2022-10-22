@@ -85,11 +85,11 @@ let
     # imagemagick
     # scrot
     # krita
-    inkscape
+    # inkscape
   ];
 
   desktop = with pkgs; [
-    #godot
+    # godot
     brightnessctl
     cdrtools
     drive

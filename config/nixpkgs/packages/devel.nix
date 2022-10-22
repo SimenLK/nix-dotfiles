@@ -87,8 +87,11 @@ let
     typescript-language-server
   ];
 
+  cpp = with pkgs; [
+    ccls
+  ];
+
   rust = with pkgs; [
-    rustup
     rust-analyzer
   ];
 
@@ -126,6 +129,7 @@ let
 
   enabledPackages =
     base ++
+    useIf cfg.devel.cpp cpp ++
     useIf cfg.devel.node node ++
     useIf cfg.devel.rust rust ++
     useIf cfg.devel.haskell haskell ++
@@ -142,6 +146,7 @@ in {
       dotnet = mkEnableOption "Enable dotnet sdk";
       node = mkEnableOption "Enable Node.js";
       nix = mkEnableOption "Enable nix";
+      cpp = mkEnableOption "Enable C++";
       rust = mkEnableOption "Enable Rust";
       haskell = mkEnableOption "Enable Haskell";
       python = mkEnableOption "Enable Python";

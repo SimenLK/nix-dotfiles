@@ -9,10 +9,11 @@
     packages = {
       devel = {
         enable = true;
+        cpp = true;
         nix = true;
         db = true;
         dotnet = true;
-        node = true;
+        node = false;
         rust = false;
         haskell = false;
         python = false;
@@ -44,7 +45,7 @@
       "mbsyncrc"
       "mailcap"
     ];
-    vimDevPlugins = false;
+    vimDevPlugins = true;
   };
 
   home.packages = with pkgs; [
@@ -64,6 +65,10 @@
       omikron-r = {
         user = "simenlk";
         hostname = "omikron.kirkvik.no";
+      };
+      zelda = {
+        user = "simen";
+        hostname = "zelda.itpartner.intern";
       };
       uvcluster = {
         user = "ski027";
