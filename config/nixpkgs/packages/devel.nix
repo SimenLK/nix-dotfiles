@@ -7,7 +7,7 @@ let
   hie = all-hies.selection { selector = p: { inherit (p) ghc865; }; };
 
   configuration = {
-    #nixpkgs.overlays = [ (import ../overlays/dotnet-sdk.nix) ];
+    nixpkgs.overlays = [ (import ../overlays/dotnet-sdk.nix) ];
 
     dotfiles.packages.devel = {
       nix = mkDefault true;
@@ -63,6 +63,7 @@ let
   combined = (with pkgs.dotnetCorePackages; combinePackages [
     pkgs.dotnet-sdk_3
     pkgs.dotnet-sdk_5
+    pkgs.dotnet-sdk_6_0_101
     pkgs.dotnet-sdk_6
   ]);
 
@@ -122,6 +123,7 @@ let
     sqlite-interactive
     sqsh
     unixODBC
+    sqlitebrowser
   ];
 
   java = with pkgs; [

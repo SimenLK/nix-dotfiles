@@ -27,7 +27,7 @@ let
           lla = "ls -la";
           ltr = "ls -l --sort newest";
           # ltr = "ls -ltr";
-          cat = "bat -P -p --theme GitHub";
+          cat = "bat -P -p";
           diff = "diff -u";
           vimdiff = "nvim -d";
           pssh = "parallel-ssh -t 0";
@@ -66,7 +66,6 @@ let
             fugitive
             fzf-vim
             NeoSolarized
-            nerdtree
             nvim-lspconfig
             tmux-navigator
             vim-gnupg
@@ -117,6 +116,9 @@ let
           };
           http = {
             sslVerify = false;
+          };
+          safe = {
+            directory = "/etc/nixos";
           };
         };
       };

@@ -22,10 +22,11 @@ let
   };
 
   media = with pkgs; [
-    obs-studio
-    audacity
-    xf86_input_wacom
-    mpv
+    # obs-studio
+    # audacity
+    # xf86_input_wacom
+    # mpv
+    peek
   ];
 
   x11 = with pkgs.xorg; [
@@ -87,39 +88,40 @@ let
 
   desktop = with pkgs; [
     #godot
-    blender
+    #blender
     blueman
     brightnessctl
-    burpsuite
+    #burpsuite
     cdrtools
     dconf
     drive
     fira-code
     firefox
     gparted
-    innoextract
+    google-chrome
+    #innoextract
     keybase
     keybase-gui
     kind
     libreoffice
-    lynx
+    #lynx
     neomutt
     openfortivpn
     pandoc
     pass
     pavucontrol
     pinentry
-    polkit_gnome
-    qrencode
-    rdesktop
-    remmina
+    #polkit_gnome
+    #qrencode
+    #rdesktop
+    #remmina
     rider
     spotify
-    tectonic
-    unrtf
-    virtmanager
-    wkhtmltopdf
-    zbar
+    #tectonic
+    #unrtf
+    #virtmanager
+    #wkhtmltopdf
+    #zbar
   ];
 
   chat = with pkgs; [
@@ -138,6 +140,7 @@ let
     useIf cfg.graphics graphics ++
     useIf cfg.wavebox [ pkgs.wavebox ] ++
     useIf cfg.zoom [ pkgs.zoom-us ] ++
+    useIf cfg.factorio [ pkgs.factorio ] ++
     useIf cfg.tex [ pkgs.texlive.combined.scheme-full ];
 
 in {
@@ -150,6 +153,7 @@ in {
     graphics = mkEnableOption "Enable graphics packages";
     wavebox = mkEnableOption "Enable wavebox";
     zoom = mkEnableOption "Enable zoom";
+    factorio = mkEnableOption "Enable factorio!";
     tex = mkEnableOption "Enable LaTeX";
   };
 

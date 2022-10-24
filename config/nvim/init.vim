@@ -33,13 +33,13 @@ set termguicolors
 colorscheme NeoSolarized
 
 " Background
-set background=light
+" set background=light
 
 " Show matching brackets
 set showmatch
 highlight MatchParen guibg=cyan
 
-highlight NonText gui=italic guifg=LightGray
+" highlight NonText gui=italic guifg=DarkGray
 
 " Show line numbers
 " set number
@@ -52,11 +52,11 @@ set textwidth=120
 set colorcolumn=120
 " hi ColorColumn ctermbg=White
 autocmd FileType mail setlocal tw=80
-autocmd FileType tex setlocal tw=80
+autocmd FileType tex setlocal tw=79 colorcolumn=80
 
 " Whitespace and tabs
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:⋅,extends:⟩,precedes:⟨
-set list
+" set list
 
 " Wildmenu
 " set wildmenu
@@ -92,7 +92,7 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<CR>
 
 nnoremap <silent> <Bar> <C-w><Bar><CR>
 
-map <C-N> :NERDTreeToggle<CR>
+map <C-N> :Ex<CR>
 
 nnoremap <C-c> <C-w>c
 " inoremap jk <Esc> " Not needed with colemak
@@ -162,6 +162,11 @@ autocmd FileType sql set expandtab
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType yaml set tabstop=2
 autocmd FileType yaml set expandtab
+
+" Tex
+autocmd FileType tex set shiftwidth=2
+autocmd FileType tex set tabstop=2
+autocmd FileType tex set expandtab
 
 
 " Statusline

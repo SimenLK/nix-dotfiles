@@ -27,16 +27,17 @@
         enable = true;
         gnome = true;
         x11 = true;
-        media = false;
+        media = true;
         chat = true;
         graphics = true;
         wavebox = false;
         zoom = true;
+        factorio = false;
         tex = true;
       };
       kubernetes = true;
       cloud = true;
-      geo = false;
+      geo = true;
     };
     extraDotfiles = [
       "bcrc"
@@ -47,7 +48,7 @@
       "mbsyncrc"
       "mailcap"
     ];
-    vimDevPlugins = false;
+    vimDevPlugins = true;
   };
 
   home.packages = with pkgs; [
@@ -76,6 +77,17 @@
       uit = {
         user = "simen";
         hostname = "kirkvik.td.org.uit.no";
+      };
+      ekman = {
+        user = "simenlk";
+        hostname = "10.255.242.2";
+      };
+
+      "10.1.*" = {
+        extraOptions = {
+          "StrictHostKeyChecking" = "no";
+          "UserKnownHostsFile" = "/dev/null";
+        };
       };
     };
   };
