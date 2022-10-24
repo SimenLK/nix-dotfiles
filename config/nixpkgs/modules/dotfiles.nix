@@ -27,7 +27,7 @@ let
           lla = "ls -la";
           ltr = "ls -l --sort newest";
           # ltr = "ls -ltr";
-          cat = "bat -P -p";
+          # cat = "bat -p";
           diff = "diff -u";
           vimdiff = "nvim -d";
           pssh = "parallel-ssh -t 0";
@@ -63,10 +63,12 @@ let
           plugins = with vimPlugins; [
             deoplete-nvim
             deoplete-lsp
+            vim-ccls
             fugitive
             fzf-vim
             NeoSolarized
             nvim-lspconfig
+            nvim-treesitter
             tmux-navigator
             vim-gnupg
             vim-nix
@@ -264,18 +266,13 @@ let
 
   vimDevPlugins =
     let
-      vim-ionide = pkgs.vimUtils.buildVimPlugin {
-        name = "vim-ionide";
-        src = ~/.dotfiles/vim-plugins/Ionide-vim;
-        buildInputs = [ pkgs.curl pkgs.wget pkgs.which pkgs.unzip ];
-      };
-      neofsharp-vim = pkgs.vimUtils.buildVimPlugin {
-        name = "neofsharp.vim";
-        src = ~/.dotfiles/vim-plugins/neofsharp.vim;
-        buildInputs = [ ];
-      };
+      Ionide-vim = pkgs.vimUtils.buildVimPlugin {
+          name = "Ionide-vim";
+          src = ~/.dotfiles/vim-plugins/Ionide-vim;
+          buildInputs = [ pkgs.curl pkgs.which pkgs.unzip];
+        };
       devPlugins = with pkgs.vimPlugins; [
-        vim-ionide
+        Ionide-vim
       ];
     in { programs.neovim.plugins = devPlugins; };
 

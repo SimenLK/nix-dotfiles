@@ -8,6 +8,7 @@ let
 
     dotfiles.desktop.onedrive.enable = mkDefault false;
     dotfiles.desktop.xmonad.enable = mkDefault false;
+    dotfiles.desktop.sway.enable = mkDefault false;
     dotfiles.desktop.i3.enable = mkDefault true;
 
     programs = {
@@ -120,7 +121,12 @@ let
 
     programs.vscode = {
       enable = true;
-      extensions = [];
+      extensions = [
+        ms-dotnettools.csharp
+        ionide.ionide-fsharp
+        vscodevim.vim
+        jnoortheen.nix-ide
+      ];
       userSettings = {
         "editor.minimap.enabled" = false;
         "editor.renderWhitespace" = "trailing";

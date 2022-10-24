@@ -32,14 +32,10 @@ au TextYankPost * silent! lua vim.highlight.on_yank()
 set termguicolors
 colorscheme NeoSolarized
 
-" Background
-" set background=light
 
 " Show matching brackets
 set showmatch
-highlight MatchParen guibg=cyan
-
-" highlight NonText gui=italic guifg=DarkGray
+highlight MatchParen ctermbg=cyan
 
 " Show line numbers
 " set number
@@ -51,7 +47,7 @@ set nohlsearch
 set textwidth=120
 set colorcolumn=120
 " hi ColorColumn ctermbg=White
-autocmd FileType mail setlocal tw=80
+autocmd FileType mail setlocal tw=79
 autocmd FileType tex setlocal tw=79 colorcolumn=80
 
 " Whitespace and tabs
@@ -95,7 +91,6 @@ nnoremap <silent> <Bar> <C-w><Bar><CR>
 map <C-N> :Ex<CR>
 
 nnoremap <C-c> <C-w>c
-" inoremap jk <Esc> " Not needed with colemak
 
 map <F6> :setlocal spell! spelllang=en_us<CR>
 map <F7> :setlocal spell! spelllang=nb<CR>
@@ -104,22 +99,104 @@ map <F7> :setlocal spell! spelllang=nb<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>p :Files<CR>
 
-" === nvim-lsp ===
+" nvim-lsp
 
-" F#
-au BufNewFile,BufRead *.fsproj set filetype=xml 
-" lua require'lspconfig'.fsautocomplete.setup{}
-" let g:fsharp#lsp_auto_setup = 0
+" I don't have nvim_cmp which is for autocomplete, I have deoplete
+function! s:nvim_cmp()
+lua << EOF
+    local cmp = require'cmp'
 
+    cmp.setup({
+        mapping = {
+        },
+        sources = cmp.config.sources({
+            { name = 'nvim_lsp' }
+        })
+    })
+EOF
+endfunction
+
+function! s:nvim_lsp()
+lua << EOF
+    local on_attach = function(client, bufnr)
+        local function buf_set_keymap(...)
+            vim.api.nvim_buf_set_keymap(bufnr, ...)
+        end
+
+        local opts = { noremap=true, silent=true }
+        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    end
+
+    -- local capabilites = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+    local setup = function(server)
+        server.setup {
+            autostart = true,
+            on_attach = on_attach,
+            flags = {
+                debounce_text_changes = 150,
+            }
+            -- capabilites = capabilites
+        }
+    end
+    local lspconfig = require('lspconfig')
+    setup(require('ionide'))
+    setup(lspconfig['rnix-lsp'])
+    setup(lspconfig.ccls) -- maybe
+    -- setup(require('rust_analyzer'))
+    -- setup(require('tsserver'))
+
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+        vim.lsp.handlers.hover, { focusable = false }
+    )
+EOF
+endfunction
+
+" fsharp
+" autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
 " lua require('lspconfig').fsautocomplete.setup{}
 
-" Rust
-lua require('lspconfig').rust_analyzer.setup{}
+autocmd FileType fsharp set signcolumn=yes
 
-" Typescript
-lua require('lspconfig').tsserver.setup{}
+if has('nvim') && exists('*nvim_open_win')
+    set updatetime=1000
+    augroup FSharpShowTooltip
+        autocmd!
+        autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
+    augroup END
+endif
+
+" cpp
+autocmd FileType cpp set signcolumn=yes
+
+" rust
+autocmd FileType rust set signcolumn=yes
+
+" typescript
 autocmd FileType typescript set signcolumn=yes
 
+" nix
+" lua require('lspconfig').rnix-lsp.setup{}
+
+function! s:nvim_treesitter()
+lua << EOF
+    require'nvim-treesitter.configs'.setup {
+        ensure_installed = { "cpp" },
+        sync_install = false,
+        auto_install = true,
+        ignore_install = { "javascript" },
+        highlight = {
+            enable = true,
+            disable = { "latex" },
+            additional_vim_regex_highlighting = false,
+        },
+    }
+EOF
+endfunction
+
+call s:nvim_lsp()
+call s:nvim_treesitter()
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -145,11 +222,10 @@ autocmd FileType typescriptreact set shiftwidth=2
 autocmd FileType typescriptreact set tabstop=2
 autocmd FileType typescriptreact set expandtab
 
-" HTML
-
-autocmd FileType html set shiftwidth=2
-autocmd FileType html set tabstop=2
-autocmd FileType html set expandtab
+" C/C++
+" autocmd FileType cpp set tabstop=8
+" autocmd FileType cpp set shiftwidth=8
+" autocmd FileType cpp set noexpandtab
 
 " SQL
 
@@ -163,11 +239,15 @@ autocmd FileType yaml set shiftwidth=2
 autocmd FileType yaml set tabstop=2
 autocmd FileType yaml set expandtab
 
-" Tex
+" TeX
 autocmd FileType tex set shiftwidth=2
 autocmd FileType tex set tabstop=2
 autocmd FileType tex set expandtab
 
+" Hyper Text Markup Language
+autocmd FileType html set shiftwidth=2
+autocmd FileType html set tabstop=2
+autocmd FileType html set expandtab
 
 " Statusline
 

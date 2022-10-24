@@ -1,4 +1,4 @@
-! Xmodmap, I want standard colemak caps backspace, but ctrl on laptop >< keys.
+! SFML works!! Xmodmap, I want standard colemak caps backspace, but ctrl on laptop >< keys.
 ! This it to mimic moonlander
 clear lock
 clear control

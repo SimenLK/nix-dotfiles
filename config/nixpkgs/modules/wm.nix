@@ -18,7 +18,7 @@ let
         if xrandr | grep -q "DP1 connected"; then
             xrandr --output DP1 --mode 2560x1440 --rate 120
             if xrandr | grep -q "DP2 connected"; then
-                xrandr --output DP2 --left-of DP1 --rotate left --auto
+                xrandr --output DP2 --left-of DP1 --auto
             fi
         fi
       '' + cfg.xsessionInitExtra;
@@ -93,17 +93,22 @@ let
         modifier = "Mod4";  # this is the "windows" key
         focus.followMouse = false;
         defaultWorkspace = "workspace number 1";
-        assigns = {
-          "1" = [
-            { class = "^google-chrome$"; }
-          ];
-        };
         gaps = {
           smartGaps = true;
           smartBorders = "on";
           inner = 8;
         };
-        floating.criteria = [ { title = "^zoom$"; } ];
+        assigns = {
+          "1" = [
+            { class = "^Firefox$"; }
+            { class = "^google-chrome$"; }
+          ];
+        };
+        floating.criteria = [
+          { title = "^zoom$"; }
+          { title = "^GAME$"; }
+        ];
+        focus.mouseWarping = false;
         bars = [{
           id = "top";
           position = "top";
@@ -179,8 +184,8 @@ let
             "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
 
             # Sreen brightness controls
-            "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-            "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+            "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+            "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
 
             # Media player controls
             "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play";
@@ -220,10 +225,6 @@ let
             # {
             #   block = "temperature";
             # }
-            (if config.dotfiles.desktop.laptop then {
-              block = "battery";
-              allow_missing = true;
-            } else {})
             {
               block = "memory";
               display_type = "memory";
@@ -235,11 +236,11 @@ let
               interval = 1;
               format = "{utilization} {frequency}";
             }
-            {
+            (if !config.dotfiles.desktop.laptop then {
               block = "net";
               interval = 2;
               hide_inactive = true;
-            }
+            } else {})
             {
               block = "load";
               interval = 1;
@@ -248,7 +249,6 @@ let
             (if config.dotfiles.desktop.laptop then {
               block = "backlight";
             } else {})
-            { block = "sound"; }
             {
               block = "time";
               interval = 60;

@@ -5,8 +5,11 @@ let
 
   configuration = {
     nixpkgs.overlays = [
+      (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
+      # (import ../overlays/vscode.nix)
       (import ../overlays/rider.nix)
+      (import ../overlays/discord.nix)
     ];
 
     dotfiles.packages.desktop = {
@@ -57,7 +60,6 @@ let
   ];
 
   gnome = with pkgs.gnome3; [
-    cheese
     gucharmap
     gnome-settings-daemon
     gnome-font-viewer
@@ -68,6 +70,7 @@ let
     gnome-bluetooth
     seahorse
     nautilus
+    pkgs.dconf
     gnome-disk-utility
     gnome-tweaks
     eog
@@ -82,16 +85,13 @@ let
   graphics = with pkgs; [
     # imagemagick
     # scrot
-    krita
-    inkscape
+    # krita
+    # inkscape
   ];
 
   desktop = with pkgs; [
-    #godot
-    #blender
     blueman
     brightnessctl
-    #burpsuite
     cdrtools
     dconf
     drive
@@ -104,29 +104,20 @@ let
     keybase-gui
     kind
     libreoffice
-    #lynx
     neomutt
     openfortivpn
     pandoc
     pass
     pavucontrol
     pinentry
-    #polkit_gnome
-    #qrencode
-    #rdesktop
-    #remmina
     rider
     spotify
-    #tectonic
-    #unrtf
-    #virtmanager
-    #wkhtmltopdf
-    #zbar
   ];
 
   chat = with pkgs; [
     slack
     teams
+    discord
   ];
 
   useIf = x: y: if x then y else [];
