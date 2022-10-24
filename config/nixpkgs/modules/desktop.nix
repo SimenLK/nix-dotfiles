@@ -121,7 +121,7 @@ let
 
     programs.vscode = {
       enable = true;
-      extensions = [
+      extensions = with pkgs.vscode-extensions; [
         ms-dotnettools.csharp
         ionide.ionide-fsharp
         vscodevim.vim
