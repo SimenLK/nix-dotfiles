@@ -151,6 +151,11 @@ let
           let
             mod = config.xsession.windowManager.i3.config.modifier;
             switch = n: "exec --no-startup-id ${pkgs.i3-wk-switch}/bin/i3-wk-switch ${n}";
+            # Without a moonlander, i3 registers the hardware key, not the software key
+            left  = if config.dotfiles.desktop.laptop then "h" else "n";
+            down  = if config.dotfiles.desktop.laptop then "j" else "e";
+            up    = if config.dotfiles.desktop.laptop then "k" else "i";
+            right = if config.dotfiles.desktop.laptop then "l" else "o";
             switches =
               builtins.foldl' (a: x:
                 a // { "${mod}+${x}" = switch x; }
@@ -169,10 +174,10 @@ let
 
             "${mod}+p" = "layout default";
 
-            "${mod}+n" = "focus left";
-            "${mod}+e" = "focus down";
-            "${mod}+i" = "focus up";
-            "${mod}+o" = "focus right";
+            "${mod}+${left}" = "focus left";
+            "${mod}+${down}" = "focus down";
+            "${mod}+${up}" = "focus up";
+            "${mod}+${right}" = "focus right";
 
             "${mod}+Ctrl+l" = "exec --no-startup-id ${pkgs.i3lock}/bin/i3lock -n -c 111111";
             "${mod}+Ctrl+s" = "exec --no-startup-id ${pkgs.flameshot}/bin/flameshot gui";
