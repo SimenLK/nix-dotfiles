@@ -142,8 +142,8 @@ lua << EOF
     end
     local lspconfig = require('lspconfig')
     setup(require('ionide'))
-    setup(lspconfig['rnix-lsp'])
-    setup(lspconfig.ccls) -- maybe
+    setup(lspconfig.ccls)
+    -- setup(lspconfig['rnix-lsp'])
     -- setup(require('rust_analyzer'))
     -- setup(require('tsserver'))
 
