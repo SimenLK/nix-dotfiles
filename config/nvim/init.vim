@@ -44,11 +44,11 @@ highlight MatchParen ctermbg=cyan
 set nohlsearch
 
 " Text width
-set textwidth=120
-set colorcolumn=120
+set textwidth=79
+set colorcolumn=+1
 " hi ColorColumn ctermbg=White
 autocmd FileType mail setlocal tw=79
-autocmd FileType tex setlocal tw=79 colorcolumn=80
+autocmd FileType tex setlocal tw=79
 
 " Whitespace and tabs
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:⋅,extends:⟩,precedes:⟨
@@ -157,15 +157,20 @@ endfunction
 " autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
 " lua require('lspconfig').fsautocomplete.setup{}
 
-autocmd FileType fsharp set signcolumn=yes
+function! s:fsharp()
+    autocmd FileType fsharp set signcolumn=yes tw=119
 
-if has('nvim') && exists('*nvim_open_win')
-    set updatetime=1000
-    augroup FSharpShowTooltip
-        autocmd!
-        autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
-    augroup END
-endif
+    if has('nvim') && exists('*nvim_open_win')
+        set updatetime=1000
+        augroup FSharpShowTooltip
+            autocmd!
+            autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
+        augroup END
+    endif
+
+    let g:fsharp#exclude_project_directories = ['paket_files']
+    let g:fsharp#fsautocomplete_command = ['fsautocomplete']
+endfunction
 
 " cpp
 autocmd FileType cpp set signcolumn=yes
@@ -185,7 +190,7 @@ lua << EOF
         ensure_installed = { "cpp" },
         sync_install = false,
         auto_install = true,
-        ignore_install = { "javascript" },
+        ignore_install = {},
         highlight = {
             enable = true,
             disable = { "latex" },
@@ -195,6 +200,7 @@ lua << EOF
 EOF
 endfunction
 
+call s:fsharp()
 call s:nvim_lsp()
 call s:nvim_treesitter()
 
