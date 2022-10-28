@@ -32,7 +32,6 @@ au TextYankPost * silent! lua vim.highlight.on_yank()
 set termguicolors
 colorscheme NeoSolarized
 
-
 " Show matching brackets
 set showmatch
 highlight MatchParen ctermbg=cyan
@@ -99,23 +98,55 @@ map <F7> :setlocal spell! spelllang=nb<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>p :Files<CR>
 
-" nvim-lsp
-
-" I don't have nvim_cmp which is for autocomplete, I have deoplete
+"
+" nvim-cmp: completions
+"
 function! s:nvim_cmp()
 lua << EOF
-    local cmp = require'cmp'
+  local cmp = require'cmp'
 
-    cmp.setup({
-        mapping = {
-        },
-        sources = cmp.config.sources({
-            { name = 'nvim_lsp' }
-        })
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-y>']     = cmp.mapping.confirm({ select = true }),
+      ['<C-u>']     = cmp.mapping.scroll_docs(-4),
+      ['<C-d>']     = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+    }),
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'vsnip' },
+      }, {
+        { name = 'path' },
+        { name = 'buffer' },
+      })
+  })
+
+  cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
     })
+  })
 EOF
 endfunction
 
+"
+" nvim-lsp
+"
 function! s:nvim_lsp()
 lua << EOF
     local on_attach = function(client, bufnr)
@@ -126,9 +157,13 @@ lua << EOF
         local opts = { noremap=true, silent=true }
         buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
         buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', 'gh', '<cmd>lua vim.diagnostic.show()<CR>', opts) 
+        buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts) 
+        buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts) 
     end
 
-    -- local capabilites = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+    local capabilites = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     local setup = function(server)
         server.setup {
@@ -136,10 +171,11 @@ lua << EOF
             on_attach = on_attach,
             flags = {
                 debounce_text_changes = 150,
-            }
-            -- capabilites = capabilites
+            },
+            capabilites = capabilites
         }
     end
+
     local lspconfig = require('lspconfig')
     setup(require('ionide'))
     setup(lspconfig.ccls)
@@ -158,15 +194,18 @@ endfunction
 " lua require('lspconfig').fsautocomplete.setup{}
 
 function! s:fsharp()
+    let g:fsharp#lsp_auto_setup = 0
+
     autocmd FileType fsharp set signcolumn=yes tw=119
 
-    if has('nvim') && exists('*nvim_open_win')
-        set updatetime=1000
-        augroup FSharpShowTooltip
-            autocmd!
-            autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
-        augroup END
-    endif
+    " if has('nvim') && exists('*nvim_open_win')
+    "     set updatetime=1000
+    "     nmap K :call fsharp#showTooltip()<CR>
+    "     "augroup FSharpShowTooltip
+    "     "    autocmd!
+    "     "    autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
+    "     "augroup END
+    " endif
 
     let g:fsharp#exclude_project_directories = ['paket_files']
     let g:fsharp#fsautocomplete_command = ['fsautocomplete']
@@ -201,13 +240,9 @@ EOF
 endfunction
 
 call s:fsharp()
+call s:nvim_cmp()
 call s:nvim_lsp()
 call s:nvim_treesitter()
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#lsp#handler_enabled = 1
-let g:deoplete#lsp#use_icons_for_candidates = 1
 
 " Latex settings
 " NB: Don't need it because of spell shortcuts
@@ -222,11 +257,14 @@ let g:tmux_navigator_no_mappings = 1
 
 " Language specific
 
+" vim
+autocmd FileType vim set shiftwidth=2
+autocmd FileType vim set tabstop=2
+
 " tsx
 
 autocmd FileType typescriptreact set shiftwidth=2
 autocmd FileType typescriptreact set tabstop=2
-autocmd FileType typescriptreact set expandtab
 
 " C/C++
 " autocmd FileType cpp set tabstop=8
@@ -237,23 +275,19 @@ autocmd FileType typescriptreact set expandtab
 
 autocmd FileType sql set shiftwidth=2
 autocmd FileType sql set tabstop=2
-autocmd FileType sql set expandtab
 
 " Yaml
 
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType yaml set tabstop=2
-autocmd FileType yaml set expandtab
 
 " TeX
 autocmd FileType tex set shiftwidth=2
 autocmd FileType tex set tabstop=2
-autocmd FileType tex set expandtab
 
 " Hyper Text Markup Language
 autocmd FileType html set shiftwidth=2
 autocmd FileType html set tabstop=2
-autocmd FileType html set expandtab
 
 " Statusline
 

@@ -61,14 +61,19 @@ let
         {
           enable = true;
           plugins = with vimPlugins; [
-            deoplete-nvim
-            deoplete-lsp
             vim-ccls
             fugitive
             fzf-vim
             NeoSolarized
             nvim-lspconfig
             nvim-treesitter
+            cmp-nvim-lsp
+            cmp-buffer
+            cmp-path
+            cmp-cmdline
+            nvim-cmp
+            cmp-vsnip
+            vim-vsnip
             tmux-navigator
             vim-gnupg
             vim-nix
