@@ -179,9 +179,9 @@ lua << EOF
     local lspconfig = require('lspconfig')
     setup(require('ionide'))
     setup(lspconfig.ccls)
-    -- setup(lspconfig['rnix-lsp'])
-    -- setup(require('rust_analyzer'))
-    -- setup(require('tsserver'))
+    setup(lspconfig.tsserver)
+    setup(lspconfig.rnix)
+    -- setup(lspconfig.rust_analyzer)
 
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
         vim.lsp.handlers.hover, { focusable = false }

@@ -38,20 +38,6 @@ let
       };
     };
 
-    # systemd.user.services.pa-applet = {
-    #   Unit = {
-    #     Description = "PulseAudio volume applet";
-    #   };
-    #   Service = {
-    #     ExecStart = "${pkgs.pa_applet}/bin/pa-applet";
-    #     Restart = "on-failure";
-    #     RestartSec = "10s";
-    #   };
-    #   Install = {
-    #     WantedBy = [ "default.target" ];
-    #   };
-    # };
-
     services = {
       pasystray.enable = true;
       flameshot.enable =  true;
@@ -130,6 +116,7 @@ let
         jnoortheen.nix-ide
       ];
       userSettings = {
+        "nix.enableLanguageServer" = true;
         "editor.minimap.enabled" = false;
         "editor.renderWhitespace" = "trailing";
         "editor.renderControlCharacters" = true;
