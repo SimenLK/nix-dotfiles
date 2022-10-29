@@ -11,6 +11,8 @@ let
     dotfiles.desktop.sway.enable = mkDefault false;
     dotfiles.desktop.i3.enable = mkDefault true;
 
+    dotfiles.desktop.fontSize = mkDefault 12.0;
+
     programs = {
       browserpass.enable = true;
       feh.enable = true;
@@ -139,6 +141,7 @@ let
         "editor.guides.indentation" = true;
         "editor.guides.highlightActiveIndentation" = false;
         "window.menuBarVisibility" = "toggle";
+        "window.zoomLevel" = 2;
         "workbench.startupEditor" = "newUntitledFile";
         "workbench.settings.editor" = "json";
         "files.trimTrailingWhitespace" = true;
@@ -182,7 +185,7 @@ let
     programs.alacritty = {
       enable = true;
       settings = {
-        font.size = 12.0;
+        font.size = cfg.fontSize;
       #   colors = {
       #     primary = {
       #       background = "#fdf6e3";
@@ -242,6 +245,10 @@ in
   options.dotfiles.desktop = {
     enable = mkEnableOption "Enable desktop";
     laptop = mkEnableOption "Enable laptop features";
+    fontSize = mkOption {
+      type = types.float;
+      default = 12.0;
+    };
     dropbox.enable = mkEnableOption "Enable Dropbox";
     onedrive.enable = mkEnableOption "Enable OneDrive";
   };
