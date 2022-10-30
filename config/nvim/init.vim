@@ -157,7 +157,7 @@ lua << EOF
         local opts = { noremap=true, silent=true }
         buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
         buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-        buf_set_keymap('n', 'gh', '<cmd>lua vim.diagnostic.show()<CR>', opts) 
+        buf_set_keymap('n', 'gh', '<cmd>lua vim.diagnostic.open_float()<CR>', opts) 
         buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts) 
         buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts) 
     end
@@ -226,7 +226,7 @@ autocmd FileType typescript set signcolumn=yes
 function! s:nvim_treesitter()
 lua << EOF
     require'nvim-treesitter.configs'.setup {
-        ensure_installed = { "cpp" },
+        ensure_installed = { "cpp", "typescript" },
         sync_install = false,
         auto_install = true,
         ignore_install = {},
