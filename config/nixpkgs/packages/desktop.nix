@@ -83,6 +83,7 @@ let
   ];
 
   graphics = with pkgs; [
+    aseprite
     # imagemagick
     # scrot
     # krita
