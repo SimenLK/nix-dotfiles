@@ -121,6 +121,10 @@ let
     discord
   ];
 
+  tex = with pkgs; [
+    texlive.combined.scheme-full
+  ];
+
   useIf = x: y: if x then y else [];
 
   enabledPackages =
@@ -133,7 +137,7 @@ let
     useIf cfg.wavebox [ pkgs.wavebox ] ++
     useIf cfg.zoom [ pkgs.zoom-us ] ++
     useIf cfg.factorio [ pkgs.factorio ] ++
-    useIf cfg.tex [ pkgs.texlive.combined.scheme-full ];
+    useIf cfg.tex tex;
 
 in {
   options.dotfiles.packages.desktop = {
