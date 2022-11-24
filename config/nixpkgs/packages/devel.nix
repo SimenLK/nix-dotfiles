@@ -8,7 +8,6 @@ let
 
   configuration = {
     nixpkgs.overlays = [
-      (import ../overlays/dotnet-sdk.nix)
       (import ../overlays/dotnet-sdk_7.nix)
     ];
 
@@ -64,8 +63,6 @@ let
   ];
 
   combined = (with pkgs.dotnetCorePackages; combinePackages [
-    pkgs.dotnet-sdk_5
-    pkgs.dotnet-sdk_6_0_101
     pkgs.dotnet-sdk_6
     pkgs.dotnet-sdk_7
   ]);
