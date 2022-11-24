@@ -194,21 +194,22 @@ endfunction
 " lua require('lspconfig').fsautocomplete.setup{}
 
 function! s:fsharp()
-    let g:fsharp#lsp_auto_setup = 0
+  let g:fsharp#lsp_auto_setup = 0
+  let g:fsharp#lsp_codelens = 0
 
-    autocmd FileType fsharp set signcolumn=yes tw=119
+  autocmd FileType fsharp set signcolumn=yes tw=119 number relativenumber
 
-    " if has('nvim') && exists('*nvim_open_win')
-    "     set updatetime=1000
-    "     nmap K :call fsharp#showTooltip()<CR>
-    "     "augroup FSharpShowTooltip
-    "     "    autocmd!
-    "     "    autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
-    "     "augroup END
-    " endif
+  " if has('nvim') && exists('*nvim_open_win')
+  "     set updatetime=1000
+  "     nmap K :call fsharp#showTooltip()<CR>
+  "     "augroup FSharpShowTooltip
+  "     "    autocmd!
+  "     "    autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
+  "     "augroup END
+  " endif
 
-    let g:fsharp#exclude_project_directories = ['paket_files']
-    let g:fsharp#fsautocomplete_command = ['fsautocomplete']
+  let g:fsharp#exclude_project_directories = ['paket_files']
+  let g:fsharp#fsautocomplete_command = ['fsautocomplete']
 endfunction
 
 " cpp
