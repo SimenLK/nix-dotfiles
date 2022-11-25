@@ -63,6 +63,7 @@ let
   ];
 
   combined = (with pkgs.dotnetCorePackages; combinePackages [
+    pkgs.dotnet-sdk_5
     pkgs.dotnet-sdk_6
     pkgs.dotnet-sdk_7
   ]);
