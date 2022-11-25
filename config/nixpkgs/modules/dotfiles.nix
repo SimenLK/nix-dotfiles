@@ -61,23 +61,24 @@ let
         {
           enable = true;
           plugins = with vimPlugins; [
-            vim-ccls
+            NeoSolarized
+            cmp-buffer
+            cmp-cmdline
+            cmp-nvim-lsp
+            cmp-path
+            cmp-vsnip
             fugitive
             fzf-vim
-            NeoSolarized
+            markdown-preview-nvim
+            nvim-cmp
             nvim-lspconfig
             nvim-treesitter
-            cmp-nvim-lsp
-            cmp-buffer
-            cmp-path
-            cmp-cmdline
-            nvim-cmp
-            cmp-vsnip
-            vim-vsnip
             tmux-navigator
+            vim-ccls
             vim-gnupg
             vim-nix
             vim-surround
+            vim-vsnip
             vimtex
           ];
           extraConfig = builtins.readFile ../../nvim/init.vim;
