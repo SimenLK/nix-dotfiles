@@ -85,8 +85,6 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
 nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<CR>
 
-nnoremap <silent> <Bar> <C-w><Bar><CR>
-
 map <C-N> :Ex<CR>
 
 nnoremap <C-c> <C-w>c
