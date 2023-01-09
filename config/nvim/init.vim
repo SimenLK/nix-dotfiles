@@ -283,8 +283,8 @@ autocmd FileType yaml set shiftwidth=2
 autocmd FileType yaml set tabstop=2
 
 " TeX
-autocmd FileType tex set shiftwidth=2
-autocmd FileType tex set tabstop=2
+" I want relative numbers with TeX to offset it a little bit from the left
+autocmd FileType tex set shiftwidth=2 tabstop=2 nu rnu
 
 " Hyper Text Markup Language
 autocmd FileType html set shiftwidth=2
