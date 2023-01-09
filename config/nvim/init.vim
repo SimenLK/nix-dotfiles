@@ -78,6 +78,15 @@ nmap <leader>gp :diffput<CR>
 nmap <leader>gn :diffget //3<CR>
 nmap <leader>gt :diffget //2<CR>
 
+function! DebugMake()
+  export DEBUG=true
+  :make!<CR>
+endfunction
+
+" :make
+nmap <leader>cc :make!<CR>
+nmap <leader>dc DebugMake()<CR>
+
 " tmux vim navigation
 nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
 nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
