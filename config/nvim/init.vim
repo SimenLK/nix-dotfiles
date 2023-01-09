@@ -313,7 +313,6 @@ set statusline+=\ %2*[%M%R%H%W]%*
 " Right side of statusline
 set statusline+=%#CursorColumn#
 set statusline+=%=
-set statusline+=\ [%{&fo}]
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
