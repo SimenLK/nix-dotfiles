@@ -32,6 +32,8 @@ au TextYankPost * silent! lua vim.highlight.on_yank()
 set termguicolors
 colorscheme NeoSolarized
 
+highlight NonText guifg=#003b46
+
 " Show matching brackets
 set showmatch
 highlight MatchParen ctermbg=cyan
@@ -51,6 +53,7 @@ autocmd FileType tex setlocal tw=79
 
 " Whitespace and tabs
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:⋅,extends:⟩,precedes:⟨
+" Opt-in on setting list, so added it to fsharp below
 " set list
 
 " Wildmenu
@@ -63,8 +66,15 @@ set updatetime=300
 " Commands
 command! MakeTags !ctags -R .
 
-" Bindings
+"
+" === Bindings ===
+"
 let mapleader = " "
+
+nnoremap n nzz
+
+" Bind <space>cw to clearing whitespace
+nnoremap <silent> <leader>cw :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 " TeX shortcuts
 autocmd FileType tex nnoremap <leader>b :w<CR> :! pdflatex %<CR>
@@ -164,9 +174,9 @@ lua << EOF
         local opts = { noremap=true, silent=true }
         buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
         buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-        buf_set_keymap('n', 'gh', '<cmd>lua vim.diagnostic.open_float()<CR>', opts) 
-        buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts) 
-        buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts) 
+        buf_set_keymap('n', 'gh', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+        buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     end
 
 
@@ -204,7 +214,7 @@ function! s:fsharp()
   let g:fsharp#lsp_auto_setup = 0
   let g:fsharp#lsp_codelens = 0
 
-  autocmd FileType fsharp set signcolumn=yes tw=119 number relativenumber
+  autocmd FileType fsharp set signcolumn=yes tw=119 number relativenumber list
 
   " if has('nvim') && exists('*nvim_open_win')
   "     set updatetime=1000
