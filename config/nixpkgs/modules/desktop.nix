@@ -172,7 +172,13 @@ let
     programs.alacritty = {
       enable = true;
       settings = {
-        font.size = cfg.fontSize;
+        font = {
+          normal = {
+            family = "JetBrains Mono";
+            style = "Regular";
+          };
+          size = cfg.fontSize;
+        };
       #   colors = {
       #     primary = {
       #       background = "#fdf6e3";
