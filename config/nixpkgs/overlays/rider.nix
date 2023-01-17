@@ -1,5 +1,7 @@
 self: super:
 let
+  rpath = with super; super.lib.makeLibraryPath [ stdenv.cc.cc.lib zlib ];
+
   patch = attrs:
         attrs.postPatch + ''
         patchelf --set-interpreter $interpreter lib/ReSharperHost/linux-x64/Rider.Backend
@@ -42,14 +44,15 @@ let
 
   jetbrainsNix = "/nix/var/nix/profiles/per-user/root/channels/nixos/pkgs/applications/editors/jetbrains";
   jetbrains = super.callPackage jetbrainsNix { jdk = super.jdk; };
-  eap = "EAP7-223.7401.6";
+
+  eap = "EAP9-223.7571.128";
   rider-eap = jetbrains.rider.overrideAttrs (attrs: rec {
       version = "2022.3";
       name = "rider-${version}";
 
       src = super.fetchurl {
         url = "https://download.jetbrains.com/rider/JetBrains.Rider-${version}-${eap}.Checked.tar.gz";
-        sha256 = "sha256-Ujh9Sc3pFXEuRubupcnNFZjPtCYMbib0fXar9gjBmIo=";
+        sha256 = "sha256-BkaDwpqLvgO3yx6dwMKva2S59WiGYYCLJn7/VDO1dLw=";
       };
 
       postPatch = patch attrs;
@@ -62,23 +65,22 @@ let
       '';
   });
 
-  rpath = with super; super.lib.makeLibraryPath [ stdenv.cc.cc.lib zlib ];
-  rider-latest = super.jetbrains.rider.overrideAttrs (attrs: rec {
-      version = "2022.2.3";
+  rider-latest = jetbrains.rider.overrideAttrs (attrs: rec {
+      version = "2022.3.1";
       name = "rider-${version}";
 
       src = super.fetchurl {
         url = "https://download.jetbrains.com/rider/JetBrains.Rider-${version}.tar.gz";
-        sha256 = "sha256-L9/4YW/RV0oO97qu2FWqOaElTqFkt00bTdoRJB5Yqy0=";
+        sha256 = "sha256-14XwLjVZg8Z2IkiGAFKoH3WzkuJbWF/1qROuqioqMBA=";
       };
 
       postPatch = patch attrs;
 
       postInstall = ''
         cd $out/rider/lib/ReSharperHost/linux-x64/dotnet
-        ln -sf ${super.dotnet-sdk_5}/dotnet .
-        ln -s ${super.dotnet-sdk_5}/host .
-        ln -s ${super.dotnet-sdk_5}/shared .
+        # ln -sf ${super.dotnet-sdk_6}/dotnet .
+        # ln -s ${super.dotnet-sdk_6}/host .
+        # ln -s ${super.dotnet-sdk_6}/shared .
       '';
   });
 in
