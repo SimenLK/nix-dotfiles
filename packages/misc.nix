@@ -20,9 +20,7 @@ let
   ];
 
   geo = with pkgs; [
-    ncview
     netcdf
-    nco
   ];
 
   kubernetes = with pkgs; [
