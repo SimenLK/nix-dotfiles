@@ -196,6 +196,7 @@ lua << EOF
     local lspconfig = require('lspconfig')
     setup(require('ionide'))
     setup(lspconfig.ccls)
+    -- setup(lspconfig.clangd)
     setup(lspconfig.tsserver)
     setup(lspconfig.rnix)
     -- setup(lspconfig.rust_analyzer)
@@ -228,15 +229,6 @@ function! s:fsharp()
   let g:fsharp#exclude_project_directories = ['paket_files']
   let g:fsharp#fsautocomplete_command = ['fsautocomplete']
 endfunction
-
-" cpp
-autocmd FileType cpp set signcolumn=yes
-
-" rust
-autocmd FileType rust set signcolumn=yes
-
-" typescript
-autocmd FileType typescript set signcolumn=yes
 
 " nix
 " lua require('lspconfig').rnix-lsp.setup{}
@@ -273,39 +265,37 @@ let g:tex_flavor = 'latex'
 " Tmux
 let g:tmux_navigator_no_mappings = 1
 
-" Language specific
-
-" vim
-autocmd FileType vim set shiftwidth=2
-autocmd FileType vim set tabstop=2
-
-" tsx
-
-autocmd FileType typescriptreact set shiftwidth=2
-autocmd FileType typescriptreact set tabstop=2
+" === Language specific ===
+" NOTE: scl = signcolumn
 
 " C/C++
-" autocmd FileType cpp set tabstop=8
-" autocmd FileType cpp set shiftwidth=8
-" autocmd FileType cpp set noexpandtab
+autocmd FileType cpp set signcolumn=yes
+
+" rust
+autocmd FileType rust set signcolumn=yes
+
+" javascript
+autocmd FileType javascript set ts=2 sw=2 tw=79
+" typescript
+autocmd FileType typescript set ts=2 sw=2 tw=79 scl=yes
+" tsx
+autocmd FileType typescriptreact set sw=2 ts=2 tw=79 scl=yes
+
+" vim
+autocmd FileType vim set sw=2 ts=2
 
 " SQL
-
-autocmd FileType sql set shiftwidth=2
-autocmd FileType sql set tabstop=2
+autocmd FileType sql set shiftwidth=2 tabstop=2
 
 " Yaml
-
-autocmd FileType yaml set shiftwidth=2
-autocmd FileType yaml set tabstop=2
+autocmd FileType yaml set shiftwidth=2 tabstop=2
 
 " TeX
 " I want relative numbers with TeX to offset it a little bit from the left
 autocmd FileType tex set shiftwidth=2 tabstop=2 nu rnu
 
 " Hyper Text Markup Language
-autocmd FileType html set shiftwidth=2
-autocmd FileType html set tabstop=2
+autocmd FileType html set shiftwidth=2 tabstop=2
 
 " Statusline
 
