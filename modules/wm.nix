@@ -99,9 +99,12 @@ let
         ];
         focus.mouseWarping = false;
         bars = [{
-          id = "top";
-          position = "top";
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-top.toml";
+          id = "main";
+          position = "bottom";
+          statusCommand = ''
+            ${pkgs.i3status-rust}/bin/i3status-rs \
+              ~/.config/i3status-rust/config-main.toml
+          '';
           fonts = {
             names = [ "DejaVu Sans Mono" "FontAwesome5Free" ];
             style = "Normal";
@@ -202,7 +205,7 @@ let
     i3status-rust = {
       enable = true;
       bars = {
-        top = {
+        main = {
           blocks = [
             {
               block = "disk_space";
