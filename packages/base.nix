@@ -47,6 +47,8 @@ let
     sshuttle
     tomb
     zellij
+    neomutt
+    openfortivpn
   ];
 
   enabledPackages =

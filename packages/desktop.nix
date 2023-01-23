@@ -13,7 +13,7 @@ let
       (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
       # (import ../overlays/vscode.nix)
-      (import ../overlays/rider.nix)
+      # (import ../overlays/rider.nix)
       (import ../overlays/discord.nix)
       fcitx
     ];
@@ -99,6 +99,7 @@ let
 
   desktop = with pkgs; [
     blueman
+    brightnessctl
     cdrtools
     chromium
     dconf
@@ -112,10 +113,13 @@ let
     rider
     keybase
     keybase-gui
+    kind
+    libreoffice
     libnotify
+    pandoc
+    pass
     pavucontrol
     pinentry
-    remmina
     spotify
     wireshark
   ];
