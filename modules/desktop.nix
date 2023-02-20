@@ -32,7 +32,7 @@ let
         recursive = true;
       };
       xmodmap = {
-        source = ~/.dotfiles/Xmodmap;
+        source = ~/.dotfiles/adhoc/Xmodmap;
         target = ".Xmodmap";
         recursive = false;
       };

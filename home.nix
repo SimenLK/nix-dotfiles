@@ -53,6 +53,7 @@
       "taskrc"
       "mbsyncrc"
       "mailcap"
+      "ideavimrc"
     ];
     vimDevPlugins = true;
   };

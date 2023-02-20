@@ -41,7 +41,7 @@ let
           k = "kubectl";
           tw = "timew";
           vim = "nvim";
-          home-manager = "home-manager -f ~/.dotfiles/config/nixpkgs/home.nix";
+          home-manager = "home-manager -f ~/.dotfiles/home.nix";
           lock = "xset s activate";
           cpwd = "pwd | xclip -i";
           cdc = "cd (xclip -o)";
@@ -54,7 +54,7 @@ let
           vimPlugins = pkgs.vimPlugins // {
             vim-gnupg = pkgs.vimUtils.buildVimPlugin {
               name = "vim-gnupg";
-              src = ~/.dotfiles/vim-plugins/vim-gnupg;
+              src = ~/.dotfiles/plugins/vim-plugins/vim-gnupg;
             };
           };
           treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.cpp p.nix p.javascript p.bash p.bibtex p.c_sharp p.css p.dockerfile p.fish p.git_rebase p.gitattributes p.gitignore p.glsl p.html p.latex p.lua p.markdown p.markdown_inline p.rust p.sql p.typescript p.vim p.yaml ]);
@@ -82,7 +82,7 @@ let
             vim-vsnip
             vimtex
           ];
-          extraConfig = builtins.readFile ../../nvim/init.vim;
+          extraConfig = builtins.readFile ../config/nvim/init.vim;
         };
 
       git = {
@@ -149,12 +149,12 @@ let
         clock24 = true;
         escapeTime = 10;
         terminal = "tmux-256color";
-        extraConfig = builtins.readFile ../../../tmux.conf;
+        extraConfig = builtins.readFile ../adhoc/tmux.conf;
         plugins = with pkgs; [
           (tmuxPlugins.mkTmuxPlugin {
             pluginName = "statusline";
             version = "1.0";
-            src = ../../../tmux-plugins;
+            src = ../plugins/tmux-plugins;
           })
           (tmuxPlugins.mkTmuxPlugin {
             pluginName = "simple-git-status";
@@ -192,6 +192,8 @@ let
       options = [ "eurosign:e" "grp:alt_shift_toggle"];
     };
 
+    home.stateVersion = "22.11";
+
     home.sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
@@ -212,6 +214,10 @@ let
       allowUnfree = true;
     };
 
+    home.activation = {
+      linkOverlays = "cp -srf ~/.dotfiles/overlays ~/.config/nixpkgs";
+    };
+
     xdg.configFile = {
       fish = {
         source = ~/.dotfiles/config/fish;
@@ -223,9 +229,22 @@ let
         target = "mutt";
         recursive = true;
       };
-      nixpkgs = {
-        source = ~/.dotfiles/config/nixpkgs;
-        target = "nixpkgs/";
+      "home.nix" = {
+        source = ~/.dotfiles/home.nix;
+        target = "nixpkgs/home.nix";
+      };
+      "config.nix" = {
+        source = ~/.dotfiles/config.nix;
+        target = "nixpkgs/config.nix";
+      };
+      modules = {
+        source = ~/.dotfiles/modules;
+        target = "nixpkgs/modules";
+        recursive = true;
+      };
+      packages = {
+        source = ~/.dotfiles/packages;
+        target = "nixpkgs/packages";
         recursive = true;
       };
     };
@@ -269,7 +288,7 @@ let
     let
       Ionide-vim = pkgs.vimUtils.buildVimPlugin {
           name = "Ionide-vim";
-          src = ~/.dotfiles/vim-plugins/Ionide-vim;
+          src = ~/.dotfiles/plugins/vim-plugins/Ionide-vim;
           buildInputs = [ pkgs.curl pkgs.which pkgs.unzip];
         };
       devPlugins = with pkgs.vimPlugins; [
