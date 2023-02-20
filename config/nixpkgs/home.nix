@@ -5,7 +5,7 @@
       enable = true;
       dropbox.enable = false;
       i3.enable = true;
-      laptop = true;
+      laptop = false;
       fontSize = 14.0;
     };
     packages = {
@@ -31,13 +31,13 @@
         chat = true;
         graphics = true;
         wavebox = false;
-        zoom = true;
+        zoom = false;
         factorio = false;
         tex = true;
       };
       kubernetes = true;
       cloud = true;
-      geo = true;
+      geo = false;
     };
     extraDotfiles = [
       "bcrc"

@@ -180,7 +180,9 @@ lua << EOF
     end
 
 
-    local capabilites = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilites =
+      require('cmp_nvim_lsp')
+        .default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     local setup = function(server)
         server.setup {
@@ -217,15 +219,6 @@ function! s:fsharp()
 
   autocmd FileType fsharp set signcolumn=yes tw=119 number relativenumber list
 
-  " if has('nvim') && exists('*nvim_open_win')
-  "     set updatetime=1000
-  "     nmap K :call fsharp#showTooltip()<CR>
-  "     "augroup FSharpShowTooltip
-  "     "    autocmd!
-  "     "    autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
-  "     "augroup END
-  " endif
-
   let g:fsharp#exclude_project_directories = ['paket_files']
   let g:fsharp#fsautocomplete_command = ['fsautocomplete']
 endfunction
@@ -236,9 +229,8 @@ endfunction
 function! s:nvim_treesitter()
 lua << EOF
     require'nvim-treesitter.configs'.setup {
-        ensure_installed = { "cpp", "typescript" },
         sync_install = false,
-        auto_install = true,
+        auto_install = false,
         ignore_install = {},
         highlight = {
             enable = true,

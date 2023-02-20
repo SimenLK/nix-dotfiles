@@ -172,6 +172,8 @@ let
             "${mod}+9" = switch "9";
             "${mod}+0" = switch "0";
 
+            "${mod}+Shift+d" = "exec --no-startup-id ${pkgs.pass}/bin/passmenu";
+
             "${mod}+p" = "layout default";
 
             "${mod}+${left}" = "focus left";

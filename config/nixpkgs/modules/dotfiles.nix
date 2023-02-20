@@ -206,7 +206,6 @@ let
       GIT_ALLOW_PROTOCOL = "ssh:https:keybase:file";
     };
 
-
     nixpkgs.config = {
       allowUnfree = true;
     };

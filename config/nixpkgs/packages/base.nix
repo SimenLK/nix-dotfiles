@@ -37,6 +37,10 @@ let
     exa
     fd
     gnupg
+    neomutt
+    openfortivpn
+    pandoc
+    pass
     procs
     ripgrep
     sd

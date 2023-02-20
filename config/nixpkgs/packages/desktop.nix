@@ -84,6 +84,7 @@ let
 
   graphics = with pkgs; [
     aseprite
+    gimp
     # imagemagick
     # scrot
     # krita
@@ -92,27 +93,21 @@ let
 
   desktop = with pkgs; [
     blueman
-    brightnessctl
     cdrtools
     dconf
     drive
-    fira-code
     firefox
     gparted
     google-chrome
-    #innoextract
     keybase
     keybase-gui
-    kind
     libreoffice
-    neomutt
-    openfortivpn
-    pandoc
-    pass
     pavucontrol
     pinentry
-    rider
+    jetbrains.rider
     spotify
+    freerdp
+    remmina
   ];
 
   chat = with pkgs; [

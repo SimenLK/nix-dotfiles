@@ -8,7 +8,7 @@ let
 
   configuration = {
     nixpkgs.overlays = [
-      (import ../overlays/dotnet-sdk_7.nix)
+      # (import ../overlays/dotnet-sdk_7.nix)
     ];
 
     dotfiles.packages.devel = {
@@ -64,8 +64,7 @@ let
 
   combined = (with pkgs.dotnetCorePackages; combinePackages [
     pkgs.dotnet-sdk_5
-    pkgs.dotnet-sdk_6
-    pkgs.dotnet-sdk_7
+    pkgs.dotnet-sdk
   ]);
 
   dotnet = {
@@ -114,6 +113,7 @@ let
   ];
 
   nix = with pkgs; [
+    colmena
     niv
     lorri
     nix-prefetch-scripts
