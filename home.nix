@@ -1,5 +1,11 @@
 {pkgs, lib, ...}:
 {
+  home = {
+    username = "simkir";
+    homeDirectory = "/home/simkir";
+    stateVersion = "22.11";
+  };
+
   dotfiles = {
     desktop = {
       enable = true;
@@ -66,14 +72,6 @@
     };
 
     ssh.matchBlocks = {
-      omikron = {
-        user = "simenlk";
-        hostname = "omikron.kirkvik.no";
-      };
-      omikron-r = {
-        user = "simenlk";
-        hostname = "omikron.kirkvik.no";
-      };
       zelda = {
         user = "simen";
         hostname = "zelda.itpartner.intern";
@@ -102,3 +100,5 @@
 
   imports = [ ./modules ];
 }
+
+

@@ -104,7 +104,7 @@ let
     libreoffice
     pavucontrol
     pinentry
-    jetbrains.rider
+    rider-stable
     spotify
     freerdp
     remmina

@@ -1,6 +1,6 @@
 self: super:
 let
-  rpath = with super; super.lib.makeLibraryPath [ stdenv.cc.cc.lib zlib ];
+  rpath = with super; lib.makeLibraryPath [ stdenv.cc.cc.lib zlib ];
 
   patch = attrs:
         attrs.postPatch + ''
@@ -31,10 +31,10 @@ let
           patchelf --add-rpath ${rpath} $i
         done
         for i in \
-            plugins/cidr-debugger-plugin/bin/lldb/linux/bin/LLDBFrontend \
-            plugins/cidr-debugger-plugin/bin/lldb/linux/bin/lldb \
-            plugins/cidr-debugger-plugin/bin/lldb/linux/bin/lldb-argdumper \
-            plugins/cidr-debugger-plugin/bin/lldb/linux/bin/lldb-server \
+            plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/LLDBFrontend \
+            plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/lldb \
+            plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/lldb-argdumper \
+            plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/lldb-server \
             plugins/dotCommon/DotFiles/linux-x64/JetBrains.Profiler.PdbServer \
             plugins/remote-dev-server/selfcontained/bin/Xvfb \
             plugins/remote-dev-server/selfcontained/bin/xkbcomp; \
@@ -45,33 +45,33 @@ let
   jetbrainsNix = "/nix/var/nix/profiles/per-user/root/channels/nixos/pkgs/applications/editors/jetbrains";
   jetbrains = super.callPackage jetbrainsNix { jdk = super.jdk; };
 
-  eap = "EAP9-223.7571.128";
+  eap = "EAP3-231.6471.8";
   rider-eap = jetbrains.rider.overrideAttrs (attrs: rec {
-      version = "2022.3";
+      version = "2023.1";
       name = "rider-${version}";
 
       src = super.fetchurl {
         url = "https://download.jetbrains.com/rider/JetBrains.Rider-${version}-${eap}.Checked.tar.gz";
-        sha256 = "sha256-BkaDwpqLvgO3yx6dwMKva2S59WiGYYCLJn7/VDO1dLw=";
+        sha256 = "sha256-vp7yqXbkQTa9xj6cHOlefj8tSYjrjRFyd6LQL4U4Pd8=";
       };
 
       postPatch = patch attrs;
 
       postInstall = ''
         cd $out/rider/lib/ReSharperHost/linux-x64/dotnet
-        ln -sf ${super.dotnet-sdk_6}/dotnet .
-        ln -s ${super.dotnet-sdk_6}/host .
-        ln -s ${super.dotnet-sdk_6}/shared .
+        # ln -sf ${super.dotnet-sdk_6}/dotnet .
+        # ln -s ${super.dotnet-sdk_6}/host .
+        # ln -s ${super.dotnet-sdk_6}/shared .
       '';
   });
 
   rider-latest = jetbrains.rider.overrideAttrs (attrs: rec {
-      version = "2022.3.1";
+      version = "2022.3.2";
       name = "rider-${version}";
 
       src = super.fetchurl {
         url = "https://download.jetbrains.com/rider/JetBrains.Rider-${version}.tar.gz";
-        sha256 = "sha256-14XwLjVZg8Z2IkiGAFKoH3WzkuJbWF/1qROuqioqMBA=";
+        sha256 = "sha256-rYU7dbweE3lZO+zjpfvs7CHR3jAmPQ1f7wZ6NSt9J+8=";
       };
 
       postPatch = patch attrs;

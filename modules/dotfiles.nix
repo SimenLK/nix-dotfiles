@@ -57,6 +57,7 @@ let
               src = ~/.dotfiles/vim-plugins/vim-gnupg;
             };
           };
+          treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.cpp p.nix p.javascript p.bash p.bibtex p.c_sharp p.css p.dockerfile p.fish p.git_rebase p.gitattributes p.gitignore p.glsl p.html p.latex p.lua p.markdown p.markdown_inline p.rust p.sql p.typescript p.vim p.yaml ]);
         in
         {
           enable = true;
@@ -72,7 +73,7 @@ let
             markdown-preview-nvim
             nvim-cmp
             nvim-lspconfig
-            nvim-treesitter
+            treesitter
             tmux-navigator
             vim-ccls
             vim-gnupg
@@ -180,7 +181,7 @@ let
 
       home-manager = {
         enable = true;
-        path = "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
+        path = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
       };
     };
 
@@ -205,6 +206,7 @@ let
     systemd.user.sessionVariables = {
       GIT_ALLOW_PROTOCOL = "ssh:https:keybase:file";
     };
+
 
     nixpkgs.config = {
       allowUnfree = true;
@@ -234,12 +236,6 @@ let
         target = "omf";
         recursive = true;
       };
-
-      themes = {
-        source = ~/.dotfiles/config/fish/themes;
-        target = "omf/themes";
-        recursive = true;
-      };
     };
 
     services.unison = {
@@ -261,7 +257,7 @@ let
       let
         mkHomeFile = x: {
           ${x} = {
-            source = ~/. + "/.dotfiles/${x}";
+            source = ~/. + "/.dotfiles/adhoc/${x}";
             target = ".${x}";
           };
         };
@@ -318,4 +314,6 @@ in
     (mkIf cfg.vimDevPlugins vimDevPlugins)
   ];
 }
+
+
 

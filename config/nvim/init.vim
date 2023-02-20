@@ -85,6 +85,7 @@ tnoremap <Esc> <C-\><C-N>
 " Fugitive
 nmap <leader>gs :G<CR>
 nmap <leader>gp :diffput<CR>
+nmap <leader>gg :diffget<CR>
 nmap <leader>gn :diffget //3<CR>
 nmap <leader>gt :diffget //2<CR>
 
