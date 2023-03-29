@@ -57,7 +57,7 @@ let
               src = ~/.dotfiles/plugins/vim-plugins/vim-gnupg;
             };
           };
-          treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.cpp p.nix p.javascript p.bash p.bibtex p.c_sharp p.css p.dockerfile p.fish p.git_rebase p.gitattributes p.gitignore p.glsl p.html p.latex p.lua p.markdown p.markdown_inline p.rust p.sql p.typescript p.vim p.yaml ]);
+          treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.cpp p.nix p.javascript p.bash p.bibtex p.c_sharp p.css p.dockerfile p.fish p.git_rebase p.gitattributes p.gitignore p.glsl p.html p.latex p.lua p.markdown p.markdown_inline p.rust p.sql p.typescript p.vim p.yaml p.go ]);
         in
         {
           enable = true;

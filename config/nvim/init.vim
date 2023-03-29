@@ -202,6 +202,7 @@ lua << EOF
     -- setup(lspconfig.clangd)
     setup(lspconfig.tsserver)
     setup(lspconfig.rnix)
+    setup(lspconfig.gopls)
     -- setup(lspconfig.rust_analyzer)
 
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
@@ -218,7 +219,7 @@ function! s:fsharp()
   let g:fsharp#lsp_auto_setup = 0
   let g:fsharp#lsp_codelens = 0
 
-  autocmd FileType fsharp set signcolumn=yes tw=119 number relativenumber list
+  autocmd FileType fsharp set signcolumn=yes tw=119 ts=4 sw=4 number relativenumber list
 
   let g:fsharp#exclude_project_directories = ['paket_files']
   let g:fsharp#fsautocomplete_command = ['fsautocomplete']
