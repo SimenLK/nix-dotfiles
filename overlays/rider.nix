@@ -1,6 +1,6 @@
 self: super:
 let
-  rpath = with super; lib.makeLibraryPath [ stdenv.cc.cc.lib zlib ];
+  rpath = with super; super.lib.makeLibraryPath [ stdenv.cc.cc.lib zlib ];
 
   patch = attrs:
         attrs.postPatch + ''
@@ -45,14 +45,14 @@ let
   jetbrainsNix = "/nix/var/nix/profiles/per-user/root/channels/nixos/pkgs/applications/editors/jetbrains";
   jetbrains = super.callPackage jetbrainsNix { jdk = super.jdk; };
 
-  eap = "EAP3-231.6471.8";
+  eap = "EAP8-231.8109.48";
   rider-eap = jetbrains.rider.overrideAttrs (attrs: rec {
       version = "2023.1";
       name = "rider-${version}";
 
       src = super.fetchurl {
         url = "https://download.jetbrains.com/rider/JetBrains.Rider-${version}-${eap}.Checked.tar.gz";
-        sha256 = "sha256-vp7yqXbkQTa9xj6cHOlefj8tSYjrjRFyd6LQL4U4Pd8=";
+        sha256 = "sha256-EJlCrcsayc/bckMSVk0qJk6pA0yIyd3Wr5Ie3pBS9pk=";
       };
 
       postPatch = patch attrs;

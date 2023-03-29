@@ -101,10 +101,9 @@ let
     google-chrome
     keybase
     keybase-gui
-    libreoffice
     pavucontrol
     pinentry
-    rider-stable
+    rider-eap
     spotify
     freerdp
     remmina
