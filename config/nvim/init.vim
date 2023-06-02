@@ -174,6 +174,7 @@ lua << EOF
 
         local opts = { noremap=true, silent=true }
         buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
         buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
         buf_set_keymap('n', 'gh', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
         buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -203,7 +204,8 @@ lua << EOF
     setup(lspconfig.tsserver)
     setup(lspconfig.rnix)
     setup(lspconfig.gopls)
-    -- setup(lspconfig.rust_analyzer)
+    setup(lspconfig.tailwindcss)
+    setup(lspconfig.rust_analyzer)
 
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
         vim.lsp.handlers.hover, { focusable = false }
@@ -243,10 +245,24 @@ lua << EOF
 EOF
 endfunction
 
+function! s:nvim_treesitter_fsharp()
+lua << EOF
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.fsharp = {
+  install_info = {
+    url = "/home/simkir/code/tree-sitter-fsharp",
+    files = { "src/scanner.cc", "src/parser.c" }
+  },
+  filetype = "fsharp",
+}
+EOF
+endfunction
+
 call s:fsharp()
 call s:nvim_cmp()
 call s:nvim_lsp()
 call s:nvim_treesitter()
+call s:nvim_treesitter_fsharp()
 
 " Latex settings
 " NB: Don't need it because of spell shortcuts

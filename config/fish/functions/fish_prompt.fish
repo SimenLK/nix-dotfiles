@@ -1,9 +1,18 @@
+function k8s_ctx_and_namespace
+    command kubectl config get-contexts | grep '^*' | awk '{printf "(%s/%s)", $2, $5}'
+end
+
 function fish_prompt
     if test -n "$SSH_TTY"
         echo -n (set_color brred)"$USER"(set_color white)'@'(set_color yellow)(prompt_hostname)' '
     end
 
     echo -n (set_color blue)(basename $PWD)' '
+
+    if command -sq kubectl config view
+        set_color white
+        echo -n (k8s_ctx_and_namespace)
+    end
 
     set -l cmd_status $status
     if test $cmd_status -ne 0

@@ -8,8 +8,8 @@ let mapleader = " "
 " text scroll if you mouse-click near the start or end of the window.
 set scrolloff=7
 
-" set number
-" set relativenumber
+set number
+set relativenumber
 
 set surround
 set highlightedyank

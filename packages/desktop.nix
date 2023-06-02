@@ -3,13 +3,19 @@ with lib;
 let
   cfg = config.dotfiles.packages.desktop;
 
+  fcitx =
+    (self: super: {
+      fcitx-engines = pkgs.fcitx5;
+    });
+
   configuration = {
     nixpkgs.overlays = [
       (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
       # (import ../overlays/vscode.nix)
-      (import ../overlays/rider.nix)
+      # (import ../overlays/rider.nix)
       (import ../overlays/discord.nix)
+      fcitx
     ];
 
     dotfiles.packages.desktop = {
@@ -103,7 +109,7 @@ let
     keybase-gui
     pavucontrol
     pinentry
-    rider-eap
+    jetbrains.rider
     spotify
     freerdp
     remmina

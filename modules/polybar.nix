@@ -53,7 +53,6 @@ let
           else
             "fs cpu memory net keyboard date powermenu";
           modules-center = "";
-          modules-left = "xmonad";
           tray-position = "right";
           tray-padding = 2;
           tray-maxsize = 16;
@@ -134,11 +133,6 @@ let
           menu-2-0-exec = "poweroff";
           menu-2-1 = "%{F#999999}no%{F-}";
           menu-2-1-exec = "menu-close";
-        };
-        "module/xmonad" = {
-          type = "custom/script";
-          exec = "${pkgs.xmonad-log}/bin/xmonad-log";
-          tail = true;
         };
         "module/battery" = {
           type = "internal/battery";

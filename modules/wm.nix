@@ -31,41 +31,6 @@ let
     ];
   };
 
-  xmonad = {
-    home.file.xmobarrc = {
-      source = ~/.xmonad/xmobarrc;
-      target = ".xmobarrc";
-      recursive = false;
-    };
-
-    xdg.dataFile = {
-      xmonad-desktop = {
-        source = ~/.xmonad/Xmonad.desktop;
-        target = "applications/Xmonad.desktop";
-      };
-    };
-
-    dotfiles.desktop.polybar.enable = mkDefault true;
-
-    xsession.windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
-      extraPackages = self: [
-        self.yeganesh
-        self.xmobar
-        pkgs.dmenu
-        self.string-conversions
-      ];
-    };
-
-    home.packages = with pkgs; [
-      xmonad-log
-      haskellPackages.yeganesh
-      xmobar
-      dmenu
-    ];
-  };
-
   i3-sway =
     let
       base00 = "#101218";
@@ -84,6 +49,27 @@ let
       base0D = "#97bbf7";
       base0E = "#c0b7f9";
       base0F = "#fcc09e";
+
+      battery-block =
+        if config.dotfiles.desktop.laptop then [{
+          block = "battery";
+          format = " $icon $percentage {$time |}";
+          device = "DisplayDevice";
+          driver = "upower";
+        }] else [];
+
+      backlight-block =
+        if config.dotfiles.desktop.laptop then [{
+          block = "backlight";
+          device = "intel_backlight";
+        }] else [];
+
+      net-block =
+        if !config.dotfiles.desktop.laptop then [{
+          block = "net";
+          interval = 2;
+          inactive_format = " $icon down ";
+        }] else [];
     in {
       config = {
         window.titlebar = false;
@@ -214,61 +200,56 @@ let
       bars = {
         top = {
           blocks = [
-            (if config.dotfiles.desktop.laptop then {
-              block = "battery";
-              allow_missing = true;
-              format = "{percentage} {time} {power}";
-            } else {})
             {
               block = "disk_space";
               path = "/";
-              alias = "/";
-              info_type = "available";
-              unit = "GB";
               interval = 60;
               warning = 20.0;
               alert = 10.0;
+              info_type = "available";
             }
-            # {
-            #   block = "temperature";
-            # }
+            {
+              block = "temperature";
+              format = " $icon $max max ";
+              format_alt = " $icon $min min, $max max, $average avg ";
+              interval = 10;
+              chip = "*-isa-*";
+            }
             {
               block = "memory";
-              display_type = "memory";
-              format_mem = "{mem_used_percents}";
-              format_swap = "{swap_used_percents}";
+              format = " $icon $mem_used_percents.eng(w:1) ";
+              format_alt = " $icon_swap $swap_free.eng(w:3,u:B,p:M)/$swap_total.eng(w:3,u:B,p:M)($swap_used_percents.eng(w:2)) ";
+              interval = 30;
+              warning_mem = 70;
+              critical_mem = 70;
             }
             {
               block = "cpu";
               interval = 1;
-              format = "{utilization} {frequency}";
+              format = " $icon $barchart $utilization ";
+              format_alt = " $icon $frequency{ $boost|} ";
             }
-            (if !config.dotfiles.desktop.laptop then {
-              block = "net";
-              interval = 2;
-              hide_inactive = true;
-            } else {})
             {
               block = "load";
+              format = " $icon 1min avg: $1m.eng(w:4) ";
               interval = 1;
-              format = "{1m}";
             }
-            (if config.dotfiles.desktop.laptop then {
-              block = "backlight";
-            } else {})
             {
               block = "time";
+              format = " $icon $timestamp.datetime(f:'%a %d-%m-%Y %R %Z', l:nb_NO) ";
               interval = 60;
-              format = "%a %d-%m-%Y %R";
             }
-          ];
+          ] ++ battery-block
+            ++ backlight-block
+            ++ net-block;
           settings = {
-            theme =  {
-              name = "solarized-light";
+            icons =  {
+              icons = "awesome6";
+            };
+            theme = {
+              theme = "solarized-light";
             };
           };
-          icons = "awesome5";
-          theme = "solarized-light";
         };
       };
     };
@@ -323,10 +304,6 @@ let
 
 in {
   options.dotfiles.desktop = {
-    xmonad = {
-      enable = mkEnableOption "Enable XMonad";
-    };
-
     i3 = {
       enable = mkEnableOption "Enable i3";
     };
@@ -342,8 +319,7 @@ in {
   };
 
   config = mkMerge [
-    (mkIf (cfg.xmonad.enable || cfg.i3.enable) xorg)
-    (mkIf cfg.xmonad.enable xmonad)
+    (mkIf (cfg.i3.enable) xorg)
     (mkIf cfg.i3.enable i3)
     (mkIf cfg.sway.enable sway)
   ];
