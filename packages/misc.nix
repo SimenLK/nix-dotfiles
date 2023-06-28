@@ -35,6 +35,7 @@ let
     minikube
     step-cli # cert swiss army knife
     k9s
+    talosctl
   ];
 
   useIf = x: y: if x then y else [];
