@@ -100,19 +100,21 @@ let
   desktop = with pkgs; [
     blueman
     cdrtools
+    chromium
     dconf
     drive
     firefox
-    gparted
+    freerdp
     google-chrome
+    gparted
+    jetbrains.rider
     keybase
     keybase-gui
     pavucontrol
     pinentry
-    jetbrains.rider
-    spotify
-    freerdp
     remmina
+    spotify
+    wireshark
   ];
 
   chat = with pkgs; [
