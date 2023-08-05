@@ -113,6 +113,7 @@ let
         ionide.ionide-fsharp
         vscodevim.vim
         jnoortheen.nix-ide
+        bradlc.vscode-tailwindcss
       ];
       userSettings = {
         "nix.enableLanguageServer" = true;

@@ -29,6 +29,12 @@ set postponed = "+Drafts"
 
 mailboxes =INBOX =Sent =Trash =Drafts =Archive
 
+# Keep imap connections alive!
+unset imap_passive
+set imap_keepalive = 300
+
+# auto fetch mail!
+set mail_check = 120
 
 ###############
 # Pager settings

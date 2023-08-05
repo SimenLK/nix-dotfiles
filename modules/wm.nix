@@ -292,6 +292,7 @@ let
       enable = true;
       wrapperFeatures.gtk = true ;
       config = i3-sway.config;
+      xwayland = false;
     };
 
     home.packages = with pkgs; [

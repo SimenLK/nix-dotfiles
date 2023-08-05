@@ -84,25 +84,27 @@ let
             p.typescript
             p.vim
             p.yaml
+            p.zig
           ]);
         in
         {
           enable = true;
           plugins = with vimPlugins; [
             NeoSolarized
+            Ionide-vim
             cmp-buffer
             cmp-cmdline
             cmp-nvim-lsp
             cmp-path
             cmp-vsnip
             fugitive
-            fzf-vim
-            Ionide-vim
             markdown-preview-nvim
             nvim-cmp
             nvim-lspconfig
-            treesitter
+            plenary-nvim
+            telescope-nvim
             tmux-navigator
+            treesitter
             vim-ccls
             vim-gnupg
             vim-nix
@@ -111,7 +113,7 @@ let
             vimtex
             zephyr-nvim
           ];
-          extraConfig = builtins.readFile ../config/nvim/init.vim;
+          extraConfig = lib.fileContents ../../nvim/init.vim;
         };
 
       git = {

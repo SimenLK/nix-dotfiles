@@ -72,6 +72,7 @@ command! MakeTags !ctags -R .
 let mapleader = " "
 
 nnoremap n nzz
+nnoremap gm :Man<CR>
 
 " Bind <space>cw to clearing whitespace
 nnoremap <silent> <leader>cw :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -113,8 +114,8 @@ map <F6> :setlocal spell! spelllang=en_us<CR>
 map <F7> :setlocal spell! spelllang=nb<CR>
 
 " Fzf
-nnoremap <C-p> :GFiles<CR>
-nnoremap <leader>p :Files<CR>
+nnoremap <C-p> <cmd>Telescope git_files<CR>
+nnoremap <leader>p <cmd>Telescope find_files<CR>
 
 "
 " nvim-cmp: completions
@@ -198,7 +199,7 @@ lua << EOF
     end
 
     local lspconfig = require('lspconfig')
-    setup(require('ionide'))
+    setup(lspconfig.fsautocomplete)
     setup(lspconfig.ccls)
     -- setup(lspconfig.clangd)
     setup(lspconfig.tsserver)
@@ -206,6 +207,7 @@ lua << EOF
     setup(lspconfig.gopls)
     setup(lspconfig.tailwindcss)
     setup(lspconfig.rust_analyzer)
+    setup(lspconfig.zls)
 
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
         vim.lsp.handlers.hover, { focusable = false }
@@ -214,7 +216,7 @@ EOF
 endfunction
 
 " fsharp
-" autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
+autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
 " lua require('lspconfig').fsautocomplete.setup{}
 
 function! s:fsharp()
@@ -223,8 +225,8 @@ function! s:fsharp()
 
   autocmd FileType fsharp set signcolumn=yes tw=119 ts=4 sw=4 number relativenumber list
 
-  let g:fsharp#exclude_project_directories = ['paket_files']
-  let g:fsharp#fsautocomplete_command = ['fsautocomplete']
+  " let g:fsharp#exclude_project_directories = ['paket_files']
+  " let g:fsharp#fsautocomplete_command = ['fsautocomplete']
 endfunction
 
 " nix
@@ -232,28 +234,15 @@ endfunction
 
 function! s:nvim_treesitter()
 lua << EOF
-    require'nvim-treesitter.configs'.setup {
-        sync_install = false,
-        auto_install = false,
-        ignore_install = {},
-        highlight = {
-            enable = true,
-            disable = { "latex" },
-            additional_vim_regex_highlighting = false,
-        },
-    }
-EOF
-endfunction
-
-function! s:nvim_treesitter_fsharp()
-lua << EOF
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.fsharp = {
-  install_info = {
-    url = "/home/simkir/code/tree-sitter-fsharp",
-    files = { "src/scanner.cc", "src/parser.c" }
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {},
+  sync_install = false,
+  ignore_install = {},
+  highlight = {
+    enable = true,
+    disable = { "latex" },
+    additional_vim_regex_highlighting = false,
   },
-  filetype = "fsharp",
 }
 EOF
 endfunction
@@ -262,7 +251,6 @@ call s:fsharp()
 call s:nvim_cmp()
 call s:nvim_lsp()
 call s:nvim_treesitter()
-call s:nvim_treesitter_fsharp()
 
 " Latex settings
 " NB: Don't need it because of spell shortcuts
@@ -279,10 +267,11 @@ let g:tmux_navigator_no_mappings = 1
 " NOTE: scl = signcolumn
 
 " C/C++
-autocmd FileType cpp set signcolumn=yes
+autocmd FileType c set scl=yes cino+=(0
+autocmd FileType cpp set scl=yes cino+=(0
 
 " rust
-autocmd FileType rust set signcolumn=yes
+autocmd FileType rust set scl=yes
 
 " javascript
 autocmd FileType javascript set ts=2 sw=2 tw=79
@@ -331,7 +320,5 @@ set statusline+=\ %2*[%M%R%H%W]%*
 set statusline+=%#CursorColumn#
 set statusline+=%=
 set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
