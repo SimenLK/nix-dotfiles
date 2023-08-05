@@ -25,7 +25,7 @@ let
           ll = "ls -l";
           la = "ls -a";
           lla = "ls -la";
-          ltr = "ls -l --sort newest";
+          ltr = "ls -lht";
           # ltr = "ls -ltr";
           # cat = "bat -p";
           diff = "diff -u";
@@ -57,7 +57,34 @@ let
               src = ~/.dotfiles/plugins/vim-plugins/vim-gnupg;
             };
           };
-          treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.cpp p.nix p.javascript p.bash p.bibtex p.c_sharp p.css p.dockerfile p.fish p.git_rebase p.gitattributes p.gitignore p.glsl p.html p.latex p.lua p.markdown p.markdown_inline p.rust p.sql p.typescript p.vim p.yaml p.go ]);
+          treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+            p.bash
+            p.bibtex
+            p.c
+            p.c_sharp
+            p.cpp
+            p.css
+            p.dockerfile
+            p.fish
+            p.git_rebase
+            p.gitattributes
+            p.gitignore
+            p.glsl
+            p.go
+            p.html
+            p.javascript
+            p.latex
+            p.lua
+            p.markdown
+            p.markdown_inline
+            p.nix
+            p.python
+            p.rust
+            p.sql
+            p.typescript
+            p.vim
+            p.yaml
+          ]);
         in
         {
           enable = true;
@@ -70,6 +97,7 @@ let
             cmp-vsnip
             fugitive
             fzf-vim
+            Ionide-vim
             markdown-preview-nvim
             nvim-cmp
             nvim-lspconfig
@@ -81,6 +109,7 @@ let
             vim-surround
             vim-vsnip
             vimtex
+            zephyr-nvim
           ];
           extraConfig = builtins.readFile ../config/nvim/init.vim;
         };
@@ -151,6 +180,8 @@ let
         terminal = "tmux-256color";
         extraConfig = builtins.readFile ../adhoc/tmux.conf;
         plugins = with pkgs; [
+          tmuxPlugins.vim-tmux-navigator
+
           (tmuxPlugins.mkTmuxPlugin {
             pluginName = "statusline";
             version = "1.0";
@@ -286,14 +317,7 @@ let
 
   vimDevPlugins =
     let
-      Ionide-vim = pkgs.vimUtils.buildVimPlugin {
-          name = "Ionide-vim";
-          src = ~/.dotfiles/plugins/vim-plugins/Ionide-vim;
-          buildInputs = [ pkgs.curl pkgs.which pkgs.unzip];
-        };
-      devPlugins = with pkgs.vimPlugins; [
-        Ionide-vim
-      ];
+      devPlugins = with pkgs.vimPlugins; [ ];
     in { programs.neovim.plugins = devPlugins; };
 
   # settings when not running under NixOS

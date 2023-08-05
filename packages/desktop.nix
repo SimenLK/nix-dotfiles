@@ -13,7 +13,7 @@ let
       (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
       # (import ../overlays/vscode.nix)
-      # (import ../overlays/rider.nix)
+      (import ../overlays/rider.nix)
       (import ../overlays/discord.nix)
       fcitx
     ];
@@ -102,14 +102,17 @@ let
     cdrtools
     chromium
     dconf
+    dunst
     drive
+    ferdium
     firefox
     freerdp
     google-chrome
     gparted
-    jetbrains.rider
+    rider
     keybase
     keybase-gui
+    libnotify
     pavucontrol
     pinentry
     remmina
@@ -140,7 +143,6 @@ let
     useIf cfg.zoom [ pkgs.zoom-us ] ++
     useIf cfg.factorio [ pkgs.factorio ] ++
     useIf cfg.tex tex;
-
 in {
   options.dotfiles.packages.desktop = {
     enable = mkEnableOption "Enable desktop packages";

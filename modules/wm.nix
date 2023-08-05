@@ -85,6 +85,9 @@ let
           inner = 8;
         };
         assigns = {
+          "0" = [
+            { class = "^Ferdium$"; }
+          ];
           "1" = [
             { class = "^Firefox$"; }
             { class = "^google-chrome$"; }
@@ -125,6 +128,7 @@ let
         startup = [
           { command = "${pkgs.autotiling}/bin/autotiling"; always = false; }
           { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
+          { command = "ferdium"; }
         ] ++ (if cfg.sway.enable then
            [ { command = "${pkgs.swaybg}/bin/swaybg -c '#444444'"; always = false; }
              { command = ''

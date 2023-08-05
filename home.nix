@@ -55,7 +55,7 @@
       "mailcap"
       "ideavimrc"
     ];
-    vimDevPlugins = true;
+    vimDevPlugins = false;
   };
 
   home.packages = with pkgs; [
@@ -64,6 +64,7 @@
     tree
     gollum
     vlc
+    glab
   ];
 
   programs = {

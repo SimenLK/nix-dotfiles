@@ -30,7 +30,7 @@ au TextYankPost * silent! lua vim.highlight.on_yank()
 
 " Colorscheme
 set termguicolors
-colorscheme NeoSolarized
+colorscheme zephyr
 
 highlight NonText guifg=#003b46
 
