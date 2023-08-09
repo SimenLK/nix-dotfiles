@@ -17,4 +17,4 @@ mkdir -p ~/.config/omf
 [ -e ~/.config/nixpkgs/home.nix ] && rm ~/.config/nixpkgs/home.nix
 [ -e ~/.config/fish/config.fish ] && rm ~/.config/fish/config.fish
 
-home-manager switch -f $top/config/nixpkgs/home.nix
+~/.nix-profile/bin/home-manager switch -f $top
