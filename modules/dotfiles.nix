@@ -289,10 +289,14 @@ let
       };
     };
 
-    services.unison = {
-      enable = false;
-      pairs = {
-        docs = [ "/home/$USER/Documents"  "ssh://example/Documents" ];
+    services = {
+      lorri.enable = true;
+
+      unison = {
+        enable = false;
+        pairs = {
+          docs = [ "/home/$USER/Documents"  "ssh://example/Documents" ];
+        };
       };
     };
   };
