@@ -7,13 +7,13 @@ let
     patchelf --set-interpreter $interpreter lib/ReSharperHost/linux-x64/Rider.Backend
     patchelf --set-rpath ${rpath} lib/ReSharperHost/linux-x64/Rider.Backend
     for i in \
-    plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/LLDBFrontend \
-    plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/lldb \
-    plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/lldb-argdumper \
-    plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/lldb-server \
-    plugins/dotCommon/DotFiles/linux-x64/JetBrains.Profiler.PdbServer \
-    plugins/remote-dev-server/selfcontained/bin/Xvfb \
-    plugins/remote-dev-server/selfcontained/bin/xkbcomp; \
+      plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/LLDBFrontend \
+      plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/lldb \
+      plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/lldb-argdumper \
+      plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/lldb-server \
+      plugins/dotCommon/DotFiles/linux-x64/JetBrains.Profiler.PdbServer \
+      plugins/remote-dev-server/selfcontained/bin/Xvfb \
+      plugins/remote-dev-server/selfcontained/bin/xkbcomp; \
     do patchelf --set-interpreter $interpreter $i; done
     sed -i 's/runtime\.sh/runtime-dotnet.sh/' lib/ReSharperHost/Rider.Backend.sh
 
