@@ -213,6 +213,18 @@ lua << EOF
 EOF
 endfunction
 
+"
+" nvim-dap
+"
+function! s:nvim_dap()
+  nnoremap <silent> <leader>b <cmd>lua require'dap'.toggle_breakpoint()<CR>
+
+lua << EOF
+  local dap = require('dap')
+
+EOF
+endfunction
+
 " fsharp
 " autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
 " lua require('lspconfig').fsautocomplete.setup{}
@@ -261,6 +273,7 @@ endfunction
 call s:fsharp()
 call s:nvim_cmp()
 call s:nvim_lsp()
+call s:nvim_dap()
 call s:nvim_treesitter()
 call s:nvim_treesitter_fsharp()
 

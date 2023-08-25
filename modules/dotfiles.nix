@@ -100,6 +100,7 @@ let
             Ionide-vim
             markdown-preview-nvim
             nvim-cmp
+            nvim-dap
             nvim-lspconfig
             treesitter
             tmux-navigator
