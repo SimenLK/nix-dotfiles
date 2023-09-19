@@ -52,8 +52,6 @@ let
       network-manager-applet.enable = true;
       blueman-applet.enable = true;
 
-      lorri.enable = true;
-
       gpg-agent = {
         enable = true;
         enableSshSupport = true;

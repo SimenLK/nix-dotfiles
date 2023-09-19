@@ -100,6 +100,7 @@ let
             fugitive
             markdown-preview-nvim
             nvim-cmp
+            nvim-dap
             nvim-lspconfig
             plenary-nvim
             telescope-nvim
@@ -290,10 +291,14 @@ let
       };
     };
 
-    services.unison = {
-      enable = false;
-      pairs = {
-        docs = [ "/home/$USER/Documents"  "ssh://example/Documents" ];
+    services = {
+      lorri.enable = true;
+
+      unison = {
+        enable = false;
+        pairs = {
+          docs = [ "/home/$USER/Documents"  "ssh://example/Documents" ];
+        };
       };
     };
   };

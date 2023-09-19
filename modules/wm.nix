@@ -209,6 +209,15 @@ let
           blocks = [
             {
               block = "disk_space";
+              path = "/boot";
+              interval = 60;
+              warning = 20.0;
+              alert = 10.0;
+              info_type = "available";
+              format = " /boot $available($percentage) ";
+            }
+            {
+              block = "disk_space";
               path = "/";
               interval = 60;
               warning = 20.0;
