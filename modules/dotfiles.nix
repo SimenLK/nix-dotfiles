@@ -3,6 +3,15 @@ with lib;
 let
   cfg = config.dotfiles;
 
+  fromGithub = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "${lib.strings.sanitizeDerivationname repo}";
+    version = ref;
+    src = builtins.fetchGit {
+      url = "https://github.com/${repo}.git";
+      ref = ref;
+    };
+  };
+
   configuration = {
     manual.manpages.enable = true;
 
@@ -45,7 +54,7 @@ let
           lock = "xset s activate";
           cpwd = "pwd | xclip -i";
           cdc = "cd (xclip -o)";
-          report = "git clone git@github.com:simenlk/latexreport.git && sh latexreport/install.sh";
+          gl = "glab";
         };
       };
 
@@ -90,31 +99,35 @@ let
         {
           enable = true;
           plugins = with vimPlugins; [
-            NeoSolarized
-            Ionide-vim
-            cmp-buffer
-            cmp-cmdline
-            cmp-nvim-lsp
-            cmp-path
-            cmp-vsnip
             fugitive
-            markdown-preview-nvim
-            nvim-cmp
-            nvim-dap
-            nvim-lspconfig
             plenary-nvim
             telescope-nvim
-            tmux-navigator
             treesitter
-            vim-ccls
+            zephyr-nvim
+
+            lsp-zero-nvim
+            nvim-lspconfig
+
+            nvim-cmp
+            cmp-buffer
+            cmp-path
+            cmp_luasnip
+            cmp-nvim-lsp
+            cmp-nvim-lua
+
+            luasnip
+            friendly-snippets
+
+            vim-surround
+
+            markdown-preview-nvim
+            nvim-dap
+            tmux-navigator
             vim-gnupg
             vim-nix
-            vim-surround
             vim-vsnip
             vimtex
-            zephyr-nvim
           ];
-          extraConfig = lib.fileContents ../../nvim/init.vim;
         };
 
       git = {
@@ -226,8 +239,6 @@ let
       options = [ "eurosign:e" "grp:alt_shift_toggle"];
     };
 
-    home.stateVersion = "22.11";
-
     home.sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
@@ -261,6 +272,11 @@ let
       mutt = {
         source = ~/.dotfiles/config/mutt;
         target = "mutt";
+        recursive = true;
+      };
+      nvim = {
+        source = ~/.dotfiles/config/nvim;
+        target = "nvim";
         recursive = true;
       };
       "home.nix" = {

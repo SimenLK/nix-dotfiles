@@ -1,5 +1,4 @@
 require("simen.set")
-require("simen.packer")
 
 local augroup = vim.api.nvim_create_augroup
 

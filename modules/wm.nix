@@ -259,9 +259,7 @@ let
             ++ backlight-block
             ++ net-block;
           settings = {
-            icons =  {
-              icons = "awesome6";
-            };
+            icons.icons = "awesome6";
             theme = {
               theme = "solarized-light";
             };

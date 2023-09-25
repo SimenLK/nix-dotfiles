@@ -1,18 +1,13 @@
 -- My lsp configs...
-local lsp = require("lsp-zero")
+local lsp_zero = require("lsp-zero")
 
-lsp.preset("recommended")
+lsp_zero.preset("recommended")
 
-lsp.ensure_installed({
-    'tsserver',
-    'fsautocomplete'
-})
-
-lsp.nvim_workspace()
+lsp_zero.nvim_workspace()
 
 local cmp = require'cmp'
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
+local cmp_mappings = lsp_zero.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
@@ -22,11 +17,11 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 
-lsp.setup_nvim_cmp({
+lsp_zero.setup_nvim_cmp({
     mapping = cmp_mappings
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(client, bufnr)
     local opts = { noremap=true, silent=true }
     -- Set your bindings for LSP features here.
     vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
@@ -40,12 +35,11 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.setup()
-
-vim.g['fsharp#enable_reference_codelens'] = 0
+lsp_zero.setup()
 
 vim.diagnostic.config({
     virtual_text = true
 })
 
--- setup(lspconfig.ccls)
+require('lspconfig').nil_ls.setup({})
+require('lspconfig').clangd.setup({})

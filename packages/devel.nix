@@ -7,9 +7,7 @@ let
   hie = all-hies.selection { selector = p: { inherit (p) ghc865; }; };
 
   configuration = {
-    nixpkgs.overlays = [
-      # (import ../overlays/dotnet-sdk_7.nix)
-    ];
+    nixpkgs.overlays = [ ];
 
     dotfiles.packages.devel = {
       nix = mkDefault true;
@@ -118,7 +116,7 @@ let
     lorri
     nix-prefetch-scripts
     patchelf
-    rnix-lsp
+    nil
   ];
 
   db = with pkgs; [

@@ -65,6 +65,7 @@
     gollum
     vlc
     glab
+    lua-language-server
   ];
 
   programs = {
@@ -102,5 +103,3 @@
 
   imports = [ ./modules ];
 }
-
-
