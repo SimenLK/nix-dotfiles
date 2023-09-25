@@ -192,17 +192,28 @@ let
         enable = true;
         baseIndex = 1;
         clock24 = true;
+        disableConfirmationPrompt = true;
         escapeTime = 10;
+        prefix = "C-Space";
         terminal = "tmux-256color";
-        extraConfig = builtins.readFile ../adhoc/tmux.conf;
+        extraConfig = ''
+          set-option -g default-shell /home/simen/.nix-profile/bin/fish
+
+          # Colors
+          set -g default-terminal "tmux-256color"
+          set-option -sa terminal-overrides ",alacritty:RGB"
+
+          # Vim mode controls⋅
+          setw -g mode-keys vi
+
+          # split panes using | and -
+          bind | split-window -h
+          bind - split-window -v
+          unbind '"'
+          unbind %
+        '';
         plugins = with pkgs; [
           tmuxPlugins.vim-tmux-navigator
-
-          (tmuxPlugins.mkTmuxPlugin {
-            pluginName = "statusline";
-            version = "1.0";
-            src = ../plugins/tmux-plugins;
-          })
           (tmuxPlugins.mkTmuxPlugin {
             pluginName = "simple-git-status";
             version = "master";
@@ -223,6 +234,11 @@ let
               sha256 = "1w1x8w351v9yppw37kcs985mm5ikpmdnckfjwqyhlqx90lf9sqdy";
             };
           })
+          (tmuxPlugins.mkTmuxPlugin {
+            pluginName = "statusline";
+            version = "1.0";
+            src = ../plugins/tmux-plugins;
+          })
         ];
       };
 
@@ -236,7 +252,10 @@ let
       layout = "us,us";
       variant = "altgr-intl,colemak";
       model = "pc104";
-      options = [ "eurosign:e" "grp:alt_shift_toggle"];
+      options = [
+        "eurosign:e"
+        "grp:alt_shift_toggle"
+      ];
     };
 
     home.sessionVariables = {

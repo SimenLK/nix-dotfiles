@@ -213,8 +213,8 @@ let
               interval = 60;
               warning = 20.0;
               alert = 10.0;
-              info_type = "available";
-              format = " /boot $available($percentage) ";
+              info_type = "used";
+              format = " /boot $used($percentage) ";
             }
             {
               block = "disk_space";
@@ -255,9 +255,10 @@ let
               format = " $icon $timestamp.datetime(f:'%a %d-%m-%Y %R %Z', l:nb_NO) ";
               interval = 60;
             }
-          ] ++ battery-block
-            ++ backlight-block
-            ++ net-block;
+          ] ++
+          battery-block ++
+          backlight-block ++
+          net-block;
           settings = {
             icons.icons = "awesome6";
             theme = {
