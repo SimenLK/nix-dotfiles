@@ -1,7 +1,5 @@
 -- My lsp configs...
-local lsp_zero = require("lsp-zero")
-
-lsp_zero.preset("recommended")
+local lsp_zero = require("lsp-zero").preset("recommended")
 
 lsp_zero.nvim_workspace()
 
@@ -22,7 +20,8 @@ lsp_zero.setup_nvim_cmp({
 })
 
 lsp_zero.on_attach(function(client, bufnr)
-    local opts = { noremap=true, silent=true }
+    local opts = { buffer = bufnr, remap = false }
+
     -- Set your bindings for LSP features here.
     vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, opts)
@@ -35,11 +34,15 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+lsp_zero.setup_servers({
+    'lua_ls',
+    'nil_ls',
+    'ionide',
+    'clangd',
+})
+
 lsp_zero.setup()
 
 vim.diagnostic.config({
     virtual_text = true
 })
-
-require('lspconfig').nil_ls.setup({})
-require('lspconfig').clangd.setup({})

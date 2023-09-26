@@ -105,8 +105,10 @@ let
             treesitter
             zephyr-nvim
 
-            lsp-zero-nvim
             nvim-lspconfig
+            lsp-zero-nvim
+
+            Ionide-vim
 
             nvim-cmp
             cmp-buffer
@@ -238,6 +240,7 @@ let
               sha256 = "1w1x8w351v9yppw37kcs985mm5ikpmdnckfjwqyhlqx90lf9sqdy";
             };
           })
+          tmuxPlugins.vim-tmux-navigator
         ];
       };
 
