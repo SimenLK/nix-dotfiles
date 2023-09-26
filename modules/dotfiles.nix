@@ -197,7 +197,7 @@ let
         prefix = "C-Space";
         terminal = "tmux-256color";
         extraConfig = ''
-          set-option -g default-shell /home/simen/.nix-profile/bin/fish
+          set-option -g default-shell ${pkgs.fish}/bin/fish
 
           # Colors
           set -g default-terminal "tmux-256color"
@@ -213,7 +213,11 @@ let
           unbind %
         '';
         plugins = with pkgs; [
-          tmuxPlugins.vim-tmux-navigator
+          (tmuxPlugins.mkTmuxPlugin {
+            pluginName = "statusline";
+            version = "1.0";
+            src = ../plugins/tmux-plugins;
+          })
           (tmuxPlugins.mkTmuxPlugin {
             pluginName = "simple-git-status";
             version = "master";
@@ -233,11 +237,6 @@ let
               rev = "6bb3c95250f8120d8b072f46a807d2678ecbc97c";
               sha256 = "1w1x8w351v9yppw37kcs985mm5ikpmdnckfjwqyhlqx90lf9sqdy";
             };
-          })
-          (tmuxPlugins.mkTmuxPlugin {
-            pluginName = "statusline";
-            version = "1.0";
-            src = ../plugins/tmux-plugins;
           })
         ];
       };
