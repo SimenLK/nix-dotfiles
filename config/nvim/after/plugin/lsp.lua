@@ -35,10 +35,11 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 lsp_zero.setup_servers({
+    'clangd',
+    'ionide',
     'lua_ls',
     'nil_ls',
-    'ionide',
-    'clangd',
+    'tsserver'
 })
 
 lsp_zero.setup()

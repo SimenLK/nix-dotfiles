@@ -1,3 +1,4 @@
+" vim:set ft=vim:
 " This is a test comment
 " execute pathogen#infect()
 
