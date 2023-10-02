@@ -66,6 +66,7 @@ let
   ];
 
   gnome = with pkgs.gnome3; [
+    pkgs.galculator
     gucharmap
     gnome-settings-daemon
     gnome-font-viewer
@@ -126,7 +127,6 @@ let
 
   chat = with pkgs; [
     slack
-    teams
     discord
   ];
 
