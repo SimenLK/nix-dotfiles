@@ -13,7 +13,7 @@ let
       (import ../overlays/wavebox.nix)
       #(import ../overlays/teams.nix)
       # (import ../overlays/vscode.nix)
-      # (import ../overlays/rider.nix)
+      (import ../overlays/rider.nix)
       (import ../overlays/discord.nix)
       fcitx
     ];
@@ -111,16 +111,18 @@ let
     freerdp
     google-chrome
     gparted
-    rider
     keybase
     keybase-gui
     kind
     libreoffice
     libnotify
+    obsidian
     pandoc
     pass
     pavucontrol
     pinentry
+    remmina
+    rider
     spotify
     wireshark
   ];

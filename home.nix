@@ -12,7 +12,7 @@
       dropbox.enable = false;
       i3.enable = true;
       laptop = false;
-      fontSize = 14.0;
+      fontSize = 15.0;
     };
     packages = {
       devel = {
@@ -62,10 +62,11 @@
     isync
     wally-cli
     tree
-    gollum
     vlc
     glab
     lua-language-server
+    marksman
+    yubikey-manager-qt
   ];
 
   programs = {
