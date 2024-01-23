@@ -8,8 +8,6 @@ let
   cfg = config.dotfiles.packages;
 
   configuration = {
-    nixpkgs.overlays = [ ];
-
     dotfiles.packages.devel = {
       nix = lib.mkDefault true;
     };
