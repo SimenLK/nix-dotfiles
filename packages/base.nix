@@ -1,8 +1,6 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, lib, ... }:
 with lib;
 let
-  cfg = config.dotfiles.packages;
-
   configuration = {
     home.packages = enabledPackages;
   };
@@ -34,7 +32,6 @@ let
     direnv
     du-dust
     duf
-    exa
     fd
     gnupg
     neomutt
@@ -46,7 +43,6 @@ let
     sd
     sshuttle
     tomb
-    zellij
     neomutt
     openfortivpn
   ];

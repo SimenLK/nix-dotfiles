@@ -211,8 +211,8 @@ let
               block = "disk_space";
               path = "/boot";
               interval = 60;
-              warning = 20.0;
-              alert = 10.0;
+              warning = 90.0;
+              alert = 95.0;
               info_type = "used";
               format = " /boot $used($percentage) ";
             }

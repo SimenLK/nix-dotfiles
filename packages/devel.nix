@@ -63,6 +63,7 @@ let
   combined = (with pkgs.dotnetCorePackages; combinePackages [
     pkgs.dotnet-sdk
     pkgs.dotnet-sdk_7
+    pkgs.dotnet-sdk_8
   ]);
 
   dotnet = {
@@ -169,5 +170,4 @@ in {
     configuration
     (mkIf cfg.devel.dotnet dotnet)
   ]);
-
 }

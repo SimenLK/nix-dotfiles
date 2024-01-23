@@ -34,6 +34,13 @@ let
     step-cli # cert swiss army knife
     k9s
     talosctl
+    vcluster
+    tilt
+    velero
+    cue
+    cuetools
+    cuelsp
+    timoni
   ];
 
   useIf = x: y: if x then y else [];

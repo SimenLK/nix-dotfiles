@@ -39,7 +39,7 @@
         wavebox = false;
         zoom = false;
         factorio = false;
-        tex = true;
+        tex = false;
       };
       kubernetes = true;
       cloud = true;
@@ -67,6 +67,7 @@
     lua-language-server
     marksman
     yubikey-manager-qt
+    nodePackages.vscode-langservers-extracted
   ];
 
   programs = {

@@ -27,11 +27,14 @@ let
           set -e TMUX_TMPDIR
           set PATH ~/.local/bin $HOME/.nix-profile/bin ~/.dotnet/tools ~/.krew/bin $PATH
         '';
+        shellAbbrs = {
+          gfa = "git fetch --all";
+        };
         shellAliases = {
           rm = "rm -i";
           mv = "mv -i";
           cp = "cp -i";
-          ll = "ls -l";
+          ll = "ls -lh";
           la = "ls -a";
           lla = "ls -la";
           ltr = "ls -lht";
@@ -95,8 +98,10 @@ let
             p.bibtex
             p.c
             p.c_sharp
+            p.cue
             p.cpp
             p.css
+            p.dhall
             p.dockerfile
             p.fish
             p.git_rebase

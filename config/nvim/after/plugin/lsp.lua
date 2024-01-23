@@ -1,7 +1,6 @@
 -- My lsp configs...
-local lsp_zero = require("lsp-zero").preset("recommended")
-
-lsp_zero.nvim_workspace()
+local lsp_zero = require("lsp-zero")
+lsp_zero.extend_lspconfig()
 
 local cmp = require'cmp'
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -18,36 +17,22 @@ cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 cmp_mappings['<CR>'] = nil
 
-lsp_zero.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
-
 lsp_zero.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-
-    -- Set your bindings for LSP features here.
-    vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, opts)
-    vim.keymap.set('n', 'gh', function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+    lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
 lsp_zero.setup_servers({
     'clangd',
     'ionide',
-    'lua_ls',
     'nil_ls',
     'tsserver',
-    'marksman'
+    'marksman',
+    'dhall_lsp_server',
+    'cssls',
+    'dagger'
 })
+
+local lua_opts = lsp_zero.nvim_lua_ls()
+require('lspconfig').lua_ls.setup(lua_opts)
 
 lsp_zero.setup()
-
-vim.diagnostic.config({
-    virtual_text = true
-})
