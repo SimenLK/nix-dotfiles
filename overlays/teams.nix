@@ -1,6 +1,4 @@
 self: super:
-let
-in
 {
   teams = super.teams.overrideAttrs (attrs: rec {
       version = "1.4.00.7556";
