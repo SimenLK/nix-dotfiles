@@ -15,6 +15,7 @@ let
       # (import ../overlays/vscode.nix)
       (import ../overlays/rider.nix)
       (import ../overlays/discord.nix)
+      (import ../overlays/ferdium.nix)
       fcitx
     ];
 
