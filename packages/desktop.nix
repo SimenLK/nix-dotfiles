@@ -107,7 +107,7 @@ let
     dconf
     dunst
     drive
-    ferdium
+    ferdium-old
     firefox
     freerdp
     google-chrome
