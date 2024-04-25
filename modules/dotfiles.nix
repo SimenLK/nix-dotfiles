@@ -80,23 +80,31 @@ let
           #   },
           #   filetype = "fsharp",
           # }
-          #fsharp-grammar = pkgs.tree-sitter.buildGrammar {
-          #  language = "fsharp";
-          #  version = "0.0.0+rev=fa69ca8";
-          #  src = pkgs.fetchFromGitHub {
-          #    owner = "Nsidorenco";
-          #    repo = "tree-sitter-fsharp";
-          #    rev = "fa69ca8c557de73c25db541244d54dbde88387e0";
-          #    hash = "sha256-/ggpHRsKwt84Ob49ulqIr9KglLvnFJ45/HPtjkKMCds=";
-          #  };
-          #  generate = true;
-          #  meta.homepage = "https://github.com/Nsidorenco/tree-sitter-fsharp";
-          #};
+
+          fsharp-grammar = pkgs.tree-sitter.buildGrammar {
+            language = "fsharp";
+            version = "0.0.0+rev=a4d418e";
+            src = pkgs.fetchFromGitHub {
+              owner = "Nsidorenco";
+              repo = "tree-sitter-fsharp";
+              rev = "a4d418e426c555e85e32e638c0333fe3e555aeea";
+              hash = "sha256-bMBIz8rQ4X21jtH6nvAgc8Wtr7PkZ5HyfGDossJqN5U=";
+            };
+            generate = false;
+            meta.homepage = "https://github.com/Nsidorenco/tree-sitter-fsharp";
+          };
 
           treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+            # NOTE: Recommended to be in "ensure_installed"
+            p.c
+            p.lua
+            p.vim
+            p.vimdoc
+            p.query
+
+            fsharp-grammar
             p.bash
             p.bibtex
-            p.c
             p.c_sharp
             p.cue
             p.cpp
@@ -112,7 +120,6 @@ let
             p.html
             p.javascript
             p.latex
-            p.lua
             p.markdown
             p.markdown_inline
             p.nix
@@ -120,7 +127,6 @@ let
             p.rust
             p.sql
             p.typescript
-            p.vim
             p.yaml
             p.zig
           ]);
@@ -132,6 +138,8 @@ let
             plenary-nvim
             telescope-nvim
             treesitter
+            nvim-treesitter-context
+            playground
             zephyr-nvim
 
             nvim-lspconfig
@@ -430,6 +438,3 @@ in
     (mkIf cfg.vimDevPlugins vimDevPlugins)
   ];
 }
-
-
-
