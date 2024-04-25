@@ -17,6 +17,7 @@
     packages = {
       devel = {
         enable = true;
+        android = true;
         cpp = true;
         nix = true;
         db = true;

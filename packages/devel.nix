@@ -138,6 +138,7 @@ let
 
   enabledPackages =
     base ++
+    useIf cfg.devel.android [ pkgs.android-studio ] ++
     useIf cfg.devel.cpp cpp ++
     useIf cfg.devel.node node ++
     useIf cfg.devel.rust rust ++
@@ -152,6 +153,7 @@ in {
   options.dotfiles.packages = {
     devel = {
       enable = mkEnableOption "Enable development packages";
+      android = mkEnableOption "Enable android studio";
       dotnet = mkEnableOption "Enable dotnet sdk";
       node = mkEnableOption "Enable Node.js";
       nix = mkEnableOption "Enable nix";
