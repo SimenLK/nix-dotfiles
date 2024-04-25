@@ -23,13 +23,15 @@ end)
 
 lsp_zero.setup_servers({
     'clangd',
+    'cssls',
+    'dagger',
+    'dhall_lsp_server',
+    'gopls',
     'ionide',
+    'marksman',
     'nil_ls',
     'tsserver',
-    'marksman',
-    'dhall_lsp_server',
-    'cssls',
-    'dagger'
+    'pyright',
 })
 
 local lua_opts = lsp_zero.nvim_lua_ls()
