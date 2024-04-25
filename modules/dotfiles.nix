@@ -29,6 +29,7 @@ let
         '';
         shellAbbrs = {
           gfa = "git fetch --all";
+          kgp = "kubectl get pods";
         };
         shellAliases = {
           rm = "rm -i";
