@@ -7,7 +7,7 @@ let
   hie = all-hies.selection { selector = p: { inherit (p) ghc865; }; };
 
   configuration = {
-    nixpkgs.overlays = [ ];
+    nixpkgs.overlays = [];
 
     dotfiles.packages.devel = {
       nix = mkDefault true;
@@ -17,24 +17,25 @@ let
   };
 
   base = with pkgs; [
-    git
+    autoconf
+    automake
     binutils
+    cmake
+    docker-compose
     fzf
     gcc
     gdb
-    gnumake
-    cmake
-    libxml2
-    docker-compose
     gettext
+    git
     gnum4
+    gnumake
     jq
-    websocat
-    meld
-    automake
-    autoconf
     libtool
+    libxml2
+    meld
     ripgrep
+    yq-go
+    websocat
   ];
 
   haskell = with pkgs; [

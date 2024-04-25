@@ -45,6 +45,8 @@ let
     tomb
     neomutt
     openfortivpn
+    choose
+    tree-sitter
   ];
 
   enabledPackages =

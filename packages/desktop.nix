@@ -16,6 +16,7 @@ let
       (import ../overlays/rider.nix)
       (import ../overlays/discord.nix)
       (import ../overlays/ferdium.nix)
+      (import ../overlays/obsidian.nix)
       fcitx
     ];
 
@@ -32,7 +33,7 @@ let
   };
 
   media = with pkgs; [
-    # obs-studio
+    obs-studio
     # audacity
     # xf86_input_wacom
     # mpv
@@ -93,10 +94,6 @@ let
   graphics = with pkgs; [
     aseprite
     gimp
-    # imagemagick
-    # scrot
-    # krita
-    # inkscape
   ];
 
   desktop = with pkgs; [
@@ -117,6 +114,7 @@ let
     kind
     libreoffice
     libnotify
+    newsflash
     obsidian
     pandoc
     pass
@@ -124,6 +122,7 @@ let
     pinentry
     remmina
     rider
+    rssguard
     spotify
     wireshark
   ];

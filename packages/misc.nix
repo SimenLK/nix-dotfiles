@@ -6,14 +6,17 @@ let
   configuration = {
     nixpkgs.overlays = [
       (import ../overlays/linkerd.nix)
-      (import ../overlays/minio-client.nix)
+      # (import ../overlays/minio-client.nix)
+      (import ../overlays/vcluster.nix)
+      (import ../overlays/tilt.nix)
+      # (import ../overlays/k9s.nix)
     ];
 
     home.packages = enabledPackages;
   };
 
   cloud = with pkgs; [
-    awscli
+    awscli2
     minio-client
     vault-bin
     colmena
