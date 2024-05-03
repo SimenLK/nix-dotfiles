@@ -15,11 +15,8 @@ let
         xset +dpms
         xset dpms 1800 2400 3600
         xmodmap $HOME/.dotfiles/Xmodmap
-        if xrandr | grep -q "DP1 connected"; then
-            xrandr --output DP1 --mode 2560x1440 --rate 120
-            if xrandr | grep -q "DP2 connected"; then
-                xrandr --output DP2 --left-of DP1 --auto
-            fi
+        if xrandr | grep -q "DP2 connected"; then
+            xrandr --output DP2 --mode 2560x1440 --rate 165
         fi
       '' + cfg.xsessionInitExtra;
       numlock.enable = true;
@@ -87,6 +84,7 @@ let
         assigns = {
           "0" = [
             { class = "^Ferdium$"; }
+            { class = "^rssguard$"; }
           ];
           "1" = [
             { class = "^Firefox$"; }
@@ -132,6 +130,7 @@ let
           { command = "${pkgs.autotiling}/bin/autotiling"; always = false; }
           { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
           { command = "ferdium"; }
+          { command = "rssguard"; }
         ] ++ (if cfg.sway.enable then
            [ { command = "${pkgs.swaybg}/bin/swaybg -c '#444444'"; always = false; }
              { command = ''

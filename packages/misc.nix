@@ -28,6 +28,11 @@ let
 
   kubernetes = with pkgs; [
     argocd
+    cilium-cli
+    cue
+    cuelsp
+    cuetools
+    k9s
     krew
     kubectl
     kubernetes-helm
@@ -35,15 +40,11 @@ let
     linkerd
     minikube
     step-cli # cert swiss army knife
-    k9s
     talosctl
-    vcluster
     tilt
-    velero
-    cue
-    cuetools
-    cuelsp
     timoni
+    vcluster
+    velero
   ];
 
   useIf = x: y: if x then y else [];
