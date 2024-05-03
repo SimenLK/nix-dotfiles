@@ -6,6 +6,7 @@
   (block_comment)
 ] @comment @spell
 
+(xml_doc) @comment.doc @spell
 
 (identifier) @variable (#set! "priority" 90)
 
@@ -41,7 +42,6 @@
   "~"
   (infix_op)
   (prefix_op)
-  (symbolic_op)
   ; TODO: split _indent_or_op
 ] @operator
 
