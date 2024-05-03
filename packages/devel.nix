@@ -135,10 +135,15 @@ let
     ant
   ];
 
+  lsp = with pkgs; [
+    yaml-language-server
+  ];
+
   useIf = x: y: if x then y else [];
 
   enabledPackages =
     base ++
+    lsp ++
     useIf cfg.devel.android [ pkgs.android-studio ] ++
     useIf cfg.devel.cpp cpp ++
     useIf cfg.devel.node node ++

@@ -32,6 +32,7 @@ lsp_zero.setup_servers({
     'nil_ls',
     'tsserver',
     'pyright',
+    'yamlls',
 })
 
 local lua_opts = lsp_zero.nvim_lua_ls()
