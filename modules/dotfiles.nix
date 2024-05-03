@@ -70,26 +70,15 @@ let
               src = ~/.dotfiles/plugins/vim-plugins/vim-gnupg;
             };
           };
-          # local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-          # parser_config.fsharp = {
-          #   install_info = {
-          #     url = "https://github.com/Nsidorenco/tree-sitter-fsharp",
-          #     branch = "develop",
-          #     files = {"src/scanner.cc", "src/parser.c" },
-          #     generate_requires_npm = true,
-          #     requires_generate_from_grammar = true
-          #   },
-          #   filetype = "fsharp",
-          # }
 
           fsharp-grammar = pkgs.tree-sitter.buildGrammar {
             language = "fsharp";
-            version = "0.0.0+rev=a4d418e";
+            version = "0.0.0+rev=8d65614";
             src = pkgs.fetchFromGitHub {
               owner = "Nsidorenco";
               repo = "tree-sitter-fsharp";
-              rev = "a4d418e426c555e85e32e638c0333fe3e555aeea";
-              hash = "sha256-bMBIz8rQ4X21jtH6nvAgc8Wtr7PkZ5HyfGDossJqN5U=";
+              rev = "8d65614998318a70c5646c64229068029ebc89cb";
+              hash = "sha256-sewXkJVp+3TBXSsghnI3nHM+/04KncuI7hS/2j1NlJ4=";
             };
             generate = false;
             meta.homepage = "https://github.com/Nsidorenco/tree-sitter-fsharp";
