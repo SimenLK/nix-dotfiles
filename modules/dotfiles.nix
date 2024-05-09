@@ -3,12 +3,12 @@ with lib;
 let
   cfg = config.dotfiles;
 
-  fromGithub = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "${lib.strings.sanitizeDerivationname repo}";
+  fromGithub = ref: repo: pkgs.vimUtils.buildVimPlugin {
+    pname = "${lib.strings.sanitizeDerivationName repo}";
     version = ref;
     src = builtins.fetchGit {
       url = "https://github.com/${repo}.git";
-      ref = ref;
+      ref = "refs/tags/${ref}";
     };
   };
 
@@ -70,6 +70,8 @@ let
               src = ~/.dotfiles/plugins/vim-plugins/vim-gnupg;
             };
           };
+
+          obsidian-nvim = fromGithub "v3.7.12" "epwalsh/obsidian.nvim";
 
           fsharp-grammar = pkgs.tree-sitter.buildGrammar {
             language = "fsharp";
@@ -156,6 +158,8 @@ let
             vim-nix
             vim-vsnip
             vimtex
+
+            obsidian-nvim
           ];
         };
 
