@@ -3,9 +3,6 @@ with lib;
 let
   cfg = config.dotfiles.packages;
 
-  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
-  hie = all-hies.selection { selector = p: { inherit (p) ghc865; }; };
-
   configuration = {
     nixpkgs.overlays = [];
 
@@ -22,6 +19,7 @@ let
     binutils
     cmake
     docker-compose
+    difftastic
     fzf
     gcc
     gdb
@@ -118,7 +116,6 @@ let
     lorri
     nix-prefetch-scripts
     patchelf
-    nil
   ];
 
   db = with pkgs; [
@@ -137,6 +134,10 @@ let
 
   lsp = with pkgs; [
     yaml-language-server
+    helm-ls
+    lua-language-server
+    nixd
+    # nil
   ];
 
   useIf = x: y: if x then y else [];

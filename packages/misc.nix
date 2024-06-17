@@ -20,6 +20,7 @@ let
     minio-client
     vault-bin
     colmena
+    rclone
   ];
 
   geo = with pkgs; [

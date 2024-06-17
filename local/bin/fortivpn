@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
+set -e
+
 conn=$1
 shift
 
-exec sudo openfortivpn -c ~/.vpn/$conn -p `pass serit` $@
+if [[ $conn = "itp" || $conn = "itpproxy" ]]; then
+    pwd=$(pass serit)
+elif [[ $conn = "thn" ]]; then
+    pwd=$(pass thn)
+else
+    echo "$conn does not exist"
+    exit 1
+fi
+
+exec sudo openfortivpn -c ~/.vpn/$conn -p $pwd $@

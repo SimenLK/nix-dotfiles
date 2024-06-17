@@ -71,16 +71,16 @@ let
             };
           };
 
-          obsidian-nvim = fromGithub "v3.7.12" "epwalsh/obsidian.nvim";
+          obsidian-nvim = fromGithub "v3.7.14" "epwalsh/obsidian.nvim";
 
           fsharp-grammar = pkgs.tree-sitter.buildGrammar {
             language = "fsharp";
-            version = "0.0.0+rev=8d65614";
+            version = "0.0.0+rev=6aa86a3";
             src = pkgs.fetchFromGitHub {
               owner = "Nsidorenco";
               repo = "tree-sitter-fsharp";
-              rev = "8d65614998318a70c5646c64229068029ebc89cb";
-              hash = "sha256-sewXkJVp+3TBXSsghnI3nHM+/04KncuI7hS/2j1NlJ4=";
+              rev = "6aa86a3d31bb34cb5bbf0125ca5201af564743ae";
+              hash = "sha256-gBe81QZdHQnIMKe5eHC1crOp9qIvuc4pBDEoIqQrteA=";
             };
             generate = false;
             meta.homepage = "https://github.com/Nsidorenco/tree-sitter-fsharp";
