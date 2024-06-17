@@ -8,7 +8,7 @@
 
   dotfiles = {
     desktop = {
-      enable = true;
+      enable = false;
       dropbox.enable = false;
       i3.enable = true;
       laptop = false;
@@ -17,10 +17,10 @@
     packages = {
       devel = {
         enable = true;
-        android = true;
-        cpp = true;
+        android = false;
+        cpp = false;
         nix = true;
-        db = true;
+        db = false;
         dotnet = true;
         node = false;
         rust = false;
@@ -31,7 +31,7 @@
         clojure = false;
       };
       desktop = {
-        enable = true;
+        enable = false;
         gnome = true;
         x11 = true;
         media = true;
@@ -63,7 +63,6 @@
     isync
     wally-cli
     tree
-    vlc
     glab
     lua-language-server
     marksman
@@ -85,10 +84,6 @@
       uvcluster = {
         user = "ski027";
         hostname = "uvcluster.cs.uit.no";
-      };
-      uit = {
-        user = "simen";
-        hostname = "kirkvik.td.org.uit.no";
       };
       ekman = {
         user = "simenlk";
