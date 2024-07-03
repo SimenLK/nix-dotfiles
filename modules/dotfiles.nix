@@ -75,12 +75,12 @@ let
 
           fsharp-grammar = pkgs.tree-sitter.buildGrammar {
             language = "fsharp";
-            version = "0.0.0+rev=6aa86a3";
+            version = "0.0.0+rev=996ea99";
             src = pkgs.fetchFromGitHub {
               owner = "Nsidorenco";
               repo = "tree-sitter-fsharp";
-              rev = "6aa86a3d31bb34cb5bbf0125ca5201af564743ae";
-              hash = "sha256-gBe81QZdHQnIMKe5eHC1crOp9qIvuc4pBDEoIqQrteA=";
+              rev = "996ea9982bd4e490029f84682016b6793940113b";
+              hash = "sha256-HgHVIU67h9WXfj+yx7ukCSqucRvo16jugFhxWYY1kyk=";
             };
             generate = false;
             meta.homepage = "https://github.com/Nsidorenco/tree-sitter-fsharp";
