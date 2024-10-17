@@ -1,5 +1,9 @@
-{ pkgs, config, lib, ... }:
-with lib;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.dotfiles.packages;
 
@@ -23,17 +27,15 @@ let
     rclone
   ];
 
-  geo = with pkgs; [
-    netcdf
-  ];
+  geo = with pkgs; [ netcdf ];
 
-  kubernetes = with pkgs; [
+  k8sPkgs = with pkgs; [
     argocd
     cilium-cli
     cue
     cuelsp
     cuetools
-    k9s
+    dive
     krew
     kubectl
     kubernetes-helm
@@ -48,19 +50,34 @@ let
     velero
   ];
 
-  useIf = x: y: if x then y else [];
+  useIf = x: y: if x then y else [ ];
 
-  enabledPackages =
-    useIf cfg.cloud cloud ++
-    useIf cfg.kubernetes kubernetes ++
-    useIf cfg.geo geo;
-in {
-  options.dotfiles.packages = {
+  enabledPackages = useIf cfg.cloud cloud ++ useIf cfg.kubernetes k8sPkgs ++ useIf cfg.geo geo;
+
+  kubernetes = {
+    programs = {
+      k9s = {
+        enable = true;
+        settings = {
+          k9s = {
+            ui = {
+              logoless = true;
+            };
+          };
+        };
+      };
+    };
+  };
+in
+{
+  options.dotfiles.packages = with lib; {
     cloud = mkEnableOption "Enable cloud cli tools";
     kubernetes = mkEnableOption "Enable Kuberntes cli tools";
     geo = mkEnableOption "Enable geo tools";
   };
 
-  config = configuration;
-
+  config = lib.mkMerge [
+    configuration
+    (lib.mkIf cfg.kubernetes kubernetes)
+  ];
 }

@@ -1,16 +1,20 @@
-{ pkgs, config, lib, ... }:
-with lib;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.dotfiles.desktop;
 
   configuration = {
-    dotfiles.packages.desktop.enable = mkDefault true;
+    dotfiles.packages.desktop.enable = lib.mkDefault true;
 
-    dotfiles.desktop.onedrive.enable = mkDefault false;
-    dotfiles.desktop.sway.enable = mkDefault false;
-    dotfiles.desktop.i3.enable = mkDefault true;
+    dotfiles.desktop.onedrive.enable = lib.mkDefault false;
+    dotfiles.desktop.sway.enable = lib.mkDefault false;
+    dotfiles.desktop.i3.enable = lib.mkDefault true;
 
-    dotfiles.desktop.fontSize = mkDefault 12.0;
+    dotfiles.desktop.fontSize = lib.mkDefault 12.0;
 
     programs = {
       browserpass.enable = true;
@@ -26,12 +30,12 @@ let
 
     home.file = {
       icons = {
-        source = ~/.dotfiles/icons;
+        source = /home/simkir/.dotfiles/icons;
         target = ".icons";
         recursive = true;
       };
       xmodmap = {
-        source = ~/.dotfiles/adhoc/Xmodmap;
+        source = /home/simkir/.dotfiles/adhoc/Xmodmap;
         target = ".Xmodmap";
         recursive = false;
       };
@@ -39,8 +43,8 @@ let
 
     services = {
       pasystray.enable = true;
-      flameshot.enable =  true;
-      clipmenu.enable =  true;
+      flameshot.enable = true;
+      clipmenu.enable = true;
 
       screen-locker = {
         enable = true;
@@ -59,12 +63,15 @@ let
         defaultCacheTtlSsh = 43200;
         maxCacheTtl = 604800; # 7 days
         maxCacheTtlSsh = 604800;
-        pinentryPackage = pkgs.pinentry-curses;
+        pinentryPackage = pkgs.pinentry-gnome3;
       };
 
       gnome-keyring = {
         enable = true;
-        components = [ "pkcs11" "secrets" ];
+        components = [
+          "pkcs11"
+          "secrets"
+        ];
       };
     };
 
@@ -118,7 +125,10 @@ let
         "editor.minimap.enabled" = false;
         "editor.renderWhitespace" = "trailing";
         "editor.renderControlCharacters" = true;
-        "editor.rulers" = [ 80 120 ];
+        "editor.rulers" = [
+          80
+          120
+        ];
         "editor.lineNumbers" = "relative";
         "editor.renderLineHighlight" = "all";
         "editor.smoothScrolling" = true;
@@ -135,33 +145,37 @@ let
         "vim.normalModeKeyBindings" = [
           {
             "before" = [ "C-n" ];
-            "commands" = [
-              { "command" = "workbench.action.toggleSidebarVisibility"; }
-            ];
+            "commands" = [ { "command" = "workbench.action.toggleSidebarVisibility"; } ];
           }
           {
-          "before" = [ "<leader>" "r" ];
-          "commands" = [
-              { "command" = "editor.action.rename"; }
+            "before" = [
+              "<leader>"
+              "r"
             ];
+            "commands" = [ { "command" = "editor.action.rename"; } ];
           }
           {
-            "before" = [ "<leader>" "n" ];
-            "commands" = [
-              { "command" = "editor.action.goToReferences"; }
+            "before" = [
+              "<leader>"
+              "n"
             ];
+            "commands" = [ { "command" = "editor.action.goToReferences"; } ];
           }
           {
-            "before" = [ "<leader>" "r" "g" ];
-            "commands" = [
-              { "command" = "workbench.action.findInFiles"; }
+            "before" = [
+              "<leader>"
+              "r"
+              "g"
             ];
+            "commands" = [ { "command" = "workbench.action.findInFiles"; } ];
           }
           {
-            "before" = [ "<leader>" "g" "e" ];
-            "commands" = [
-              { "command" = "editor.action.marker.nextInFiles"; }
+            "before" = [
+              "<leader>"
+              "g"
+              "e"
             ];
+            "commands" = [ { "command" = "editor.action.marker.nextInFiles"; } ];
           }
         ];
       };
@@ -170,6 +184,9 @@ let
     programs.alacritty = {
       enable = true;
       settings = {
+        window = {
+          opacity = 0.2;
+        };
         font = {
           normal = {
             family = "JetBrains Mono";
@@ -177,36 +194,6 @@ let
           };
           size = cfg.fontSize;
         };
-      #   colors = {
-      #     primary = {
-      #       background = "#fdf6e3";
-      #       foreground = "#657b83";
-      #     };
-      #     cursor = {
-      #       text = "#fdf6e3";
-      #       cursor = "#657b83";
-      #     };
-      #     normal = {
-      #       black =   "#073642"; # base02
-      #       red =     "#dc322f"; # red
-      #       green =   "#859900"; # green
-      #       yellow =  "#b58900"; # yellow
-      #       blue =    "#268bd2"; # blue
-      #       magenta = "#d33682"; # magenta
-      #       cyan =    "#2aa198"; # cyan
-      #       white =   "#eee8d5"; # base2;
-      #     };
-      #     bright = {
-      #       black =   "#002b36"; # base03
-      #       red =     "#cb4b16"; # orange
-      #       green =   "#586e75"; # base01
-      #       yellow =  "#657b83"; # base00
-      #       blue =    "#839496"; # base0
-      #       magenta = "#6c71c4"; # violet
-      #       cyan =    "#93a1a1"; # base1
-      #       white =   "#fdf6e3"; # base3
-      #     };
-      #   };
       };
     };
   };
@@ -233,7 +220,7 @@ let
   };
 in
 {
-  options.dotfiles.desktop = {
+  options.dotfiles.desktop = with lib; {
     enable = mkEnableOption "Enable desktop";
     laptop = mkEnableOption "Enable laptop features";
     fontSize = mkOption {
@@ -244,11 +231,13 @@ in
     onedrive.enable = mkEnableOption "Enable OneDrive";
   };
 
-  config = mkIf cfg.enable (mkMerge [
+  config = lib.mkIf cfg.enable (
+    lib.mkMerge [
       configuration
-      (mkIf cfg.dropbox.enable dropbox)
-      (mkIf cfg.onedrive.enable onedrive)
-  ]);
+      (lib.mkIf cfg.dropbox.enable dropbox)
+      (lib.mkIf cfg.onedrive.enable onedrive)
+    ]
+  );
 
   imports = [ ./wm.nix ];
 }

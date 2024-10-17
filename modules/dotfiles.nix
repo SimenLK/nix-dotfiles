@@ -1,18 +1,28 @@
-{ config, lib, pkgs, ...}:
-with lib;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.dotfiles;
 
-  fromGithub = ref: repo: pkgs.vimUtils.buildVimPlugin {
-    pname = "${lib.strings.sanitizeDerivationName repo}";
-    version = ref;
-    src = builtins.fetchGit {
-      url = "https://github.com/${repo}.git";
-      ref = "refs/tags/${ref}";
+  fromGithub =
+    ref: repo:
+    pkgs.vimUtils.buildVimPlugin {
+      pname = "${lib.strings.sanitizeDerivationName repo}";
+      version = ref;
+      src = builtins.fetchGit {
+        url = "https://github.com/${repo}.git";
+        ref = "refs/tags/${ref}";
+      };
     };
-  };
 
   configuration = {
+    nixpkgs.overlays = [
+      (import ../overlays/nvim.nix)
+    ];
+
     manual.manpages.enable = true;
 
     programs = {
@@ -64,100 +74,105 @@ let
 
       neovim =
         let
-          vimPlugins = pkgs.vimPlugins // {
-            vim-gnupg = pkgs.vimUtils.buildVimPlugin {
-              name = "vim-gnupg";
-              src = ~/.dotfiles/plugins/vim-plugins/vim-gnupg;
-            };
-          };
-
           obsidian-nvim = fromGithub "v3.7.14" "epwalsh/obsidian.nvim";
 
-          fsharp-grammar = pkgs.tree-sitter.buildGrammar {
-            language = "fsharp";
-            version = "0.0.0+rev=996ea99";
-            src = pkgs.fetchFromGitHub {
-              owner = "Nsidorenco";
-              repo = "tree-sitter-fsharp";
-              rev = "996ea9982bd4e490029f84682016b6793940113b";
-              hash = "sha256-HgHVIU67h9WXfj+yx7ukCSqucRvo16jugFhxWYY1kyk=";
-            };
-            generate = false;
-            meta.homepage = "https://github.com/Nsidorenco/tree-sitter-fsharp";
-          };
+          my-treesitter =
+            let
+              fsharp-grammar =
+                let
+                  drv = pkgs.tree-sitter.buildGrammar {
+                    language = "fsharp";
+                    version = "0.1.0-alpha.1";
+                    location = "fsharp";
+                    src = /home/simkir/code/tree-sitter-fsharp;
+                    meta.homepage = "https://github.com/ionide/tree-sitter-fsharp";
+                  };
+                in
+                drv.overrideAttrs (attrs: {
+                  installPhase = ''
+                    runHook preInstall
+                    mkdir $out
+                    mv parser $out/
+                    if [[ -d ../queries ]]; then
+                      cp -r ../queries $out
+                    fi
+                    runHook postInstall
+                  '';
+                });
+            in
+            pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+              # NOTE: Recommended to be in "ensure_installed"
+              p.c
+              p.lua
+              p.vim
+              p.vimdoc
+              p.query
 
-          treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-            # NOTE: Recommended to be in "ensure_installed"
-            p.c
-            p.lua
-            p.vim
-            p.vimdoc
-            p.query
-
-            fsharp-grammar
-            p.bash
-            p.bibtex
-            p.c_sharp
-            p.cue
-            p.cpp
-            p.css
-            p.dhall
-            p.dockerfile
-            p.fish
-            p.git_rebase
-            p.gitattributes
-            p.gitignore
-            p.glsl
-            p.go
-            p.html
-            p.javascript
-            p.latex
-            p.markdown
-            p.markdown_inline
-            p.nix
-            p.python
-            p.rust
-            p.sql
-            p.typescript
-            p.yaml
-            p.zig
-          ]);
+              fsharp-grammar
+              p.bash
+              p.bibtex
+              p.c_sharp
+              p.cue
+              p.cpp
+              p.css
+              p.dhall
+              p.dockerfile
+              p.fish
+              p.git_rebase
+              p.gitattributes
+              p.gitignore
+              p.glsl
+              p.go
+              p.html
+              p.javascript
+              p.latex
+              p.markdown
+              p.markdown_inline
+              p.nix
+              p.python
+              p.rust
+              p.sql
+              p.typescript
+              p.yaml
+              p.zig
+            ]);
         in
         {
           enable = true;
-          plugins = with vimPlugins; [
-            fugitive
-            plenary-nvim
-            telescope-nvim
-            treesitter
-            nvim-treesitter-context
-            playground
-            zephyr-nvim
+          # package = pkgs.neovim-nightly;
+          plugins = [
+            pkgs.vimPlugins.fugitive
+            pkgs.vimPlugins.plenary-nvim
+            pkgs.vimPlugins.telescope-nvim
+            my-treesitter
+            pkgs.vimPlugins.nvim-treesitter-context
+            pkgs.vimPlugins.zephyr-nvim
+            pkgs.vimPlugins.tokyonight-nvim
 
-            nvim-lspconfig
-            lsp-zero-nvim
+            pkgs.vimPlugins.nvim-lspconfig
+            pkgs.vimPlugins.lsp-zero-nvim
 
-            Ionide-vim
+            pkgs.vimPlugins.Ionide-vim
 
-            nvim-cmp
-            cmp-buffer
-            cmp-path
-            cmp_luasnip
-            cmp-nvim-lsp
-            cmp-nvim-lua
+            pkgs.vimPlugins.nvim-cmp
+            pkgs.vimPlugins.cmp-buffer
+            pkgs.vimPlugins.cmp-path
+            pkgs.vimPlugins.cmp_luasnip
+            pkgs.vimPlugins.cmp-nvim-lsp
+            pkgs.vimPlugins.cmp-nvim-lua
 
-            luasnip
-            friendly-snippets
+            pkgs.vimPlugins.luasnip
+            pkgs.vimPlugins.friendly-snippets
 
-            vim-surround
+            pkgs.vimPlugins.vim-surround
 
-            markdown-preview-nvim
-            nvim-dap
-            tmux-navigator
-            vim-gnupg
-            vim-nix
-            vim-vsnip
-            vimtex
+            pkgs.vimPlugins.markdown-preview-nvim
+            pkgs.vimPlugins.nvim-dap
+            pkgs.vimPlugins.tmux-navigator
+            pkgs.vimPlugins.vim-gnupg
+            pkgs.vimPlugins.vim-nix
+            pkgs.vimPlugins.vim-vsnip
+            pkgs.vimPlugins.vimtex
 
             obsidian-nvim
           ];
@@ -175,7 +190,14 @@ let
           pick = "cherry-pick";
           ltr = "branch --sort=-committerdate";
         };
-        ignores = ["*~" "*.o" "*.a" "*.dll" "*.bak" "*.old"];
+        ignores = [
+          "*~"
+          "*.o"
+          "*.a"
+          "*.dll"
+          "*.bak"
+          "*.old"
+        ];
         extraConfig = {
           init = {
             defaultBranch = "main";
@@ -306,7 +328,6 @@ let
       GIT_ALLOW_PROTOCOL = "ssh:https:keybase:file";
     };
 
-
     nixpkgs.config = {
       allowUnfree = true;
     };
@@ -317,35 +338,35 @@ let
 
     xdg.configFile = {
       fish = {
-        source = ~/.dotfiles/config/fish;
+        source = /home/simkir/.dotfiles/config/fish;
         target = "fish";
         recursive = true;
       };
       mutt = {
-        source = ~/.dotfiles/config/mutt;
+        source = "/home/simkir/.dotfiles/config/mutt";
         target = "mutt";
         recursive = true;
       };
       nvim = {
-        source = ~/.dotfiles/config/nvim;
+        source = "/home/simkir/.dotfiles/config/nvim";
         target = "nvim";
         recursive = true;
       };
       "home.nix" = {
-        source = ~/.dotfiles/home.nix;
+        source = /home/simkir/.dotfiles/home.nix;
         target = "nixpkgs/home.nix";
       };
       "config.nix" = {
-        source = ~/.dotfiles/config.nix;
+        source = /home/simkir/.dotfiles/config.nix;
         target = "nixpkgs/config.nix";
       };
       modules = {
-        source = ~/.dotfiles/modules;
+        source = "/home/simkir/.dotfiles/modules";
         target = "nixpkgs/modules";
         recursive = true;
       };
       packages = {
-        source = ~/.dotfiles/packages;
+        source = "/home/simkir/.dotfiles/packages";
         target = "nixpkgs/packages";
         recursive = true;
       };
@@ -365,70 +386,52 @@ let
       unison = {
         enable = false;
         pairs = {
-          docs = [ "/home/$USER/Documents"  "ssh://example/Documents" ];
+          docs = [
+            "/home/$USER/Documents"
+            "ssh://example/Documents"
+          ];
         };
       };
     };
   };
 
   extraHomeFiles = {
-    home.file = {
-      local-bin = {
-        source = ~/.dotfiles/local/bin;
-        target = ".local/bin";
-        recursive = true;
-      };
-    } // builtins.foldl' (a: x:
-      let
-        mkHomeFile = x: {
-          ${x} = {
-            source = ~/. + "/.dotfiles/adhoc/${x}";
-            target = ".${x}";
-          };
+    home.file =
+      {
+        local-bin = {
+          source = /home/simkir/.dotfiles/local/bin;
+          target = ".local/bin";
+          recursive = true;
         };
-      in
-        a // mkHomeFile x) {} cfg.extraDotfiles;
-  };
-
-  vimDevPlugins =
-    let
-      devPlugins = with pkgs.vimPlugins; [ ];
-    in { programs.neovim.plugins = devPlugins; };
-
-  # settings when not running under NixOS
-  plainNix = {
-    home.sessionVariables = {
-      NIX_PATH = "$HOME/.nix-defexpr/channels/:$NIX_PATH";
-    };
-
-    services = {
-      gpg-agent = {
-        enable = true;
-        enableSshSupport = true;
-        defaultCacheTtl = 43200; # 12 hours
-        defaultCacheTtlSsh = 64800; # 18 hours
-        maxCacheTtl = 64800;
-        maxCacheTtlSsh = 64800;
-        pinentryFlavor = "curses";
-      };
-    };
+      }
+      // builtins.foldl' (
+        a: x:
+        let
+          mkHomeFile = x: {
+            ${x} = {
+              source = "/home/simkir/.dotfiles/adhoc/${x}";
+              target = ".${x}";
+            };
+          };
+        in
+        a // mkHomeFile x
+      ) { } cfg.extraDotfiles;
   };
 in
 {
   options.dotfiles = {
-    extraDotfiles = mkOption {
-      type = types.listOf types.str;
-      default = [];
+    extraDotfiles = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
     };
 
-    vimDevPlugins = mkEnableOption "Enable vim devel plugins";
+    vimDevPlugins = lib.mkEnableOption "Enable vim devel plugins";
 
-    plainNix = mkEnableOption "Tweaks for non-NixOS systems";
+    plainNix = lib.mkEnableOption "Tweaks for non-NixOS systems";
   };
 
-  config = mkMerge [
+  config = lib.mkMerge [
     configuration
     extraHomeFiles
-    (mkIf cfg.vimDevPlugins vimDevPlugins)
   ];
 }

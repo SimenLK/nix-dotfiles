@@ -1,13 +1,13 @@
 self: super:
 let
   arch = "amd64";
-  version = "6.7.5";
+  version = "6.7.7";
 in
 {
-  ferdium-old = super.ferdium.overrideAttrs (attrs: {
+  ferdium = super.ferdium.overrideAttrs {
     src = super.fetchurl {
       url = "https://github.com/ferdium/ferdium-app/releases/download/v${version}/Ferdium-linux-${version}-${arch}.deb";
-      hash = "sha256-PhWYHGRSX9wpPAlfA/UN2nmr++IWbeeEadgU6WAXaTQ=";
+      hash = "sha256-5OW10sABNNYQNUgorM634j5oiBhJJby1ymH6UcmknRg=";
     };
-  });
+  };
 }

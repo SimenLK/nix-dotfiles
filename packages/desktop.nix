@@ -1,12 +1,13 @@
-{ pkgs, config, lib, ... }:
-with lib;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.dotfiles.packages.desktop;
 
-  fcitx =
-    (self: super: {
-      fcitx-engines = pkgs.fcitx5;
-    });
+  fcitx = (self: super: { fcitx-engines = pkgs.fcitx5; });
 
   configuration = {
     nixpkgs.overlays = [
@@ -21,12 +22,12 @@ let
     ];
 
     dotfiles.packages.desktop = {
-      media = mkDefault true;
-      x11 = mkDefault true;
-      gnome = mkDefault true;
-      chat = mkDefault true;
-      graphics = mkDefault true;
-      tex = mkDefault false;
+      media = lib.mkDefault true;
+      x11 = lib.mkDefault true;
+      gnome = lib.mkDefault true;
+      chat = lib.mkDefault true;
+      graphics = lib.mkDefault true;
+      tex = lib.mkDefault false;
     };
 
     home.packages = enabledPackages;
@@ -40,55 +41,55 @@ let
     peek
   ];
 
-  x11 = with pkgs.xorg; [
-    appres
-    editres
-    listres
-    viewres
-    luit
-    xdpyinfo
-    xdriinfo
-    xev
-    xfd
-    xfontsel
-    xkill
-    xlsatoms
-    xlsclients
-    xlsfonts
-    xmessage
-    xprop
-    xvinfo
-    xwininfo
-    xmessage
-    xvinfo
-    xmodmap
-    pkgs.glxinfo
-    pkgs.xclip
-    pkgs.xsel
+  x11 = with pkgs; [
+    xorg.appres
+    xorg.editres
+    xorg.listres
+    xorg.viewres
+    xorg.luit
+    xorg.xdpyinfo
+    xorg.xdriinfo
+    xorg.xev
+    xorg.xfd
+    xorg.xfontsel
+    xorg.xkill
+    xorg.xlsatoms
+    xorg.xlsclients
+    xorg.xlsfonts
+    xorg.xmessage
+    xorg.xprop
+    xorg.xvinfo
+    xorg.xwininfo
+    xorg.xmessage
+    xorg.xvinfo
+    xorg.xmodmap
+    glxinfo
+    xclip
+    xsel
   ];
 
-  gnome = with pkgs.gnome3; [
-    pkgs.galculator
-    gucharmap
-    gnome-settings-daemon
-    gnome-font-viewer
-    adwaita-icon-theme
-    gnome-themes-extra
-    evince
-    gnome-calendar
-    gnome-bluetooth
-    seahorse
-    nautilus
-    pkgs.dconf
-    gnome-disk-utility
-    gnome-tweaks
-    eog
-    networkmanager-fortisslvpn
-    gnome-keyring
-    dconf-editor
-    pkgs.desktop-file-utils
-    pkgs.gcolor3
-    pkgs.lxappearance
+  gnome = with pkgs; [
+    galculator
+    gnome3.gucharmap
+    gnome3.gnome-settings-daemon
+    gnome3.gnome-font-viewer
+    gnome3.adwaita-icon-theme
+    gnome3.gnome-themes-extra
+    gnome3.evince
+    gnome3.gnome-calendar
+    gnome3.gnome-bluetooth
+    gnome3.seahorse
+    gnome3.nautilus
+    dconf
+    gnome3.gnome-disk-utility
+    gnome3.gnome-tweaks
+    gnome3.eog
+    gnome3.networkmanager-fortisslvpn
+    gnome3.gnome-keyring
+    gnome3.dconf-editor
+    desktop-file-utils
+    gcolor3
+    lxappearance
   ];
 
   graphics = with pkgs; [
@@ -104,7 +105,7 @@ let
     dconf
     dunst
     drive
-    ferdium-old
+    ferdium
     firefox
     freerdp
     google-chrome
@@ -132,25 +133,24 @@ let
     discord
   ];
 
-  tex = with pkgs; [
-    texlive.combined.scheme-full
-  ];
+  tex = with pkgs; [ texlive.combined.scheme-full ];
 
-  useIf = x: y: if x then y else [];
+  useIf = x: y: if x then y else [ ];
 
   enabledPackages =
-    desktop ++
-    useIf cfg.gnome gnome ++
-    useIf cfg.x11 x11 ++
-    useIf cfg.media media ++
-    useIf cfg.chat chat ++
-    useIf cfg.graphics graphics ++
-    useIf cfg.wavebox [ pkgs.wavebox ] ++
-    useIf cfg.zoom [ pkgs.zoom-us ] ++
-    useIf cfg.factorio [ pkgs.factorio ] ++
-    useIf cfg.tex tex;
-in {
-  options.dotfiles.packages.desktop = {
+    desktop
+    ++ useIf cfg.gnome gnome
+    ++ useIf cfg.x11 x11
+    ++ useIf cfg.media media
+    ++ useIf cfg.chat chat
+    ++ useIf cfg.graphics graphics
+    ++ useIf cfg.wavebox [ pkgs.wavebox ]
+    ++ useIf cfg.zoom [ pkgs.zoom-us ]
+    ++ useIf cfg.factorio [ pkgs.factorio ]
+    ++ useIf cfg.tex tex;
+in
+{
+  options.dotfiles.packages.desktop = with lib; {
     enable = mkEnableOption "Enable desktop packages";
     media = mkEnableOption "Enable media packages";
     chat = mkEnableOption "Enable chat clients";
@@ -163,8 +163,5 @@ in {
     tex = mkEnableOption "Enable LaTeX";
   };
 
-  config = mkIf cfg.enable (mkMerge [
-    configuration
- ]);
-
+  config = lib.mkIf cfg.enable (lib.mkMerge [ configuration ]);
 }

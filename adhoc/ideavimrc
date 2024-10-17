@@ -37,7 +37,7 @@ map <leader>rr <Action>(Run)
 map <leader>rd <Action>(Debug)
 
 nmap K <Action>(QuickJavaDoc)
-map gh <Action>(ShowErrorDescription)
+map gl <Action>(ShowErrorDescription)
 map ]d <Action>(GotoNextError)
 map [d <Action>(GotoPreviousError)
 

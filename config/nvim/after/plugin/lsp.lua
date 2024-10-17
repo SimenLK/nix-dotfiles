@@ -5,43 +5,38 @@ vim.g.lsp_zero_extend_lspconfig = 0
 
 local lspconfig = require("lspconfig")
 local lsp_zero = require("lsp-zero")
--- lsp_zero.extend_lspconfig()
-
 local cmp = require("cmp")
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp_zero.defaults.cmp_mappings({
-  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-  ['<C-d>'] = cmp.mapping.scroll_docs(4),
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ['<C-Space>'] = cmp.mapping.complete(),
+local cmp_action = lsp_zero.cmp_action()
+
+cmp.setup({
+  -- mapping = cmp.mapping.preset.insert({ }),
 })
 
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-cmp_mappings['<CR>'] = nil
-
-lsp_zero.on_attach(function(client, bufnr)
-  lsp_zero.default_keymaps({ buffer = bufnr })
+lsp_zero.on_attach(function (client, bufnr)
+  lsp_zero.default_keymaps({buffer = bufnr})
+  client.server_capabilities.semanticTokensProvider = nil
 end)
 
 lsp_zero.setup_servers({
   'clangd',
-  'cssls',
   'dagger',
   'dhall_lsp_server',
   'gopls',
-  'ionide',
   'marksman',
   -- 'nil_ls',
-  'nixd',
   'pyright',
   'tsserver',
+  'ionide',
 })
+
+local capabilities = lsp_zero.get_capabilities()
 
 local lua_opts = lsp_zero.nvim_lua_ls()
 lspconfig.lua_ls.setup(lua_opts)
+
+lspconfig.cssls.setup {
+  capabilities = capabilities
+}
 
 lspconfig.yamlls.setup {
   -- other configuration for setup {}
@@ -120,5 +115,30 @@ lspconfig.rust_analyzer.setup({
 --     },
 --   }
 -- })
+
+lspconfig.nixd.setup({
+  cmd = { "nixd" },
+  settings = {
+    nixd = {
+      nixpkgs = {
+        expr = "import <nixpkgs> { }",
+      },
+      formatting = {
+        command = { "nixfmt" },
+      },
+      options = {
+        nixos = {
+          expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
+        },
+        home_manager = {
+          expr = "(import <home-manager/modules> { configuration = ~/.dotfiles/home.nix; pkgs = import <nixpkgs> {}; }).options"
+        },
+        serit_platform_manifests = {
+          expr = '(builtins.getFlake ("git+file://home/simkir/serit/k8s/serit-platform-manifests")).options'
+        },
+      },
+    },
+  },
+})
 
 lsp_zero.setup()

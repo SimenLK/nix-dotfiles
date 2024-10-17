@@ -1,5 +1,4 @@
-{ pkgs, lib, ... }:
-with lib;
+{ pkgs, ... }:
 let
   configuration = {
     home.packages = enabledPackages;
@@ -49,11 +48,10 @@ let
     tree-sitter
   ];
 
-  enabledPackages =
-    sys ++
-    user;
-in {
-  options.dotfiles.packages = {};
+  enabledPackages = sys ++ user;
+in
+{
+  options.dotfiles.packages = { };
 
   config = configuration;
 }

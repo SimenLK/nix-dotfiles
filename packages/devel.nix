@@ -1,13 +1,17 @@
-{ pkgs, config, lib, ... }:
-with lib;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.dotfiles.packages;
 
   configuration = {
-    nixpkgs.overlays = [];
+    nixpkgs.overlays = [ ];
 
     dotfiles.packages.devel = {
-      nix = mkDefault true;
+      nix = lib.mkDefault true;
     };
 
     home.packages = enabledPackages;
@@ -59,50 +63,48 @@ let
     # glirc
   ];
 
-  combined = (with pkgs.dotnetCorePackages; combinePackages [
-    pkgs.dotnet-sdk
-    pkgs.dotnet-sdk_7
-    pkgs.dotnet-sdk_8
-  ]);
+  combined = (
+    pkgs.dotnetCorePackages.combinePackages [
+      pkgs.dotnet-sdk
+      pkgs.dotnet-sdk_7
+      pkgs.dotnet-sdk_8
+    ]
+  );
 
   dotnet = {
     home.sessionVariables = {
       DOTNET_ROOT = combined;
     };
-    home.packages = [
-      combined
-    ];
+    home.packages = [ combined ];
   };
 
   python = with pkgs; [
-    (python3.withPackages (ps: with ps; [
+    (python3.withPackages (
+      ps: with ps; [
         numpy
         matplotlib
         tkinter
         virtualenv
-      ]))
+      ]
+    ))
   ];
 
-  node = with pkgs.nodePackages; [
+  node = [
     pkgs.nodejs
-    npm
-    webpack
-    webpack-cli
-    typescript
-    typescript-language-server
+    pkgs.nodePackages.npm
+    pkgs.nodePackages.webpack
+    pkgs.nodePackages.webpack-cli
+    pkgs.nodePackages.typescript
+    pkgs.nodePackages.typescript-language-server
   ];
 
-  cpp = with pkgs; [
-    ccls
-  ];
+  cpp = with pkgs; [ ccls ];
 
-  rust = with pkgs; [
-    rust-analyzer
-  ];
+  rust = with pkgs; [ rust-analyzer ];
 
-  go = with pkgs; [
-    go
-    go2nix
+  go = [
+    pkgs.go
+    pkgs.go2nix
   ];
 
   clojure = with pkgs; [
@@ -116,6 +118,8 @@ let
     lorri
     nix-prefetch-scripts
     patchelf
+    nixfmt-rfc-style
+    nvd
   ];
 
   db = with pkgs; [
@@ -137,28 +141,28 @@ let
     helm-ls
     lua-language-server
     nixd
-    # nil
   ];
 
-  useIf = x: y: if x then y else [];
+  useIf = x: y: if x then y else [ ];
 
   enabledPackages =
-    base ++
-    lsp ++
-    useIf cfg.devel.android [ pkgs.android-studio ] ++
-    useIf cfg.devel.cpp cpp ++
-    useIf cfg.devel.node node ++
-    useIf cfg.devel.rust rust ++
-    useIf cfg.devel.haskell haskell ++
-    useIf cfg.devel.python python ++
-    useIf cfg.devel.go go ++
-    useIf cfg.devel.clojure clojure ++
-    useIf cfg.devel.nix nix ++
-    useIf cfg.devel.java java ++
-    useIf cfg.devel.db db;
-in {
+    base
+    ++ lsp
+    ++ useIf cfg.devel.android [ pkgs.android-studio ]
+    ++ useIf cfg.devel.cpp cpp
+    ++ useIf cfg.devel.node node
+    ++ useIf cfg.devel.rust rust
+    ++ useIf cfg.devel.haskell haskell
+    ++ useIf cfg.devel.python python
+    ++ useIf cfg.devel.go go
+    ++ useIf cfg.devel.clojure clojure
+    ++ useIf cfg.devel.nix nix
+    ++ useIf cfg.devel.java java
+    ++ useIf cfg.devel.db db;
+in
+{
   options.dotfiles.packages = {
-    devel = {
+    devel = with lib; {
       enable = mkEnableOption "Enable development packages";
       android = mkEnableOption "Enable android studio";
       dotnet = mkEnableOption "Enable dotnet sdk";
@@ -175,8 +179,10 @@ in {
     };
   };
 
-  config = mkIf cfg.devel.enable (mkMerge [
-    configuration
-    (mkIf cfg.devel.dotnet dotnet)
-  ]);
+  config = lib.mkIf cfg.devel.enable (
+    lib.mkMerge [
+      configuration
+      (lib.mkIf cfg.devel.dotnet dotnet)
+    ]
+  );
 }

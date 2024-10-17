@@ -1,9 +1,11 @@
 { pkgs, ... }:
 {
+  imports = [ ./modules ];
+
   home = {
     username = "simkir";
     homeDirectory = "/home/simkir";
-    stateVersion = "22.11";
+    stateVersion = "23.11";
   };
 
   dotfiles = {
@@ -12,7 +14,7 @@
       dropbox.enable = false;
       i3.enable = true;
       laptop = false;
-      fontSize = 15.0;
+      fontSize = 14.0;
     };
     packages = {
       devel = {
@@ -44,7 +46,7 @@
       };
       kubernetes = true;
       cloud = true;
-      geo = false;
+      geo = true;
     };
     extraDotfiles = [
       "bcrc"
@@ -64,10 +66,13 @@
     wally-cli
     tree
     glab
-    lua-language-server
     marksman
     yubikey-manager-qt
-    nodePackages.vscode-langservers-extracted
+    # nodePackages.vscode-langservers-extracted
+    clamav
+    markdownlint-cli2
+    devbox
+    nom
   ];
 
   programs = {
@@ -77,10 +82,11 @@
     };
 
     ssh.matchBlocks = {
-      zelda = {
-        user = "simen";
-        hostname = "zelda.itpartner.intern";
+      margit = {
+        user = "simkir";
+        hostname = "margit.itpartner.intern";
       };
+
       uvcluster = {
         user = "ski027";
         hostname = "uvcluster.cs.uit.no";
@@ -88,6 +94,11 @@
       ekman = {
         user = "simenlk";
         hostname = "10.255.242.2";
+      };
+
+      ads-matomo01 = {
+        user = "itpadmin";
+        hostname = "10.255.168.163";
       };
 
       "10.1.*" = {
@@ -98,6 +109,4 @@
       };
     };
   };
-
-  imports = [ ./modules ];
 }
