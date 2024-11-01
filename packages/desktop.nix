@@ -112,7 +112,6 @@ let
     gparted
     keybase
     keybase-gui
-    kind
     libreoffice
     libnotify
     newsflash
@@ -122,10 +121,13 @@ let
     pavucontrol
     pinentry
     remmina
-    rider
     rssguard
     spotify
     wireshark
+  ];
+
+  IDE = with pkgs; [
+    rider
   ];
 
   chat = with pkgs; [
@@ -147,7 +149,8 @@ let
     ++ useIf cfg.wavebox [ pkgs.wavebox ]
     ++ useIf cfg.zoom [ pkgs.zoom-us ]
     ++ useIf cfg.factorio [ pkgs.factorio ]
-    ++ useIf cfg.tex tex;
+    ++ useIf cfg.tex tex
+    ++ useIf cfg.IDE IDE;
 in
 {
   options.dotfiles.packages.desktop = with lib; {
@@ -161,6 +164,7 @@ in
     zoom = mkEnableOption "Enable zoom";
     factorio = mkEnableOption "Enable factorio!";
     tex = mkEnableOption "Enable LaTeX";
+    IDE = mkEnableOption "Enable your IDE, aka Rider in this case :)";
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [ configuration ]);
