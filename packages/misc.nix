@@ -32,9 +32,6 @@ let
   k8sPkgs = with pkgs; [
     argocd
     cilium-cli
-    cue
-    cuelsp
-    cuetools
     dive
     krew
     kubectl
@@ -45,7 +42,6 @@ let
     step-cli # cert swiss army knife
     talosctl
     tilt
-    timoni
     vcluster
     velero
   ];
