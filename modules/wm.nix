@@ -1,5 +1,4 @@
 { pkgs, config, lib, ...}:
-with lib;
 let
   cfg = config.dotfiles.desktop;
 
@@ -14,9 +13,12 @@ let
         xset s 1800
         xset +dpms
         xset dpms 1800 2400 3600
-        xmodmap $HOME/.dotfiles/Xmodmap
-        if xrandr | grep -q "DP2 connected"; then
-            xrandr --output DP2 --mode 2560x1440 --rate 165
+        xmodmap $HOME/.dotfiles/adhoc/Xmodmap
+        if xrandr | grep -q "DP1 connected"; then
+            xrandr --output DP1 --mode 2560x1440 --rate 120
+            if xrandr | grep -q "DP2 connected"; then
+                xrandr --output DP2 --left-of DP1 --auto
+            fi
         fi
       '' + cfg.xsessionInitExtra;
       numlock.enable = true;
@@ -316,27 +318,26 @@ let
       networkmanagerapplet
     ];
   };
-
 in {
   options.dotfiles.desktop = {
     i3 = {
-      enable = mkEnableOption "Enable i3";
+      enable = lib.mkEnableOption "Enable i3";
     };
 
     sway = {
-      enable = mkEnableOption "Enable sway";
+      enable = lib.mkEnableOption "Enable sway";
     };
 
-    xsessionInitExtra = mkOption {
-      type = types.str;
+    xsessionInitExtra = lib.mkOption {
+      type = lib.types.str;
       default = "";
     };
   };
 
-  config = mkMerge [
-    (mkIf (cfg.i3.enable) xorg)
-    (mkIf cfg.i3.enable i3)
-    (mkIf cfg.sway.enable sway)
+  config = lib.mkMerge [
+    (lib.mkIf (cfg.i3.enable) xorg)
+    (lib.mkIf cfg.i3.enable i3)
+    (lib.mkIf cfg.sway.enable sway)
   ];
 
   imports = [ ./polybar.nix ];
