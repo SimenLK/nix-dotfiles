@@ -1,13 +1,19 @@
-local function find_build_script()
-  local result = "make"
+local function find_local_build()
+    local result = "make"
 
-  if vim.fn.filereadable("build.sh") then
-    result = "./build.sh"
-  end
+    local build = vim.fs.find('build.sh', {
+        type = "file"
+    })
 
-  return result
+    print("Found:", vim.inspect(build))
+
+    if not vim.tbl_isempty(build) then
+        result = "./build.sh"
+    end
+
+    return result
 end
 
-vim.opt_local.makeprg = find_build_script()
-vim.opt_local.cino = "(0"
+vim.opt_local.makeprg = find_local_build()
+vim.opt_local.cino = "(0,W4"
 vim.opt_local.textwidth = 80
