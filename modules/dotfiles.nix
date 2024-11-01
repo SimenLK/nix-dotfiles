@@ -423,8 +423,6 @@ in
       default = [ ];
     };
 
-    vimDevPlugins = lib.mkEnableOption "Enable vim devel plugins";
-
     plainNix = lib.mkEnableOption "Tweaks for non-NixOS systems";
   };
 

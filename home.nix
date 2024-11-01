@@ -58,7 +58,6 @@
       "mailcap"
       "ideavimrc"
     ];
-    vimDevPlugins = false;
   };
 
   home.packages = with pkgs; [
