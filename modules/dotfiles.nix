@@ -381,8 +381,6 @@ let
     };
 
     services = {
-      lorri.enable = true;
-
       unison = {
         enable = false;
         pairs = {
