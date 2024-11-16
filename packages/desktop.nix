@@ -93,7 +93,6 @@ let
   ];
 
   graphics = with pkgs; [
-    aseprite
     gimp
   ];
 
@@ -108,7 +107,6 @@ let
     ferdium
     firefox
     freerdp
-    google-chrome
     gparted
     keybase
     keybase-gui
@@ -131,7 +129,6 @@ let
   ];
 
   chat = with pkgs; [
-    slack
     discord
   ];
 
