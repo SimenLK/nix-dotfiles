@@ -9,5 +9,5 @@ configs.setup {
 
 context.setup{
   enable = true,
-  max_lines = 8,
+  max_lines = 4,
 }

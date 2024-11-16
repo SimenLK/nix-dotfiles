@@ -26,7 +26,7 @@ lsp_zero.setup_servers({
   -- 'nil_ls',
   'pyright',
   'tsserver',
-  'ionide',
+  'fsautocomplete',
 })
 
 local capabilities = lsp_zero.get_capabilities()
