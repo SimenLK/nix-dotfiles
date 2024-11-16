@@ -385,6 +385,7 @@ let
       wev
       wl-clipboard
       wofi
+      wofi-pass
     ];
 
     wayland.windowManager = {
@@ -498,8 +499,7 @@ let
           "$mainMod, V, togglefloating,"
           "$mainMod, F, fullscreen,"
           "$mainMod, D, exec, $menu"
-          "$mainMod, P, pseudo, " # dwindle
-          "$mainMod, J, togglesplit, " # dwindle
+          "$mainMod SHIFT, D, exec, wofi-pass -c -s"
           "$mainMod, W, togglegroup, "
 
           # "focus with mainMod + vim keys"
