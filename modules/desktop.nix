@@ -185,11 +185,11 @@ let
       enable = true;
       settings = {
         window = {
-          opacity = 0.2;
+          opacity = 0.6;
         };
         font = {
           normal = {
-            family = "JetBrains Mono";
+            family = "JetBrains Mono Nerd Font";
             style = "Regular";
           };
           size = cfg.fontSize;
