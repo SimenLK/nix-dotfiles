@@ -74,7 +74,8 @@ let
 
       neovim =
         let
-          obsidian-nvim = fromGithub "v3.7.14" "epwalsh/obsidian.nvim";
+          obsidian-nvim = fromGithub "v3.9.0" "epwalsh/obsidian.nvim";
+          render-markdown-nvim = fromGithub "v7.5.0" "MeanderingProgrammer/render-markdown.nvim";
 
           my-treesitter =
             let
@@ -140,39 +141,37 @@ let
         {
           enable = true;
           # package = pkgs.neovim-nightly;
-          plugins = [
-            pkgs.vimPlugins.fugitive
-            pkgs.vimPlugins.plenary-nvim
-            pkgs.vimPlugins.telescope-nvim
+          plugins = with pkgs.vimPlugins; [
+            fugitive
+            plenary-nvim
+            telescope-nvim
             my-treesitter
-            pkgs.vimPlugins.nvim-treesitter-context
-            pkgs.vimPlugins.zephyr-nvim
-            pkgs.vimPlugins.tokyonight-nvim
+            nvim-treesitter-context
+            zephyr-nvim
+            tokyonight-nvim
 
-            pkgs.vimPlugins.nvim-lspconfig
-            pkgs.vimPlugins.lsp-zero-nvim
+            nvim-lspconfig
+            lsp-zero-nvim
 
-            pkgs.vimPlugins.Ionide-vim
+            nvim-cmp
+            cmp-buffer
+            cmp-path
+            cmp_luasnip
+            cmp-nvim-lsp
+            cmp-nvim-lua
 
-            pkgs.vimPlugins.nvim-cmp
-            pkgs.vimPlugins.cmp-buffer
-            pkgs.vimPlugins.cmp-path
-            pkgs.vimPlugins.cmp_luasnip
-            pkgs.vimPlugins.cmp-nvim-lsp
-            pkgs.vimPlugins.cmp-nvim-lua
+            luasnip
+            friendly-snippets
 
-            pkgs.vimPlugins.luasnip
-            pkgs.vimPlugins.friendly-snippets
+            vim-surround
 
-            pkgs.vimPlugins.vim-surround
-
-            pkgs.vimPlugins.markdown-preview-nvim
-            pkgs.vimPlugins.nvim-dap
-            pkgs.vimPlugins.tmux-navigator
-            pkgs.vimPlugins.vim-gnupg
-            pkgs.vimPlugins.vim-nix
-            pkgs.vimPlugins.vim-vsnip
-            pkgs.vimPlugins.vimtex
+            render-markdown-nvim
+            nvim-dap
+            tmux-navigator
+            vim-gnupg
+            vim-nix
+            vim-vsnip
+            vimtex
 
             obsidian-nvim
           ];
