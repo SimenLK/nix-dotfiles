@@ -12,7 +12,8 @@ let
 
     dotfiles.desktop.onedrive.enable = lib.mkDefault false;
     dotfiles.desktop.sway.enable = lib.mkDefault false;
-    dotfiles.desktop.i3.enable = lib.mkDefault true;
+    dotfiles.desktop.i3.enable = lib.mkDefault false;
+    dotfiles.desktop.hyprland.enable = lib.mkDefault true;
 
     dotfiles.desktop.fontSize = lib.mkDefault 12.0;
 
