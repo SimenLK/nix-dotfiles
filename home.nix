@@ -11,10 +11,10 @@
   dotfiles = {
     desktop = {
       enable = false;
-      dropbox.enable = false;
-      i3.enable = true;
       laptop = false;
-      fontSize = 14.0;
+      hyprland.enable = false;
+      dropbox.enable = false;
+      fontSize = 13.0;
     };
     packages = {
       devel = {
@@ -35,7 +35,7 @@
       desktop = {
         enable = false;
         gnome = true;
-        x11 = true;
+        x11 = false;
         media = true;
         chat = true;
         graphics = true;
