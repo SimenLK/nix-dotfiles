@@ -502,6 +502,8 @@ let
           "$mainMod SHIFT, D, exec, wofi-pass -c -s"
           "$mainMod, W, togglegroup, "
 
+          "CTRL SHIFT, L, exec, hyprlock"
+
           # "focus with mainMod + vim keys"
           "$mainMod, H, movefocus, l"
           "$mainMod, J, movefocus, d"
@@ -513,7 +515,6 @@ let
           "$mainMod SHIFT, J, movewindoworgroup, d"
           "$mainMod SHIFT, K, movewindoworgroup, u"
           "$mainMod SHIFT, L, movewindoworgroup, r"
-
 
           # Window cycling
           "$mainMod, Tab, layoutmsg, swapwithmaster"
@@ -566,11 +567,53 @@ let
           ", XF86AudioLowerVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ -10%"
         ];
 
+        bindl = [
+          ", switch:Lid Switch, exec, hyprlock"
+        ];
+
         windowrulev2 = "suppressevent maximize, class:.*"; # You'll probably like this.
       };
     };
 
     programs = {
+      hyprlock = {
+        enable = false;
+        settings = {
+          general = {
+            disable_loading_bar = true;
+            grace = 300;
+            hide_cursor = true;
+            no_fade_in = false;
+          };
+
+          background = [
+            {
+              path = "screenshot";
+              blur_passes = 3;
+              blur_size = 8;
+            }
+          ];
+
+          input-field = [
+            {
+              size = "200, 50";
+              position = "0, -80";
+              monitor = "";
+              dots_center = true;
+              fade_on_empty = false;
+              font_color = "rgb(202, 211, 245)";
+              inner_color = "rgb(91, 96, 120)";
+              outer_color = "rgb(24, 25, 38)";
+              outline_thickness = 5;
+              placeholder_text = ''
+                <span foreground="##cad3f5">Password...</span>
+              '';
+              shadow_passes = 2;
+            }
+          ];
+        };
+      };
+
       waybar = {
         enable = true;
         systemd.enable = true;
@@ -689,16 +732,18 @@ let
         enable = true;
         settings = {
           general = {
-            after_sleep_cmd = "hyprctl dispatch dpms on";
             ignore_dbus_inhibit = false;
-            lock_cmd = "hyprlock";
+            lock_cmd = "pidof hyprlock || hyprlock";
+            before_sleep_cmd = "loginctl lock-session";
+            after_sleep_cmd = "hyprctl dispatch dpms on";
           };
 
           listener = [
             {
               timeout = 900;
-              on-timeout = "hyprlock";
+              on-timeout = "loginctl lock-session";
             }
+
             {
               timeout = 1200;
               on-timeout = "hyprctl dispatch dpms off";
@@ -709,6 +754,7 @@ let
       };
 
       hyprpaper =
+        # TODO: Expose wallpapers as option
         let
           root = "/home/simkir/code/nixos-artwork/wallpapers/";
           nix-black = root + "nix-wallpaper-binary-black.png";

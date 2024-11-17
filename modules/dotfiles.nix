@@ -341,29 +341,41 @@ let
         target = "fish";
         recursive = true;
       };
+
       mutt = {
         source = "/home/simkir/.dotfiles/config/mutt";
         target = "mutt";
         recursive = true;
       };
+
       nvim = {
         source = "/home/simkir/.dotfiles/config/nvim";
         target = "nvim";
         recursive = true;
       };
+
+      hypr = {
+        source = "/home/simkir/.dotfiles/config/hypr";
+        target = "hypr";
+        recursive = true;
+      };
+
       "home.nix" = {
         source = /home/simkir/.dotfiles/home.nix;
         target = "nixpkgs/home.nix";
       };
+
       "config.nix" = {
         source = /home/simkir/.dotfiles/config.nix;
         target = "nixpkgs/config.nix";
       };
+
       modules = {
         source = "/home/simkir/.dotfiles/modules";
         target = "nixpkgs/modules";
         recursive = true;
       };
+
       packages = {
         source = "/home/simkir/.dotfiles/packages";
         target = "nixpkgs/packages";
