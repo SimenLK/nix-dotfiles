@@ -165,8 +165,9 @@ let
 
             vim-surround
 
-            render-markdown-nvim
             nvim-dap
+            nvim-colorizer-lua
+            render-markdown-nvim
             tmux-navigator
             vim-gnupg
             vim-nix
