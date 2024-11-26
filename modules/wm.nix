@@ -386,12 +386,16 @@ let
       wl-clipboard
       wofi
       wofi-pass
+      nm-tray
     ];
 
     wayland.windowManager = {
       hyprland.enable = true;
       hyprland.settings = {
-        monitor = ",preferred,auto,1";
+        monitor = [
+          "eDP-1,     preferred,      0x0, 1.0"
+          "HDMI-A-1,  preferred,  auto-up, 1.25"
+        ];
 
         "$terminal" = "alacritty";
         "$fileManager" = "nautilus";
@@ -464,14 +468,9 @@ let
           new_status = "slave";
         };
 
-        misc = {
-          force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
-          disable_hyprland_logo = false; # If true disables the random hyprland logo / anime girl background. :(
-        };
-
         input = {
           kb_layout = "us";
-          kb_variant = "";
+          kb_variant = "altgr-intl";
           kb_model = "";
           kb_options = "ctrl:swapcaps";
           kb_rules = "";
@@ -501,8 +500,7 @@ let
           "$mainMod, D, exec, $menu"
           "$mainMod SHIFT, D, exec, wofi-pass -c -s"
           "$mainMod, W, togglegroup, "
-
-          "CTRL SHIFT, L, exec, hyprlock"
+          "$mainMod CTRL, L, exec, hyprlock"
 
           # "focus with mainMod + vim keys"
           "$mainMod, H, movefocus, l"
@@ -634,11 +632,10 @@ let
               "hyprland/workspaces"
             ];
 
-            modules-center = [ "hyprland/window" ];
+            modules-center = [];
 
             modules-right = [
-              "mpd"
-              "custom/mymodule#with-css-id"
+              "hyprland/language"
               "temperature"
               "cpu"
               "memory"
@@ -646,17 +643,18 @@ let
               "pulseaudio"
               "backlight"
               "battery"
+              "tray"
               "clock"
             ];
-
-            "hyprland/workspaces" = {
-              all-outputs = true;
-            };
 
             "custom/os_button" = {
               format = "";
               "on-click" = "wofi --show drun";
               tooltip = false;
+            };
+
+            "hyprland/language" = {
+              format = "{short} ({variant})";
             };
 
             cpu = {
@@ -668,7 +666,7 @@ let
             };
 
             network = {
-              "format-wifi" = "{essid} ({signalStrength}%) ";
+              "format-wifi" = "   {signalStrength}%";
               "format-ethernet" = " {ifname}";
               "tooltip-format" = " {ifname} via {gwaddr}";
               "format-linked" = " {ifname} (No IP)";
@@ -717,6 +715,11 @@ let
                 ""
                 ""
               ];
+            };
+
+            tray = {
+              "icon-size" = 18;
+              spacing = 3;
             };
           };
         };
@@ -768,7 +771,7 @@ let
 
             preload = [ nix-black ];
 
-            wallpaper = [ "eDP-1,${nix-black}" ];
+            wallpaper = [ ",${nix-black}" ];
           };
         };
     };
