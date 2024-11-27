@@ -114,10 +114,10 @@ let
 
   nix = with pkgs; [
     colmena
-    niv
     lorri
+    npins
+    nix-output-monitor
     nix-prefetch-scripts
-    patchelf
     nixfmt-rfc-style
     nvd
   ];
