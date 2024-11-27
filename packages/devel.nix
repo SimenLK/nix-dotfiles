@@ -141,6 +141,7 @@ let
     helm-ls
     lua-language-server
     nixd
+    nodePackages_latest.vscode-langservers-extracted
   ];
 
   useIf = x: y: if x then y else [ ];
