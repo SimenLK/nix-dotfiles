@@ -1,5 +1,4 @@
 { pkgs, config, lib, ...}:
-with lib;
 let
   cfg = config.dotfiles.desktop;
 
@@ -9,7 +8,7 @@ let
       initExtra = ''
         xsetroot -solid '#888888'
         xsetroot -cursor_name left_ptr
-        ${pkgs.gnome3.gnome-settings-daemon}/libexec/gsd-xsettings &
+        ${pkgs.gnome-settings-daemon}/libexec/gsd-xsettings &
         systemctl --user start gvfs-udisks2-volume-monitor.service
         xset s 1800
         xset +dpms
@@ -175,7 +174,7 @@ let
 
             "${mod}+Ctrl+l" = "exec --no-startup-id ${pkgs.i3lock}/bin/i3lock -n -c 111111";
             "${mod}+Ctrl+s" = "exec --no-startup-id ${pkgs.flameshot}/bin/flameshot gui";
-            "${mod}+Ctrl+n" = "exec --no-startup-id ${pkgs.gnome3.nautilus}/bin/nautilus";
+            "${mod}+Ctrl+n" = "exec --no-startup-id ${pkgs.nautilus}/bin/nautilus";
 
             # Pulse Audio controls
             "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
@@ -320,23 +319,23 @@ let
 in {
   options.dotfiles.desktop = {
     i3 = {
-      enable = mkEnableOption "Enable i3";
+      enable = lib.mkEnableOption "Enable i3";
     };
 
     sway = {
-      enable = mkEnableOption "Enable sway";
+      enable = lib.mkEnableOption "Enable sway";
     };
 
-    xsessionInitExtra = mkOption {
-      type = types.str;
+    xsessionInitExtra = lib.mkOption {
+      type = lib.types.str;
       default = "";
     };
   };
 
-  config = mkMerge [
-    (mkIf (cfg.i3.enable) xorg)
-    (mkIf cfg.i3.enable i3)
-    (mkIf cfg.sway.enable sway)
+  config = lib.mkMerge [
+    (lib.mkIf (cfg.i3.enable) xorg)
+    (lib.mkIf cfg.i3.enable i3)
+    (lib.mkIf cfg.sway.enable sway)
   ];
 
   imports = [ ./polybar.nix ];

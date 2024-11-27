@@ -68,25 +68,25 @@ let
     xsel
   ];
 
-  gnome = with pkgs; [
+  gnome3 = with pkgs; [
     galculator
-    gnome3.gucharmap
-    gnome3.gnome-settings-daemon
-    gnome3.gnome-font-viewer
-    gnome3.adwaita-icon-theme
-    gnome3.gnome-themes-extra
-    gnome3.evince
-    gnome3.gnome-calendar
-    gnome3.gnome-bluetooth
-    gnome3.seahorse
-    gnome3.nautilus
+    gucharmap
+    gnome-settings-daemon
+    gnome-font-viewer
+    adwaita-icon-theme
+    gnome-themes-extra
+    evince
+    gnome-calendar
+    gnome-bluetooth
+    seahorse
+    nautilus
     dconf
-    gnome3.gnome-disk-utility
-    gnome3.gnome-tweaks
-    gnome3.eog
-    gnome3.networkmanager-fortisslvpn
-    gnome3.gnome-keyring
-    gnome3.dconf-editor
+    gnome-disk-utility
+    gnome-tweaks
+    eog
+    networkmanager-fortisslvpn
+    gnome-keyring
+    dconf-editor
     desktop-file-utils
     gcolor3
     lxappearance
@@ -136,7 +136,7 @@ let
 
   enabledPackages =
     desktop
-    ++ useIf cfg.gnome gnome
+    ++ useIf cfg.gnome gnome3
     ++ useIf cfg.x11 x11
     ++ useIf cfg.media media
     ++ useIf cfg.chat chat
