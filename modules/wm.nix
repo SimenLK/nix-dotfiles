@@ -20,12 +20,6 @@ let
           xset +dpms
           xset dpms 1800 2400 3600
           xmodmap $HOME/.dotfiles/adhoc/Xmodmap
-          if xrandr | grep -q "DP1 connected"; then
-              xrandr --output DP1 --mode 2560x1440 --rate 120
-              if xrandr | grep -q "DP2 connected"; then
-                  xrandr --output DP2 --left-of DP1 --auto
-              fi
-          fi
         ''
         + cfg.xsessionInitExtra;
       numlock.enable = true;
@@ -238,7 +232,7 @@ let
 
               "${mod}+Ctrl+l" = "exec --no-startup-id ${pkgs.i3lock}/bin/i3lock -n -c 111111";
               "${mod}+Ctrl+s" = "exec --no-startup-id ${pkgs.flameshot}/bin/flameshot gui";
-              "${mod}+Ctrl+n" = "exec --no-startup-id ${pkgs.gnome3.nautilus}/bin/nautilus";
+              "${mod}+Ctrl+n" = "exec --no-startup-id ${pkgs.nautilus}/bin/nautilus";
 
               # Pulse Audio controls
               "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";

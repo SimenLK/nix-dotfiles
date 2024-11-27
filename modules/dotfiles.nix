@@ -75,32 +75,30 @@ let
       neovim =
         let
           obsidian-nvim = fromGithub "v3.9.0" "epwalsh/obsidian.nvim";
-          render-markdown-nvim = fromGithub "v7.5.0" "MeanderingProgrammer/render-markdown.nvim";
+
+          fsharp-grammar =
+            let
+              drv = pkgs.tree-sitter.buildGrammar {
+                language = "fsharp";
+                version = "0.1.0-alpha.4";
+                location = "fsharp";
+                src = /home/simkir/code/tree-sitter-fsharp;
+                meta.homepage = "https://github.com/ionide/tree-sitter-fsharp";
+              };
+            in
+            drv.overrideAttrs (attrs: {
+              installPhase = ''
+                runHook preInstall
+                mkdir $out
+                mv parser $out/
+                if [[ -d ../queries ]]; then
+                  cp -r ../queries $out
+                fi
+                runHook postInstall
+              '';
+            });
 
           my-treesitter =
-            let
-              fsharp-grammar =
-                let
-                  drv = pkgs.tree-sitter.buildGrammar {
-                    language = "fsharp";
-                    version = "0.1.0-alpha.1";
-                    location = "fsharp";
-                    src = /home/simkir/code/tree-sitter-fsharp;
-                    meta.homepage = "https://github.com/ionide/tree-sitter-fsharp";
-                  };
-                in
-                drv.overrideAttrs (attrs: {
-                  installPhase = ''
-                    runHook preInstall
-                    mkdir $out
-                    mv parser $out/
-                    if [[ -d ../queries ]]; then
-                      cp -r ../queries $out
-                    fi
-                    runHook postInstall
-                  '';
-                });
-            in
             pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
               # NOTE: Recommended to be in "ensure_installed"
               p.c
@@ -109,7 +107,6 @@ let
               p.vimdoc
               p.query
 
-              fsharp-grammar
               p.bash
               p.bibtex
               p.c_sharp
@@ -141,38 +138,46 @@ let
         {
           enable = true;
           # package = pkgs.neovim-nightly;
-          plugins = with pkgs.vimPlugins; [
-            fugitive
-            plenary-nvim
-            telescope-nvim
+          plugins = with pkgs; [
+            # Essentials
+            vimPlugins.fugitive
+            vimPlugins.vim-surround
+            vimPlugins.tmux-navigator
+
+            vimPlugins.plenary-nvim
+            vimPlugins.telescope-nvim
+
             my-treesitter
-            nvim-treesitter-context
-            zephyr-nvim
-            tokyonight-nvim
+            (pkgs.neovimUtils.grammarToPlugin fsharp-grammar)
 
-            nvim-lspconfig
-            lsp-zero-nvim
+            vimPlugins.nvim-treesitter-context
 
-            nvim-cmp
-            cmp-buffer
-            cmp-path
-            cmp_luasnip
-            cmp-nvim-lsp
-            cmp-nvim-lua
+            # colorschemes
+            vimPlugins.zephyr-nvim
+            vimPlugins.tokyonight-nvim
 
-            luasnip
-            friendly-snippets
+            vimPlugins.nvim-lspconfig
+            vimPlugins.lsp-zero-nvim
 
-            vim-surround
+            vimPlugins.nvim-cmp
+            vimPlugins.cmp-buffer
+            vimPlugins.cmp-path
+            vimPlugins.cmp-cmdline
+            vimPlugins.cmp_luasnip
+            vimPlugins.cmp-nvim-lsp
+            vimPlugins.cmp-nvim-lua
 
-            nvim-dap
-            nvim-colorizer-lua
-            render-markdown-nvim
-            tmux-navigator
-            vim-gnupg
-            vim-nix
-            vim-vsnip
-            vimtex
+            vimPlugins.luasnip
+            vimPlugins.friendly-snippets
+
+            vimPlugins.indent-blankline-nvim
+            vimPlugins.markdown-preview-nvim
+            vimPlugins.nvim-colorizer-lua
+            vimPlugins.nvim-notify
+            vimPlugins.vim-gnupg
+            vimPlugins.vim-nix
+            vimPlugins.vim-vsnip
+            vimPlugins.vimtex
 
             obsidian-nvim
           ];
@@ -299,7 +304,6 @@ let
 
       home-manager = {
         enable = true;
-        path = "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
       };
     };
 

@@ -112,10 +112,10 @@ let
 
   nix = with pkgs; [
     colmena
-    niv
     lorri
+    npins
+    nix-output-monitor
     nix-prefetch-scripts
-    patchelf
     nixfmt-rfc-style
     nvd
   ];
@@ -139,6 +139,7 @@ let
     helm-ls
     lua-language-server
     nixd
+    nodePackages_latest.vscode-langservers-extracted
   ];
 
   useIf = x: y: if x then y else [ ];

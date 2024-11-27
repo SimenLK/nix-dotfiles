@@ -1,3 +1,9 @@
 local colorizer = require('colorizer')
 
-colorizer.setup()
+-- test #000
+
+colorizer.setup({
+  user_default_options = {
+    css = true,
+  },
+})
