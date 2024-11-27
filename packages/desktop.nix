@@ -93,7 +93,6 @@ let
   ];
 
   graphics = with pkgs; [
-    aseprite
     gimp
   ];
 
