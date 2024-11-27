@@ -76,30 +76,29 @@ let
         let
           obsidian-nvim = fromGithub "v3.7.14" "epwalsh/obsidian.nvim";
 
-          my-treesitter =
+          fsharp-grammar =
             let
-              fsharp-grammar =
-                let
-                  drv = pkgs.tree-sitter.buildGrammar {
-                    language = "fsharp";
-                    version = "0.1.0-alpha.1";
-                    location = "fsharp";
-                    src = /home/simkir/code/tree-sitter-fsharp;
-                    meta.homepage = "https://github.com/ionide/tree-sitter-fsharp";
-                  };
-                in
-                drv.overrideAttrs (attrs: {
-                  installPhase = ''
-                    runHook preInstall
-                    mkdir $out
-                    mv parser $out/
-                    if [[ -d ../queries ]]; then
-                      cp -r ../queries $out
-                    fi
-                    runHook postInstall
-                  '';
-                });
+              drv = pkgs.tree-sitter.buildGrammar {
+                language = "fsharp";
+                version = "0.1.0-alpha.4";
+                location = "fsharp";
+                src = /home/simkir/code/tree-sitter-fsharp;
+                meta.homepage = "https://github.com/ionide/tree-sitter-fsharp";
+              };
             in
+            drv.overrideAttrs (attrs: {
+              installPhase = ''
+                runHook preInstall
+                mkdir $out
+                mv parser $out/
+                if [[ -d ../queries ]]; then
+                  cp -r ../queries $out
+                fi
+                runHook postInstall
+              '';
+            });
+
+          my-treesitter =
             pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
               # NOTE: Recommended to be in "ensure_installed"
               p.c
@@ -108,7 +107,6 @@ let
               p.vimdoc
               p.query
 
-              fsharp-grammar
               p.bash
               p.bibtex
               p.c_sharp
@@ -140,39 +138,45 @@ let
         {
           enable = true;
           # package = pkgs.neovim-nightly;
-          plugins = [
-            pkgs.vimPlugins.fugitive
-            pkgs.vimPlugins.plenary-nvim
-            pkgs.vimPlugins.telescope-nvim
+          plugins = with pkgs; [
+            vimPlugins.fugitive
+            vimPlugins.plenary-nvim
+            vimPlugins.telescope-nvim
+
             my-treesitter
-            pkgs.vimPlugins.nvim-treesitter-context
-            pkgs.vimPlugins.zephyr-nvim
-            pkgs.vimPlugins.tokyonight-nvim
+            (pkgs.neovimUtils.grammarToPlugin fsharp-grammar)
 
-            pkgs.vimPlugins.nvim-lspconfig
-            pkgs.vimPlugins.lsp-zero-nvim
+            vimPlugins.nvim-treesitter-context
+            vimPlugins.playground
+            vimPlugins.zephyr-nvim
+            vimPlugins.tokyonight-nvim
 
-            pkgs.vimPlugins.Ionide-vim
+            vimPlugins.nvim-lspconfig
+            vimPlugins.lsp-zero-nvim
 
-            pkgs.vimPlugins.nvim-cmp
-            pkgs.vimPlugins.cmp-buffer
-            pkgs.vimPlugins.cmp-path
-            pkgs.vimPlugins.cmp_luasnip
-            pkgs.vimPlugins.cmp-nvim-lsp
-            pkgs.vimPlugins.cmp-nvim-lua
+            vimPlugins.nvim-cmp
+            vimPlugins.cmp-buffer
+            vimPlugins.cmp-path
+            vimPlugins.cmp-cmdline
+            vimPlugins.cmp_luasnip
+            vimPlugins.cmp-nvim-lsp
+            vimPlugins.cmp-nvim-lua
 
-            pkgs.vimPlugins.luasnip
-            pkgs.vimPlugins.friendly-snippets
+            vimPlugins.luasnip
+            vimPlugins.friendly-snippets
 
-            pkgs.vimPlugins.vim-surround
+            vimPlugins.vim-surround
 
-            pkgs.vimPlugins.markdown-preview-nvim
-            pkgs.vimPlugins.nvim-dap
-            pkgs.vimPlugins.tmux-navigator
-            pkgs.vimPlugins.vim-gnupg
-            pkgs.vimPlugins.vim-nix
-            pkgs.vimPlugins.vim-vsnip
-            pkgs.vimPlugins.vimtex
+            vimPlugins.markdown-preview-nvim
+            vimPlugins.nvim-dap
+            vimPlugins.nvim-notify
+            vimPlugins.nvim-colorizer-lua
+            vimPlugins.tmux-navigator
+            vimPlugins.vim-gnupg
+            vimPlugins.vim-nix
+            vimPlugins.vim-vsnip
+            vimPlugins.vimtex
+            vimPlugins.indent-blankline-nvim
 
             obsidian-nvim
           ];
