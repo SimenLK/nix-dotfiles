@@ -103,10 +103,8 @@ let
     cdrtools
     chromium
     dconf
-    dunst
     drive
     ferdium
-    firefox
     freerdp
     google-chrome
     gparted

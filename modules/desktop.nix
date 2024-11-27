@@ -18,8 +18,11 @@ let
 
     programs = {
       browserpass.enable = true;
+
       feh.enable = true;
+
       firefox.enable = true;
+
       gpg = {
         enable = true;
         settings = {
@@ -45,6 +48,9 @@ let
       pasystray.enable = true;
       flameshot.enable = true;
       clipmenu.enable = true;
+
+      dunst.enable = true;
+      swaync.enable = false;
 
       screen-locker = {
         enable = true;
