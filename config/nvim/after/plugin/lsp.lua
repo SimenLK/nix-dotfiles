@@ -1,20 +1,21 @@
 -- My lsp configs...
 
--- NOTE: Ignore the extend_lspconfig error on startup
-vim.g.lsp_zero_extend_lspconfig = 0
-
-local lspconfig = require("lspconfig")
+local lspconfig_defaults = require('lspconfig').util.default_config
+lspconfig_defaults.capabilities =
+  vim.tbl_deep_extend(
+    "force",
+    lspconfig_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
+  )
 local lsp_zero = require("lsp-zero")
 local cmp = require("cmp")
-local cmp_action = lsp_zero.cmp_action()
 
-cmp.setup({
-  -- mapping = cmp.mapping.preset.insert({ }),
-})
-
-lsp_zero.on_attach(function (client, bufnr)
-  lsp_zero.default_keymaps({buffer = bufnr})
+lsp_zero.on_attach(function(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
+
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({buffer = bufnr})
 end)
 
 lsp_zero.setup_servers({
@@ -25,20 +26,23 @@ lsp_zero.setup_servers({
   'marksman',
   -- 'nil_ls',
   'pyright',
-  'tsserver',
-  'ionide',
+  'ts_ls',
 })
 
 local capabilities = lsp_zero.get_capabilities()
 
 local lua_opts = lsp_zero.nvim_lua_ls()
-lspconfig.lua_ls.setup(lua_opts)
+require('lspconfig').lua_ls.setup(lua_opts)
 
-lspconfig.cssls.setup {
+require('lspconfig').fsautocomplete.setup {
   capabilities = capabilities
 }
 
-lspconfig.yamlls.setup {
+require('lspconfig').cssls.setup {
+  capabilities = capabilities,
+}
+
+require('lspconfig').yamlls.setup {
   -- other configuration for setup {}
   settings = {
     yaml = {
@@ -53,7 +57,7 @@ lspconfig.yamlls.setup {
         ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
         ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
         ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
-        ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
+        ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
         ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
         ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
         ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
@@ -62,7 +66,7 @@ lspconfig.yamlls.setup {
   }
 }
 
-lspconfig.helm_ls.setup {
+require('lspconfig').helm_ls.setup {
   -- other configuration for setup {}
   settings = {
     ["helm-ls"] = {
@@ -85,7 +89,7 @@ lspconfig.helm_ls.setup {
   }
 }
 
-lspconfig.rust_analyzer.setup({
+require('lspconfig').rust_analyzer.setup({
   settings = {
     ["rust-analyzer"] = {
       imports = {
@@ -116,7 +120,7 @@ lspconfig.rust_analyzer.setup({
 --   }
 -- })
 
-lspconfig.nixd.setup({
+require('lspconfig').nixd.setup({
   cmd = { "nixd" },
   settings = {
     nixd = {
@@ -141,4 +145,20 @@ lspconfig.nixd.setup({
   },
 })
 
-lsp_zero.setup()
+local cmp_format = lsp_zero.cmp_format()
+
+cmp.setup({
+  formatting = cmp_format,
+  snippet = {
+    expand = function (args)
+      require('luasnip').lsp_expand(args.body)
+    end
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp', },
+    { name = 'luasnip' },
+  }, {
+    { name = 'buffer', },
+  }),
+  mapping = cmp.mapping.preset.insert({}),
+})

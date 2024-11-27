@@ -1,0 +1,19 @@
+" Vim syntax file
+" Language:     F#
+" Filenames:    *.fs *.fsi *.fsx
+" Maintainers:  Simen Lund Kirkvik  <simen@kirkvik.no>
+" URL:
+" Last Change:
+"               2024 Nov 15 - Start on syntax (simkir)
+
+if exists("b:current_syntax") && b:current_syntax == "fsharp"
+  finish
+endif
+
+" Define the default highlighting
+
+hi def link @comment            Comment
+
+hi def link @keyword            Keyword
+
+let b:current_syntax = "fsharp"

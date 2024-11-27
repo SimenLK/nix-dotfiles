@@ -16,3 +16,5 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "no"
 
 vim.opt.scrolloff = 8
+
+vim.opt.termguicolors = true
