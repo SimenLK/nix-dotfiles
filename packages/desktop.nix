@@ -100,7 +100,7 @@ let
     blueman
     brightnessctl
     cdrtools
-    chromium
+    google-chrome
     dconf
     drive
     ferdium
@@ -143,7 +143,6 @@ let
     ++ useIf cfg.graphics graphics
     ++ useIf cfg.wavebox [ pkgs.wavebox ]
     ++ useIf cfg.zoom [ pkgs.zoom-us ]
-    ++ useIf cfg.factorio [ pkgs.factorio ]
     ++ useIf cfg.tex tex
     ++ useIf cfg.IDE IDE;
 in
@@ -157,7 +156,6 @@ in
     graphics = mkEnableOption "Enable graphics packages";
     wavebox = mkEnableOption "Enable wavebox";
     zoom = mkEnableOption "Enable zoom";
-    factorio = mkEnableOption "Enable factorio!";
     tex = mkEnableOption "Enable LaTeX";
     IDE = mkEnableOption "Enable your IDE, aka Rider in this case :)";
   };

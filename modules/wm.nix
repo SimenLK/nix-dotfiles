@@ -364,7 +364,6 @@ let
       swayidle
       wl-clipboard
       mako
-      alacritty
       wf-recorder
       wofi
       clipman

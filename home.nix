@@ -10,8 +10,9 @@
 
   dotfiles = {
     desktop = {
-      enable = false;
+      enable = true;
       laptop = false;
+      i3.enable = true;
       hyprland.enable = false;
       dropbox.enable = false;
       fontSize = 13.0;
@@ -19,34 +20,19 @@
     packages = {
       devel = {
         enable = true;
-        android = false;
-        cpp = false;
         nix = true;
-        db = false;
+        db = true;
         dotnet = true;
-        node = false;
-        rust = false;
-        haskell = false;
-        python = false;
-        go = false;
-        java = false;
-        clojure = false;
       };
       desktop = {
-        enable = false;
-        gnome = true;
-        x11 = false;
-        media = true;
-        chat = true;
-        graphics = true;
-        wavebox = false;
+        enable = true;
+        chat = false;
+        graphics = false;
+        IDE = true;
         zoom = false;
-        factorio = false;
-        tex = false;
       };
       kubernetes = true;
       cloud = true;
-      geo = true;
     };
     extraDotfiles = [
       "bcrc"
@@ -61,17 +47,6 @@
   };
 
   home.packages = with pkgs; [
-    isync
-    wally-cli
-    tree
-    glab
-    marksman
-    yubikey-manager-qt
-    # nodePackages.vscode-langservers-extracted
-    clamav
-    markdownlint-cli2
-    devbox
-    nom
   ];
 
   programs = {
@@ -81,31 +56,6 @@
     };
 
     ssh.matchBlocks = {
-      margit = {
-        user = "simkir";
-        hostname = "margit.itpartner.intern";
-      };
-
-      uvcluster = {
-        user = "ski027";
-        hostname = "uvcluster.cs.uit.no";
-      };
-      ekman = {
-        user = "simenlk";
-        hostname = "10.255.242.2";
-      };
-
-      ads-matomo01 = {
-        user = "itpadmin";
-        hostname = "10.255.168.163";
-      };
-
-      "10.1.*" = {
-        extraOptions = {
-          "StrictHostKeyChecking" = "no";
-          "UserKnownHostsFile" = "/dev/null";
-        };
-      };
     };
   };
 }
