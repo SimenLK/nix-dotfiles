@@ -51,7 +51,6 @@ let
       clipmenu.enable = true;
 
       dunst.enable = true;
-      swaync.enable = false;
 
       screen-locker = {
         enable = true;

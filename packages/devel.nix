@@ -135,11 +135,12 @@ let
   ];
 
   lsp = with pkgs; [
-    yaml-language-server
     helm-ls
     lua-language-server
+    marksman
     nixd
     nodePackages_latest.vscode-langservers-extracted
+    yaml-language-server
   ];
 
   useIf = x: y: if x then y else [ ];

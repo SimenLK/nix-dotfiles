@@ -14,7 +14,6 @@ let
       swayidle
       wl-clipboard
       mako
-      alacritty
       dmenu
     ];
   };

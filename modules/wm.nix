@@ -14,7 +14,7 @@ let
         ''
           xsetroot -solid '#888888'
           xsetroot -cursor_name left_ptr
-          ${pkgs.gnome3.gnome-settings-daemon}/libexec/gsd-xsettings &
+          ${pkgs.gnome.gnome-settings-daemon}/libexec/gsd-xsettings &
           systemctl --user start gvfs-udisks2-volume-monitor.service
           xset s 1800
           xset +dpms
@@ -420,10 +420,12 @@ let
           active_opacity = 1.0;
           inactive_opacity = 0.8;
 
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "rgba(1a1a1aee)";
+          };
 
           # https://wiki.hyprland.org/Configuring/Variables/#blur
           blur = {
@@ -485,7 +487,7 @@ let
 
         bind = [
           "$mainMod, return, exec, $terminal"
-          "$mainMod, Q, killactive,"
+          "$mainMod SHIFT, Q, killactive,"
           "$mainMod SHIFT, E, exit,"
           "$mainMod SHIFT, N, exec, $fileManager"
           "$mainMod, V, togglefloating,"
@@ -615,10 +617,6 @@ let
             layer = "top";
             position = "bottom";
             height = 30;
-            output = [
-              "eDP-1"
-              "HDMI-A-1"
-            ];
 
             modules-left = [
               "custom/os_button"
