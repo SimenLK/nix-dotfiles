@@ -82,7 +82,12 @@ let
                 language = "fsharp";
                 version = "0.1.0-alpha.4";
                 location = "fsharp";
-                src = /home/simkir/code/tree-sitter-fsharp;
+                src = pkgs.fetchFromGitHub {
+                  owner = "ionide";
+                  repo = "tree-sitter-fsharp";
+                  rev = "971da5ff0266bfe4a6ecfb94616548032d6d1ba0";
+                  hash = "sha256-0jrbznAXcjXrbJ5jnxWMzPKxRopxKCtoQXGl80R1M0M=";
+                };
                 meta.homepage = "https://github.com/ionide/tree-sitter-fsharp";
               };
             in
@@ -262,8 +267,11 @@ let
           # Colors
           set -g default-terminal "tmux-256color"
           set-option -sa terminal-overrides ",alacritty:RGB"
+          set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
+          set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+          set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 
-          # Vim mode controls⋅
+          # Vim mode controls
           setw -g mode-keys vi
 
           # split panes using | and -

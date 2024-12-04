@@ -34,6 +34,7 @@ let
     cilium-cli
     dive
     krew
+    kubecolor
     kubectl
     kubernetes-helm
     kubeseal

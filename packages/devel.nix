@@ -20,13 +20,15 @@ let
     automake
     binutils
     cmake
-    docker-compose
     difftastic
+    docker-compose
     fzf
     gcc
     gdb
     gettext
+    gh
     git
+    glab
     gnum4
     gnumake
     jq
@@ -34,8 +36,8 @@ let
     libxml2
     meld
     ripgrep
-    yq-go
     websocat
+    yq-go
   ];
 
   haskell = with pkgs; [
@@ -61,19 +63,10 @@ let
     # glirc
   ];
 
-  combined = (
-    pkgs.dotnetCorePackages.combinePackages [
-      pkgs.dotnet-sdk
-      pkgs.dotnet-sdk_7
-      pkgs.dotnet-sdk_8
-    ]
-  );
-
   dotnet = {
-    home.sessionVariables = {
-      DOTNET_ROOT = combined;
-    };
-    home.packages = [ combined ];
+    home.packages = [
+      pkgs.dotnet-sdk
+    ];
   };
 
   python = with pkgs; [

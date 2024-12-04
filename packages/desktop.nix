@@ -7,8 +7,6 @@
 let
   cfg = config.dotfiles.packages.desktop;
 
-  fcitx = (self: super: { fcitx-engines = pkgs.fcitx5; });
-
   configuration = {
     nixpkgs.overlays = [
       (import ../overlays/wavebox.nix)
@@ -17,8 +15,7 @@ let
       (import ../overlays/rider.nix)
       (import ../overlays/discord.nix)
       (import ../overlays/ferdium.nix)
-      (import ../overlays/obsidian.nix)
-      fcitx
+      # (import ../overlays/obsidian.nix)
     ];
 
     dotfiles.packages.desktop = {

@@ -12,10 +12,16 @@
     desktop = {
       enable = true;
       laptop = false;
-      i3.enable = true;
-      hyprland.enable = false;
+      i3.enable = false;
+      hyprland = {
+        enable = true;
+        monitors = [
+          "HDMI-A-3,    highres,      0x0,  1.0"
+          "DP-2,      preferred, auto-left, 1.0"
+        ];
+      };
       dropbox.enable = false;
-      fontSize = 13.0;
+      fontSize = 14.0;
     };
     packages = {
       devel = {

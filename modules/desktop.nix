@@ -118,7 +118,7 @@ let
     };
 
     programs.vscode = {
-      enable = true;
+      enable = false;
       extensions = with pkgs.vscode-extensions; [
         ms-dotnettools.csharp
         ionide.ionide-fsharp
@@ -200,6 +200,16 @@ let
           };
           size = cfg.fontSize;
         };
+      };
+    };
+
+    xdg.desktopEntries = {
+      rider = {
+        name = "Rider";
+        genericName = "IDE";
+        exec = "rider";
+        terminal = false;
+        mimeType = [ "text/csv" ];
       };
     };
   };
