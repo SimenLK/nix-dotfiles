@@ -209,32 +209,61 @@ let
           "*.old"
         ];
         extraConfig = {
-          init = {
-            defaultBranch = "main";
+          branch = {
+            sort = "-committerdate";
           };
-          merge = {
-            tool = "meld";
+          commit = {
+            verbose = true;
           };
           color = {
             branch = "auto";
             diff = "auto";
             status = "auto";
           };
-          push = {
-            # matching, tracking or current
-            default = "current";
-          };
-          pull = {
-            rebase = false;
+          column = {
+            ui = "auto";
           };
           core = {
             editor = "nvim";
           };
+          diff = {
+            algorithm = "histogram";
+            colorMoved = "plain";
+            mnemonicPrefix = true;
+            renames = true;
+          };
+          fetch = {
+            prune = true;
+            pruneTags = true;
+            all = true;
+          };
           help = {
-            autocorrect = 1;
+            autocorrect = "prompt";
           };
           http = {
             sslVerify = false;
+          };
+          init = {
+            defaultBranch = "main";
+          };
+          merge = {
+            tool = "meld";
+            conflictStyle = "zdiff3";
+          };
+          push = {
+            # matching, tracking or current
+            default = "simple";
+            autoSetupRemote = true;
+            followTags = true;
+          };
+          pull = {
+            rebase = false;
+          };
+          rebase = {
+            updateRefs = true;
+          };
+          tag = {
+            sort = "version:refname";
           };
           safe = {
             directory = "/etc/nixos";
