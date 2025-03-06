@@ -60,7 +60,7 @@ let
           nix-zsh = ''nix-shell --command "exec zsh"'';
           nix-fish = ''nix-shell --command "exec fish"'';
           halt = "halt -p";
-          kc = "kubectl";
+          kc = "kubecolor";
           k = "kubectl";
           tw = "timew";
           vim = "nvim";
