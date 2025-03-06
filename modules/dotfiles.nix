@@ -178,7 +178,6 @@ let
             vimPlugins.indent-blankline-nvim
             vimPlugins.markdown-preview-nvim
             vimPlugins.nvim-colorizer-lua
-            vimPlugins.nvim-notify
             vimPlugins.vim-gnupg
             vimPlugins.vim-nix
             vimPlugins.vim-vsnip
