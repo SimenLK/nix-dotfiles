@@ -69,6 +69,7 @@ let
           cpwd = "pwd | xclip -i";
           cdc = "cd (xclip -o)";
           gl = "glab";
+          os = "openstack";
         };
       };
 
