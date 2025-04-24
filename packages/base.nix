@@ -33,7 +33,6 @@ let
     duf
     fd
     gnupg
-    neomutt
     openfortivpn
     pandoc
     pass
@@ -42,7 +41,6 @@ let
     sd
     sshuttle
     tomb
-    neomutt
     openfortivpn
     choose
     tree-sitter

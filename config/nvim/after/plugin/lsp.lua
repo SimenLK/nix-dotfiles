@@ -26,7 +26,6 @@ lsp_zero.setup_servers({
   'marksman',
   -- 'nil_ls',
   'pyright',
-  'fsautocomplete',
   'ts_ls',
 })
 
@@ -36,7 +35,13 @@ local lua_opts = lsp_zero.nvim_lua_ls()
 require('lspconfig').lua_ls.setup(lua_opts)
 
 require('lspconfig').fsautocomplete.setup {
-  capabilities = capabilities
+  capabilities = capabilities,
+  cmd = { "dotnet", "fsautocomplete", "--adaptive-lsp-server-enabled" },
+  settings = {
+    fsharp = {
+      linter = false,
+    },
+  },
 }
 
 require('lspconfig').cssls.setup {
@@ -44,30 +49,27 @@ require('lspconfig').cssls.setup {
 }
 
 require('lspconfig').yamlls.setup {
+  autostart = false,
   -- other configuration for setup {}
   settings = {
     yaml = {
       -- other settings. note this overrides the lspconfig defaults.
       schemas = {
         kubernetes = "*.yaml",
-        ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-        ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-        ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-        ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-        ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
-        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-        ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
         ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
         ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
         ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
         ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
+      },
+      shemaStore = {
+        enable = true,
       },
     },
   }
 }
 
 require('lspconfig').helm_ls.setup {
+  autostart = false,
   -- other configuration for setup {}
   settings = {
     ["helm-ls"] = {
@@ -79,7 +81,7 @@ require('lspconfig').helm_ls.setup {
       },
     },
     yamlls = {
-      enabled = true,
+      enabled = false,
       path = "yaml-language-server",
       config = {
         schemas = {
@@ -124,25 +126,25 @@ require('lspconfig').rust_analyzer.setup({
 require('lspconfig').nixd.setup({
   cmd = { "nixd" },
   settings = {
-    nixd = {
-      nixpkgs = {
-        expr = "import <nixpkgs> { }",
-      },
-      formatting = {
-        command = { "nixfmt" },
-      },
-      options = {
-        nixos = {
-          expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
-        },
-        home_manager = {
-          expr = "(import <home-manager/modules> { configuration = ~/.dotfiles/home.nix; pkgs = import <nixpkgs> {}; }).options"
-        },
-        serit_platform_manifests = {
-          expr = '(builtins.getFlake ("git+file://home/simkir/serit/k8s/serit-platform-manifests")).options'
-        },
-      },
-    },
+    -- nixd = {
+    --   nixpkgs = {
+    --     expr = "import <nixpkgs> { }",
+    --   },
+    --   formatting = {
+    --     command = { "nixfmt" },
+    --   },
+    --   options = {
+    --     nixos = {
+    --       expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
+    --     },
+    --     home_manager = {
+    --       expr = "(import <home-manager/modules> { configuration = ~/.dotfiles/home.nix; pkgs = import <nixpkgs> {}; }).options"
+    --     },
+    --     serit_platform_manifests = {
+    --       expr = '(builtins.getFlake ("git+file://home/simkir/serit/k8s/serit-platform-manifests")).options'
+    --     },
+    --   },
+    -- },
   },
 })
 

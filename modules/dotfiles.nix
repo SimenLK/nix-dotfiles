@@ -40,6 +40,7 @@ let
         shellAbbrs = {
           gfa = "git fetch --all";
           kgp = "kubectl get pods";
+          kcd = "kubectl config set-context --current --namespace";
         };
         shellAliases = {
           rm = "rm -i";
@@ -116,9 +117,9 @@ let
               p.bash
               p.bibtex
               p.c_sharp
-              p.cue
               p.cpp
               p.css
+              p.cue
               p.dhall
               p.dockerfile
               p.fish
@@ -137,6 +138,7 @@ let
               p.rust
               p.sql
               p.typescript
+              p.typst
               p.yaml
               p.zig
             ]);

@@ -13,7 +13,6 @@ let
       # (import ../overlays/minio-client.nix)
       (import ../overlays/vcluster.nix)
       (import ../overlays/tilt.nix)
-      # (import ../overlays/k9s.nix)
     ];
 
     home.packages = enabledPackages;

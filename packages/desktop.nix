@@ -32,10 +32,11 @@ let
 
   media = with pkgs; [
     obs-studio
-    # audacity
+    audacity
     # xf86_input_wacom
     # mpv
     peek
+    vlc
   ];
 
   x11 = with pkgs; [
@@ -108,7 +109,6 @@ let
     libreoffice
     libnotify
     newsflash
-    obsidian
     pandoc
     pass
     pavucontrol

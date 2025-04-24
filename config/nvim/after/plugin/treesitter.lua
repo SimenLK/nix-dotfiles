@@ -2,12 +2,13 @@ local configs = require('nvim-treesitter.configs')
 local context = require('treesitter-context')
 
 configs.setup {
-	highlight = {
-		enable = true,
-	},
+  highlight = {
+    enable = true,
+  },
+  disable = { "json" },
 }
 
-context.setup{
+context.setup {
   enable = true,
   max_lines = 4,
 }

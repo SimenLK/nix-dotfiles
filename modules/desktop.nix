@@ -30,6 +30,35 @@ let
           use-agent = true;
         };
       };
+
+      alacritty = {
+        enable = true;
+        settings = {
+          window = {
+            opacity = 0.8;
+          };
+          font = {
+            normal = {
+              family = "JetBrains Mono Nerd Font";
+              style = "Regular";
+            };
+            size = cfg.fontSize;
+          };
+        };
+      };
+
+      ghostty = {
+        enable = true;
+        enableFishIntegration = true;
+        settings = {
+          font-size = cfg.fontSize;
+          cursor-style = "block";
+          shell-integration-features = "no-cursor";
+          keybind = [
+            "ctrl+shift+space=write_screen_file:open"
+          ];
+        };
+      };
     };
 
     home.file = {
@@ -53,7 +82,7 @@ let
       dunst.enable = true;
 
       screen-locker = {
-        enable = true;
+        enable = false;
         inactiveInterval = 120;
         lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 121212";
         # lockCmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -n -p";
@@ -115,92 +144,6 @@ let
       "Xclip.selection" = "clipboard";
       "Xcursor.theme" = "cursor-theme";
       "Xcursor.size" = 12;
-    };
-
-    programs.vscode = {
-      enable = false;
-      extensions = with pkgs.vscode-extensions; [
-        ms-dotnettools.csharp
-        ionide.ionide-fsharp
-        vscodevim.vim
-        jnoortheen.nix-ide
-        bradlc.vscode-tailwindcss
-      ];
-      userSettings = {
-        "nix.enableLanguageServer" = true;
-        "editor.minimap.enabled" = false;
-        "editor.renderWhitespace" = "trailing";
-        "editor.renderControlCharacters" = true;
-        "editor.rulers" = [
-          80
-          120
-        ];
-        "editor.lineNumbers" = "relative";
-        "editor.renderLineHighlight" = "all";
-        "editor.smoothScrolling" = true;
-        "editor.cursorBlinking" = "smooth";
-        "editor.guides.indentation" = true;
-        "editor.guides.highlightActiveIndentation" = false;
-        "window.menuBarVisibility" = "toggle";
-        "window.zoomLevel" = 2;
-        "workbench.startupEditor" = "newUntitledFile";
-        "workbench.settings.editor" = "json";
-        "files.trimTrailingWhitespace" = true;
-        "FSharp.dotnetRoot" = pkgs.dotnet-sdk_6;
-        "vim.leader" = "<space>";
-        "vim.normalModeKeyBindings" = [
-          {
-            "before" = [ "C-n" ];
-            "commands" = [ { "command" = "workbench.action.toggleSidebarVisibility"; } ];
-          }
-          {
-            "before" = [
-              "<leader>"
-              "r"
-            ];
-            "commands" = [ { "command" = "editor.action.rename"; } ];
-          }
-          {
-            "before" = [
-              "<leader>"
-              "n"
-            ];
-            "commands" = [ { "command" = "editor.action.goToReferences"; } ];
-          }
-          {
-            "before" = [
-              "<leader>"
-              "r"
-              "g"
-            ];
-            "commands" = [ { "command" = "workbench.action.findInFiles"; } ];
-          }
-          {
-            "before" = [
-              "<leader>"
-              "g"
-              "e"
-            ];
-            "commands" = [ { "command" = "editor.action.marker.nextInFiles"; } ];
-          }
-        ];
-      };
-    };
-
-    programs.alacritty = {
-      enable = true;
-      settings = {
-        window = {
-          opacity = 0.6;
-        };
-        font = {
-          normal = {
-            family = "JetBrains Mono Nerd Font";
-            style = "Regular";
-          };
-          size = cfg.fontSize;
-        };
-      };
     };
 
     xdg.desktopEntries = {

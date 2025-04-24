@@ -94,8 +94,7 @@ let
   rust = with pkgs; [ rust-analyzer ];
 
   go = [
-    pkgs.go
-    pkgs.go2nix
+    pkgs.go_1_24
   ];
 
   clojure = with pkgs; [

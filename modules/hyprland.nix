@@ -21,7 +21,7 @@ let
         # TODO: Move out to home.nix
         monitor = cfg.hyprland.monitors;
 
-        "$terminal" = "alacritty";
+        "$terminal" = "ghostty";
         "$fileManager" = "nautilus";
         "$menu" = "${pkgs.rofi-wayland}/bin/rofi -show drun";
 
