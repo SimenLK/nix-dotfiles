@@ -67,6 +67,7 @@ let
           cdc = "cd (xclip -o)";
           gl = "glab";
           os = "openstack";
+          tc = "talosctl";
         };
       };
 
