@@ -62,11 +62,6 @@ let
     };
 
     home.file = {
-      icons = {
-        source = /home/simkir/.dotfiles/icons;
-        target = ".icons";
-        recursive = true;
-      };
       xmodmap = {
         source = /home/simkir/.dotfiles/adhoc/Xmodmap;
         target = ".Xmodmap";
@@ -112,32 +107,6 @@ let
 
     systemd.user.sessionVariables = {
       GIO_EXTRA_MODULES = "${pkgs.gvfs}/lib/gio/modules";
-    };
-
-    gtk = {
-      enable = true;
-      font.name = "DejaVu Sans 11";
-      iconTheme.name = "Ubuntu-mono-dark";
-      theme.name = "Adwaita";
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = 0;
-        # gtk-theme-name = "Sierra-compact-light";
-        # gtk-icon-theme-name = "ePapirus";
-        # gtk-font-name = "Ubuntu 11";
-        gtk-cursor-theme-name = "Deepin";
-        gtk-cursor-theme-size = 0;
-        gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
-        gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
-        gtk-button-images = 1;
-        gtk-menu-images = 1;
-        gtk-enable-event-sounds = 1;
-        gtk-enable-input-feedback-sounds = 1;
-        gtk-xft-antialias = 1;
-        gtk-xft-hinting = 1;
-        gtk-xft-hintstyle = "hintfull";
-        gtk-xft-rgba = "rgb";
-        gtk-modules = "gail:atk-bridge";
-      };
     };
 
     xresources.properties = {
@@ -198,5 +167,8 @@ in
     ]
   );
 
-  imports = [ ./wm.nix ];
+  imports = [
+    ./wm.nix
+    ./stylix.nix
+  ];
 }

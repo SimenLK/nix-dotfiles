@@ -31,10 +31,6 @@ let
 
           border_size = 2;
 
-          # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-          "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          "col.inactive_border" = "rgba(595959aa)";
-
           # Set to true enable resizing windows by clicking and dragging on borders and gaps
           resize_on_border = false;
 
@@ -55,7 +51,6 @@ let
             enabled = true;
             range = 4;
             render_power = 3;
-            color = "rgba(1a1a1aee)";
           };
 
           # https://wiki.hyprland.org/Configuring/Variables/#blur
@@ -221,14 +216,6 @@ let
             grace = 5;
           };
 
-          background = [
-            {
-              path = "screenshot";
-              blur_passes = 3;
-              blur_size = 8;
-            }
-          ];
-
           label = {
             text = ''
               cmd[update:1000] echo "$(date +"%T")"
@@ -238,23 +225,6 @@ let
             halign = "right";
             valign = "top";
           };
-
-          input-field = [
-            {
-              size = "400, 50";
-              position = "0, -80";
-              monitor = "";
-              dots_center = true;
-              fade_on_empty = false;
-              font_color = "rgb(202, 211, 245)";
-              inner_color = "rgb(91, 96, 120)";
-              outer_color = "rgb(24, 25, 38)";
-              outline_thickness = 5;
-              placeholder_text = ''
-                <span foreground="##cad3f5">Password...</span>
-              '';
-            }
-          ];
         };
       };
     };
