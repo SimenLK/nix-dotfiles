@@ -66,6 +66,7 @@ let
           keybind = [
             "ctrl+shift+space=write_screen_file:open"
           ];
+          link-url = false;
         };
       };
     };
