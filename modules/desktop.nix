@@ -24,6 +24,15 @@ let
 
       firefox.enable = true;
 
+      chromium = {
+        enable = true;
+        commandLineArgs = [
+          "--enable-features=UseOzonePlatform"
+          "--ozone-platform-hint=wayland"
+          "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
+        ];
+      };
+
       gpg = {
         enable = true;
         settings = {
