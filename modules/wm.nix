@@ -173,7 +173,6 @@ let
               always = false;
             }
             { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
-            { command = "ferdium"; }
             { command = "rssguard"; }
           ]
           ++ (

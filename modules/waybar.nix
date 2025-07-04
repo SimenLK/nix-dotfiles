@@ -6,13 +6,12 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    style = builtins.readFile ./style.css;
     settings = {
       mainBar = {
         name = "main-bar";
         layer = "top";
         position = "bottom";
-        height = 30;
+        height = 36;
 
         modules-left = [
           "custom/os_button"
@@ -30,9 +29,6 @@
           "memory"
           "network"
           "pulseaudio"
-          "backlight"
-          "battery"
-          "tray"
           "clock"
         ];
 

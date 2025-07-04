@@ -13,7 +13,13 @@ let
   configuration = {
     stylix = {
       enable = true;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/equilibrium-gray-light.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-storm.yaml";
+      targets = {
+        firefox = {
+          enable = false;
+          colorTheme.enable = false;
+        };
+      };
     };
   };
 in

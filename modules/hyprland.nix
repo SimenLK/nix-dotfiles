@@ -13,6 +13,7 @@ let
       wl-clipboard
       nm-tray
       grimblast
+      papirus-folders
     ];
 
     wayland.windowManager = {

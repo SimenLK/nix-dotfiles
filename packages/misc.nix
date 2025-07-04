@@ -8,9 +8,7 @@ let
   cfg = config.dotfiles.packages;
 
   configuration = {
-    overlays = [
-      (import ../overlays/k9s.nix)
-    ];
+    nixpkgs.overlays = [ ];
 
     home.packages = enabledPackages;
   };
@@ -52,7 +50,6 @@ let
     programs = {
       k9s = {
         enable = true;
-        package = k9s;
         settings = {
           k9s = {
             ui = {

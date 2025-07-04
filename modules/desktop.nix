@@ -17,6 +17,13 @@ let
 
     dotfiles.desktop.fontSize = lib.mkDefault 12.0;
 
+    qt = {
+      enable = true;
+      platformTheme = {
+        name = "gtk3";
+      };
+    };
+
     programs = {
       browserpass.enable = true;
 
@@ -41,7 +48,7 @@ let
       };
 
       alacritty = {
-        enable = true;
+        enable = false;
         settings = {
           window = {
             opacity = 0.8;
@@ -80,9 +87,9 @@ let
     };
 
     services = {
-      pasystray.enable = true;
       flameshot.enable = true;
-      clipmenu.enable = true;
+      pasystray.enable = false;
+      clipmenu.enable = false;
 
       dunst.enable = true;
 
@@ -126,13 +133,6 @@ let
     };
 
     xdg.desktopEntries = {
-      rider = {
-        name = "Rider";
-        genericName = "IDE";
-        exec = "rider";
-        terminal = false;
-        mimeType = [ "text/csv" ];
-      };
     };
   };
 

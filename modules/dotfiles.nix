@@ -126,6 +126,7 @@ let
               p.glsl
               p.go
               p.html
+              p.helm
               p.javascript
               p.latex
               p.markdown
@@ -189,6 +190,7 @@ let
 
       git = {
         enable = true;
+        lfs.enable = true;
         aliases = {
           ll = "log --stat --abbrev-commit --decorate";
           history = "log --graph --abbrev-commit --decorate --all";
@@ -340,6 +342,7 @@ let
 
       home-manager = {
         enable = true;
+        path = "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
       };
     };
 
