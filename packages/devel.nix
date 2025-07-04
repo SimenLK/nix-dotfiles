@@ -22,12 +22,12 @@ let
     cmake
     difftastic
     docker-compose
+    docker
     fzf
     gcc
     gdb
     gettext
     gh
-    git
     glab
     gnum4
     gnumake

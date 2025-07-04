@@ -8,11 +8,8 @@ let
   cfg = config.dotfiles.packages;
 
   configuration = {
-    nixpkgs.overlays = [
-      (import ../overlays/linkerd.nix)
-      # (import ../overlays/minio-client.nix)
-      (import ../overlays/vcluster.nix)
-      (import ../overlays/tilt.nix)
+    overlays = [
+      (import ../overlays/k9s.nix)
     ];
 
     home.packages = enabledPackages;
@@ -39,6 +36,7 @@ let
     kubeseal
     linkerd
     minikube
+    nerdctl
     step-cli # cert swiss army knife
     talosctl
     tilt
@@ -54,6 +52,7 @@ let
     programs = {
       k9s = {
         enable = true;
+        package = k9s;
         settings = {
           k9s = {
             ui = {

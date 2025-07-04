@@ -9,13 +9,7 @@ let
 
   configuration = {
     nixpkgs.overlays = [
-      (import ../overlays/wavebox.nix)
-      #(import ../overlays/teams.nix)
-      # (import ../overlays/vscode.nix)
       (import ../overlays/rider.nix)
-      (import ../overlays/discord.nix)
-      (import ../overlays/ferdium.nix)
-      # (import ../overlays/obsidian.nix)
     ];
 
     dotfiles.packages.desktop = {
@@ -24,7 +18,6 @@ let
       gnome = lib.mkDefault true;
       chat = lib.mkDefault true;
       graphics = lib.mkDefault true;
-      tex = lib.mkDefault false;
     };
 
     home.packages = enabledPackages;
@@ -98,10 +91,8 @@ let
     blueman
     brightnessctl
     cdrtools
-    google-chrome
     dconf
     drive
-    ferdium
     freerdp
     gparted
     keybase
@@ -124,7 +115,7 @@ let
   ];
 
   chat = with pkgs; [
-    discord
+    signal-desktop
   ];
 
   tex = with pkgs; [ texlive.combined.scheme-full ];
@@ -138,8 +129,6 @@ let
     ++ useIf cfg.media media
     ++ useIf cfg.chat chat
     ++ useIf cfg.graphics graphics
-    ++ useIf cfg.wavebox [ pkgs.wavebox ]
-    ++ useIf cfg.zoom [ pkgs.zoom-us ]
     ++ useIf cfg.tex tex
     ++ useIf cfg.IDE IDE;
 in
@@ -151,8 +140,6 @@ in
     x11 = mkEnableOption "Enable x11 packages";
     gnome = mkEnableOption "Enable gnome packages";
     graphics = mkEnableOption "Enable graphics packages";
-    wavebox = mkEnableOption "Enable wavebox";
-    zoom = mkEnableOption "Enable zoom";
     tex = mkEnableOption "Enable LaTeX";
     IDE = mkEnableOption "Enable your IDE, aka Rider in this case :)";
   };
