@@ -69,26 +69,12 @@ require('lspconfig').yamlls.setup {
 }
 
 require('lspconfig').helm_ls.setup {
-  autostart = false,
-  -- other configuration for setup {}
   settings = {
     ["helm-ls"] = {
-      logLevel = "info",
-      valuesFiles = {
-        mainValuesFile = "values.yaml",
-        lintOverlayValuesFile = "values.lint.yaml",
-        additionalValuesFilesGlobPattern = "values*.yaml"
-      },
-    },
-    yamlls = {
-      enabled = false,
-      path = "yaml-language-server",
-      config = {
-        schemas = {
-          kubernetes = "templates/**",
-        },
-      },
-    },
+      yamlls = {
+        path = "yaml-language-server",
+      }
+    }
   }
 }
 

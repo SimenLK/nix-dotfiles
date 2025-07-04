@@ -7,22 +7,18 @@
 let
   cfg = config.dotfiles;
 
-  fromGithub =
-    ref: repo:
+  fromGithubBranch =
+    rev: repo:
     pkgs.vimUtils.buildVimPlugin {
       pname = "${lib.strings.sanitizeDerivationName repo}";
-      version = ref;
+      version = rev;
       src = builtins.fetchGit {
         url = "https://github.com/${repo}.git";
-        ref = "refs/tags/${ref}";
+        rev = rev;
       };
     };
 
   configuration = {
-    nixpkgs.overlays = [
-      (import ../overlays/nvim.nix)
-    ];
-
     manual.manpages.enable = true;
 
     programs = {
@@ -76,8 +72,6 @@ let
 
       neovim =
         let
-          obsidian-nvim = fromGithub "v3.9.0" "epwalsh/obsidian.nvim";
-
           fsharp-grammar =
             let
               drv = pkgs.tree-sitter.buildGrammar {
@@ -104,6 +98,8 @@ let
                 runHook postInstall
               '';
             });
+
+          helm-ls-nvim = fromGithubBranch "648509594281eed48e58bb690744b082c1eeb741" "qvalentin/helm-ls.nvim";
 
           my-treesitter =
             pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
@@ -186,7 +182,7 @@ let
             vimPlugins.vim-vsnip
             vimPlugins.vimtex
 
-            obsidian-nvim
+            helm-ls-nvim
           ];
         };
 
